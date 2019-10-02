@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'eg%1-&&6p$ors-$ml#0jrwt+o)861$=+3erb59v035bu*bg17o'
+SECRET_KEY = 'ox(eo$el#l%c*l+8c=wz459=mr+35%sjmir)rxh24490c37$2_'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'ScrimPay.apps.ScrimpayConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
