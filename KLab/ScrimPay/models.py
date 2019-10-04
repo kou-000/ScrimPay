@@ -23,7 +23,7 @@ class User(models.Model):
     password = models.CharField(max_length=30)
 
     # ユーザー名 : Char型
-    user_name = models.CharField(max_length=20)
+    user_name = models.CharField(max_length=20, null=True, blank=True)
 
 class Service(models.Model):
     # サービスID : Char型で、主キー
@@ -33,7 +33,7 @@ class Service(models.Model):
     service_name = models.CharField(max_length=20)
 
     # プラン名 : Char型
-    plan_name = models.CharField(max_length=20)
+    plan_name = models.CharField(max_length=20, null=True, blank=True)
 
     # 月額料金 : Integer型
     fee_per_month = models.IntegerField()
