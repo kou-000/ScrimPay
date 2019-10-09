@@ -12,6 +12,9 @@ class Main(models.Model):
     # サービスID : Char型で、外部キー
     service_id = models.CharField(max_length=30)
 
+    def __str__(self):
+        return self.user_id + ',' + self.service_id
+
 class User(models.Model):
     # ユーザーID : Char型で、主キー
     user_id = models.CharField(max_length=20, primary_key=True)
@@ -25,6 +28,9 @@ class User(models.Model):
     # ユーザー名 : Char型
     user_name = models.CharField(max_length=20, null=True, blank=True)
 
+    def __str__(self):
+        return self.user_id + ',' + self.mail_address + ',' + self.user_name + ',' + self.user_name
+
 class Service(models.Model):
     # サービスID : Char型で、主キー
     service_id = models.CharField(max_length=30, primary_key=True)
@@ -37,3 +43,6 @@ class Service(models.Model):
 
     # 月額料金 : Integer型
     fee_per_month = models.IntegerField()
+
+    def __str__(self):
+        return self.service_id + ',' + self.service_name + ',' + str(self.fee_per_month)

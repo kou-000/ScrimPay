@@ -1,0 +1,82 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>メインページ</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  </head>
+  
+  <!-- <script type="text/javascript" src="{% static 'javascript/app.js' %}"></script> -->
+  <script src="https://unpkg.com/vue@2.5.17"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+  <script src="https://unpkg.com/vue-chartjs/dist/vue-chartjs.min.js"></script>
+
+  <body>
+    <div>今月の支払い 5000円</div>
+
+    <div id="app">
+        <doughnut-chart></doughnut-chart>
+    </div>
+
+
+
+    <div class="container">
+        <p>動画配信サービス</p>
+        {% for i in val %}
+
+            {% for j in val3%}
+
+                {% if i.service_id == j.service_id %}
+                <ul>
+                    <li>{{j.service_name}}</li>
+                    <li>{{j.plan_name}}</li>
+                    <li>{{j.fee_per_month}}円</li>
+                </ul>
+                    
+                {% endif %}
+            {% endfor %}
+      {% endfor %}
+    {{array}}
+    [&#39;Amazon Prime&#39;, &#39;Hulu&#39;, &#39;Netflix&#39;]
+    </div>
+  </body>
+</html>
+
+
+
+<script>
+
+var aaa = '{{array}}';
+aaa = aaa.replace(/&#39;/g,"");
+aaa = aaa.replace(/, /g,",");
+console.log(aaa);
+aaa = aaa.replace("[","");
+aaa = aaa.replace("]","");
+console.log(aaa);
+
+ary = aaa.split(',');
+
+
+
+Vue.component('doughnut-chart', {
+    extends: VueChartJs.Doughnut,
+    mounted(){
+        this.renderChart({
+            labels: ary,
+            datasets:[
+                {
+                    backgroundColor: ['#ff6347','#ffd700','#00bfff','#ff6347','#ff6347','#ff6347','#ff6347'],
+                    data:[10,20,30]
+                }
+            ],
+        }, {responsive: true, maintainAspectRatio: false})
+    }
+})
+
+var vm = new Vue({
+    el: '#app',
+})
+</script>
