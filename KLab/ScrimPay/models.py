@@ -37,3 +37,6 @@ class Service(models.Model):
 
     # 月額料金 : Integer型
     fee_per_month = models.IntegerField()
+
+    # グラフ表示用の色コード : Char型
+    color = models.CharField(max_length=10, null=True, blank=True)
