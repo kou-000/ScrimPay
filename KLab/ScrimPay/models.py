@@ -12,6 +12,13 @@ class Main(models.Model):
     # サービスID : Char型で、外部キー
     service_id = models.CharField(max_length=30)
 
+    def __str__(self):
+        return self.user_id + ',' + self.service_id
+
+    # 組み合わせが重複禁止
+    class Meta:
+        unique_together = ('user_id', 'service_id')
+
 class User(models.Model):
     # ユーザーID : Char型で、主キー
     user_id = models.CharField(max_length=20, primary_key=True)
@@ -24,6 +31,9 @@ class User(models.Model):
 
     # ユーザー名 : Char型
     user_name = models.CharField(max_length=20, null=True, blank=True)
+
+    def __str__(self):
+        return self.user_id + ',' + self.mail_address + ',' + self.user_name
 
 class Service(models.Model):
     # サービスID : Char型で、主キー
@@ -40,3 +50,6 @@ class Service(models.Model):
 
     # グラフ表示用の色コード : Char型
     color = models.CharField(max_length=10, null=True, blank=True)
+
+    def __str__(self):
+        return self.service_id + ',' + self.service_name + ',' + str(self.fee_per_month)
