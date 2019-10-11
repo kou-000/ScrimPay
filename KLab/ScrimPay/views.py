@@ -35,28 +35,40 @@ class ItemCreateView(TemplateView):
         some_var = request.POST.getlist('checks[]')
         print(str(some_var))
         number = len(some_var)
-
         data = Service.objects.all()
+
         sum = 0
+        #合計金額計算
         for w in some_var:
-            #print(w)
-            #print(data[int(w)-1].fee_per_month)
-            #print(data[int(w)-1])
             sum = int(data[int(w)-1].fee_per_month) + sum
         
+        #合計金額出力
         print("sum = "+str(sum))
 
+
+        #各サービスの占める割合の算出
+        service_rate_list = []
+        service_id_list = []
         for w in some_var:
             print(data[int(w)-1].service_id + " : " + str(int(data[int(w)-1].fee_per_month)/sum*100) + "%")
+            service_rate_list = service_rate_list + [int(data[int(w)-1].fee_per_month)/sum*100]
+            service_id_list = service_id_list + [str(data[int(w)-1].service_id)]
 
         #引数としてuser_id(A001)があった場合
         for w in some_var:
             main_data = Main(user_id = 'A001',service_id = str(data[int(w)-1].service_id))
             print(main_data.user_id)
             print(main_data.service_id)
-            main_data.save()
+            # main_data.save()
 
-        return HttpResponse('')
+        calc_dic = {
+            'sum':sum,
+            'service_rate_array':service_rate_list,
+            'service_id_array':service_id_list,
+        }
+        #print(service_rate_list)
+        #print(service_id_list)
+        return render(request,'scrimpay/main.html',calc_dic)
 
 
 
