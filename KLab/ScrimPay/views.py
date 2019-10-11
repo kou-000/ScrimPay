@@ -59,7 +59,7 @@ class ItemCreateView(TemplateView):
             main_data = Main(user_id = 'A001',service_id = str(data[int(w)-1].service_id))
             print(main_data.user_id)
             print(main_data.service_id)
-            # main_data.save()
+            main_data.save()
 
         calc_dic = {
             'sum':sum,
