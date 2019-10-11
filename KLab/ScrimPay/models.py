@@ -29,7 +29,7 @@ class User(models.Model):
     user_name = models.CharField(max_length=20, null=True, blank=True)
 
     def __str__(self):
-        return self.user_id + ',' + self.mail_address + ',' + self.user_name + ',' + self.user_name
+        return self.user_id + ',' + self.mail_address + ',' + self.user_name
 
 class Service(models.Model):
     # サービスID : Char型で、主キー
@@ -46,3 +46,6 @@ class Service(models.Model):
 
     # グラフ表示用の色コード : Char型
     color = models.CharField(max_length=10, null=True, blank=True)
+
+    def __str__(self):
+        return self.service_id + ',' + self.service_name + ',' + str(self.fee_per_month)

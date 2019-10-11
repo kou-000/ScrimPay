@@ -22,6 +22,7 @@ def main(request):
             if i.service_id == j.service_id:
                 array.append(j.service_name)
     print(array)
+
     my_dict2 = {
         'val':data1,
         'val2':data2,
