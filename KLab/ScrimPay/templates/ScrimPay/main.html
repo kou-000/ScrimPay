@@ -1,0 +1,43 @@
+{% block body %}
+
+<form method="POST" action="main">
+      <!--
+    <table border="1">
+      <thead>
+        <tr>
+          <th>service_id</th>
+          <th>service_name</th>
+          <th>plan_name</th>
+          <th>fee_per_month</th>>
+        </tr>
+      </thead>
+      <tbody>
+      -->
+        {% for i in val %}
+        <!--
+          <tr>
+            <td>{{ i.service_id }}</td>
+            <td>{{ i.service_name }}</td>
+            <td>{{ i.plan_name }}</td>
+            <td>{{ i.fee_per_month }}</td>
+          </tr>
+        -->
+        
+        <div>
+        <input type="checkbox" name="interest" value= {{i.service_id}}>
+        <label for="music">{{i.service_name}}  {{i.plan_name}} </label>
+        </div>
+        
+        
+        {% endfor %}
+        <!--
+      </tbody>
+    </table>
+-->
+    <div>
+        <button type="submit" name="button_1">戻る</button>
+        <button type="submit" name="button_2">保存</button>
+    </div>
+
+  </form>
+{% endblock %}
