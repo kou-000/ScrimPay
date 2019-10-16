@@ -4,7 +4,6 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>メインページ</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
   </head>
@@ -15,7 +14,7 @@
   <script src="https://unpkg.com/vue-chartjs/dist/vue-chartjs.min.js"></script>
 
   <body>
-    <div>今月の支払い 5000円</div>
+    <div>月々の支払い ¥{{fee_sum}}</div>
 
     <div id="app">
         <doughnut-chart></doughnut-chart>
@@ -24,23 +23,23 @@
 
 
     <div class="container">
+        <a href = "http://127.0.0.1:8000/scrimpay/">契約サービス追加</a>
         <p>動画配信サービス</p>
-        {% for i in val %}
+        {% for i in val3 %}
 
-            {% for j in val3%}
+            {% for j in val%}
 
                 {% if i.service_id == j.service_id %}
                 <ul>
-                    <li>{{j.service_name}}</li>
-                    <li>{{j.plan_name}}</li>
-                    <li>{{j.fee_per_month}}円</li>
+                    <li>{{i.service_name}}</li>
+                    <li>{{i.plan_name}}</li>
+                    <li>{{i.fee_per_month}}円</li>
                 </ul>
                     
                 {% endif %}
             {% endfor %}
       {% endfor %}
-    {{array}}
-    [&#39;Amazon Prime&#39;, &#39;Hulu&#39;, &#39;Netflix&#39;]
+
     </div>
   </body>
 </html>
@@ -56,6 +55,19 @@ aaa = aaa.replace("[","");
 aaa = aaa.replace("]","");
 ary = aaa.split(',');
 
+var aaa = '{{color_array}}';
+aaa = aaa.replace(/&#39;/g,"");
+aaa = aaa.replace(/, /g,",");
+aaa = aaa.replace("[","");
+aaa = aaa.replace("]","");
+color_ary = aaa.split(',');
+
+var aaa = '{{rate_array}}';
+aaa = aaa.replace(/&#39;/g,"");
+aaa = aaa.replace(/, /g,",");
+aaa = aaa.replace("[","");
+aaa = aaa.replace("]","");
+rate_ary = aaa.split(',');
 
 
 Vue.component('doughnut-chart', {
@@ -65,8 +77,8 @@ Vue.component('doughnut-chart', {
             labels: ary,
             datasets:[
                 {
-                    backgroundColor: ['#ff6347','#ffd700','#00bfff','#ff6347','#ff6347','#ff6347','#ff6347'],
-                    data:[10,20,30]
+                    backgroundColor: color_ary,
+                    data:rate_ary
                 }
             ],
         }, {responsive: true, maintainAspectRatio: false})

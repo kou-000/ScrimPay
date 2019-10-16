@@ -15,13 +15,10 @@ class Main(models.Model):
     def __str__(self):
         return self.user_id + ',' + self.service_id
 
-<<<<<<< HEAD
-=======
     # 組み合わせが重複禁止
     class Meta:
         unique_together = ('user_id', 'service_id')
 
->>>>>>> 9a657c48072e86552bc83fe18ac34bc660bb4a5a
 class User(models.Model):
     # ユーザーID : Char型で、主キー
     user_id = models.CharField(max_length=20, primary_key=True)
@@ -36,11 +33,7 @@ class User(models.Model):
     user_name = models.CharField(max_length=20, null=True, blank=True)
 
     def __str__(self):
-<<<<<<< HEAD
-        return self.user_id + ',' + self.mail_address + ',' + self.user_name + ',' + self.user_name
-=======
         return self.user_id + ',' + self.mail_address + ',' + self.user_name
->>>>>>> 9a657c48072e86552bc83fe18ac34bc660bb4a5a
 
 class Service(models.Model):
     # サービスID : Char型で、主キー
