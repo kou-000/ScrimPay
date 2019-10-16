@@ -51,5 +51,29 @@ class Service(models.Model):
     # グラフ表示用の色コード : Char型
     color = models.CharField(max_length=10, null=True, blank=True)
 
+    # 作品数 : Integer型
+    works_num = models.IntegerField(null=True, blank=True)
+
+    # 学割の有無 : Bool型
+    is_student_discount = models.BooleanField(null=True, blank=True)
+
+    # 請求日 : Char型
+    billing_date = models.CharField(max_length=20, null=True, blank=True)
+
+    # 無料期間 : Char型
+    free_trial_period = models.CharField(max_length=20, null=True, blank=True)
+
+    # DL機能 : Bool型
+    is_download = models.BooleanField(null=True, blank=True)
+
+    # レンタル機能 : Bool型
+    is_rental = models.BooleanField(null=True, blank=True)
+
+    # 説明 : Char型
+    service_detail = models.CharField(max_length=1000, null=True, blank=True)
+
+    # 解約URL : Char型
+    cancellation_url = models.CharField(max_length=100, null=True, blank=True)
+
     def __str__(self):
         return self.service_id + ',' + self.service_name + ',' + str(self.fee_per_month)
