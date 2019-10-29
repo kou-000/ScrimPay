@@ -4,20 +4,35 @@ from .models import Main, User, Service
 import json
 from django.views.generic.edit import CreateView
 from django.views.generic import TemplateView
-import logging
+# import logging
 # Create your views here.
 
-logger=logging.getLogger(__name__)
-
-
+# logger=logging.getLogger(__name__)​​
 
 class ItemCreateView(TemplateView):
+
     template_name = 'ScrimPay/index.html'
     model = Main
+    # print("test")
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['val3'] = Service.objects.all()
+        context['test'] = 'sample'
+        return context
+    
+    # def get_context2_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+
+    #     context['val'] = Main.objects.all().filter(user_id='A001')
+    #     return context
+
+
     def post(self, request, *args, **kwargs):
+        # print("debug")
         some_var = request.POST.getlist('checks[]')
-        print(str(some_var))
+        # print(str(some_var))
         number = len(some_var)
+        # print(str(number))
         data = Service.objects.all()
 
         # sum = 0
@@ -38,11 +53,14 @@ class ItemCreateView(TemplateView):
         #     service_id_list = service_id_list + [str(data[int(w)-1].service_id)]
 
         #引数としてuser_id(A001)があった場合
+
         for w in some_var:
-            main_data = Main(user_id = 'A001',service_id = str(data[int(w)-1].service_id))
-            print(main_data.user_id)
-            print(main_data.service_id)
+            # main_data = Main(user_id = 'A001',service_id = str(data[int(w)-1].service_id))
+            main_data = Main(user_id = 'A001',service_id = str(w))
+            # print(main_data.user_id)
+            # print(main_data.service_id)
             main_data.save()
+            # print(w)
         
         return redirect(to='/scrimpay/main')
 
@@ -63,7 +81,7 @@ def index(request):
     data3 = Service.objects.all()
 
     value = 0
-
+   
     my_dict = {
         'val':data1,
         'val2':data2,
@@ -72,6 +90,22 @@ def index(request):
     }    
 
     return render(request,'scrimpay/index.html',my_dict)
+
+
+# def test(self, request, *args, **kwargs):
+#     some_var = request.POST.getlist('checks[]')
+#         # print(str(some_var))
+#         # number = len(some_var)
+#     #     model = Main
+#     #     data = Service.objects.all()
+#     # for w in some_var:
+#     #         main_data = Main(user_id = 'A001',service_id = str(data[int(w)-1].service_id))
+#     #         print(main_data.user_id)
+#     #         print(main_data.service_id)
+#     #         main_data.save()
+        
+#     return redirect(to='/scrimpay/main')
+
 
 def main(request):
     data1 = Main.objects.all().filter(user_id='A001')

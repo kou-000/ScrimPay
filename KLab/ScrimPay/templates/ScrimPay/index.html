@@ -6,22 +6,27 @@
     <title>ScrimPay</title>
   </head>
   <body>
-
-
+​
+​
     <form method="POST">
+    <!-- <form action ="test" method="POST"> -->
       {% csrf_token %}
         <fieldset>
           <legend>加入しているサービスを選択してください</legend>
               {% for i in val3 %}
-                <div>
+                  <div>
                   <input type="checkbox" id = "music" name="checks[]" value="{{i.service_id}}">
                   <label>{{i.service_name}} {{i.plan_name}}</label>
                 </div>
-              {% endfor %}
-
-              
-                <div>
-<input type="checkbox" id="coding" name="checks[]" value="1">
+            {% endfor %}
+​
+            <div>
+                <input type="checkbox" id = "music" name="checks[]" value="{{i.service_id}}">
+                <label>{{test}} {{test}}</label>
+              </div>
+​
+                <!-- <div> -->
+<!-- <input type="checkbox" id="coding" name="checks[]" value="1">
 <label for="coding">Amazon Prime(月額)</label>
 </div>
 <div>
@@ -66,19 +71,19 @@
 </div>
 <div>
   <input type="checkbox" id="music" name="checks[]" value="12">
-  <label for="music">Youtube Premioum(一般)</label>
+  <label for="music">Youtube Premium(一般)</label>
 </div>
 <div>
   <input type="checkbox" id="music" name="checks[]" value="13">
-  <label for="music">Youtube Premioum(iOS版)</label>
+  <label for="music">Youtube Premium(iOS版)</label>
 </div>
 <div>
   <input type="checkbox" id="music" name="checks[]" value="14">
-  <label for="music">Youtube Premioum(ファミリー)</label>
+  <label for="music">Youtube Premium(ファミリー)</label>
 </div>
 <div>
   <input type="checkbox" id="music" name="checks[]" value="15">
-  <label for="music">Youtube Premioum(学割)</label>
+  <label for="music">Youtube Premium(学割)</label>
 </div>
 <div>
   <input type="checkbox" id="music" name="checks[]" value="16">
@@ -135,17 +140,17 @@
 <div>
   <input type="checkbox" id="music" name="checks[]" value="29">
   <label for="music">ビデオマーケット(プレミアム&見放題コース)</label>
-</div>
+</div> -->
             <div>
               <input type="submit" id="button" name="button" value="送信">
             </div>
           </fieldset>
     </form>
-
-
+​
+​
                             
-
-
-
+​
+​
+​
   </body>
 </html>
