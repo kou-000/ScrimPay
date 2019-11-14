@@ -9,133 +9,17 @@
 
 
     <form method="POST">
+    <!-- <form action ="test" method="POST"> -->
       {% csrf_token %}
         <fieldset>
           <legend>加入しているサービスを選択してください</legend>
               {% for i in val3 %}
-                <div>
+                  <div>
                   <input type="checkbox" id = "music" name="checks[]" value="{{i.service_id}}">
                   <label>{{i.service_name}} {{i.plan_name}}</label>
                 </div>
-              {% endfor %}
+            {% endfor %}
 
-              
-                <div>
-<input type="checkbox" id="coding" name="checks[]" value="1">
-<label for="coding">Amazon Prime(月額)</label>
-</div>
-<div>
-<input type="checkbox" id="music" name="checks[]" value="2">
-<label for="music">Amazon Prime(年額)</label>
-</div>
-<div>
-  <input type="checkbox" id="music" name="checks[]" value="3">
-  <label for="music">Amazon Prime(Prime student 月額)</label>
-</div>
-<div>
-  <input type="checkbox" id="music" name="checks[]" value="4">
-  <label for="music">Amazon Prime(Prime student 年額)</label>
-</div>
-<div>
-  <input type="checkbox" id="music" name="checks[]" value="5">
-  <label for="music">Hulu(月額)</label>
-</div>
-<div>
-  <input type="checkbox" id="music" name="checks[]" value="6">
-  <label for="music">Netflix(ベーシック)</label>
-</div>
-<div>
-  <input type="checkbox" id="music" name="checks[]" value="7">
-  <label for="music">Netflix(スタンダード)</label>
-</div>
-<div>
-  <input type="checkbox" id="music" name="checks[]" value="8">
-  <label for="music">Netflix(プレミアム)</label>
-</div>
-<div>
-  <input type="checkbox" id="music" name="checks[]" value="9">
-  <label for="music">U-NEXT</label>
-</div>
-<div>
-  <input type="checkbox" id="music" name="checks[]" value="10">
-  <label for="music">dTV</label>
-</div>
-<div>
-  <input type="checkbox" id="music" name="checks[]" value="11">
-  <label for="music">dアニメストア</label>
-</div>
-<div>
-  <input type="checkbox" id="music" name="checks[]" value="12">
-  <label for="music">Youtube Premioum(一般)</label>
-</div>
-<div>
-  <input type="checkbox" id="music" name="checks[]" value="13">
-  <label for="music">Youtube Premioum(iOS版)</label>
-</div>
-<div>
-  <input type="checkbox" id="music" name="checks[]" value="14">
-  <label for="music">Youtube Premioum(ファミリー)</label>
-</div>
-<div>
-  <input type="checkbox" id="music" name="checks[]" value="15">
-  <label for="music">Youtube Premioum(学割)</label>
-</div>
-<div>
-  <input type="checkbox" id="music" name="checks[]" value="16">
-  <label for="music">DAZN(一般)</label>
-</div>
-<div>
-  <input type="checkbox" id="music" name="checks[]" value="17">
-  <label for="music">DAZN(DAZN for docomo)</label>
-</div>
-<div>
-  <input type="checkbox" id="music" name="checks[]" value="18">
-  <label for="music">DAZN(スポナビ割)</label>
-</div>
-<div>
-  <input type="checkbox" id="music" name="checks[]" value="19">
-  <label for="music">Abemaプレミアム</label>
-</div>
-<div>
-  <input type="checkbox" id="music" name="checks[]" value="20">
-  <label for="music">ビデオパス</label>
-</div>
-<div>
-  <input type="checkbox" id="music" name="checks[]" value="21">
-  <label for="music">FOD(FODプレミアム)</label>
-</div>
-<div>
-  <input type="checkbox" id="music" name="checks[]" value="22">
-  <label for="music">FOD(ネクストsmart)</label>
-</div>
-<div>
-  <input type="checkbox" id="music" name="checks[]" value="23">
-  <label for="music">FOD(ワンツーsmart)</label>
-</div>
-<div>
-  <input type="checkbox" id="music" name="checks[]" value="24">
-  <label for="music">FOD(ワンツーネクストsmart)</label>
-</div>
-<div>
-  <input type="checkbox" id="music" name="checks[]" value="25">
-  <label for="music">Paravi</label>
-</div>
-<div>
-  <input type="checkbox" id="music" name="checks[]" value="26">
-  <label for="music">TSUTAYA TV(見放題プラン)</label>
-</div>
-<div>
-  <input type="checkbox" id="music" name="checks[]" value="27">
-  <label for="music">TSUTAYA TV(動画見放題+定額レンタル8)</label>
-</div>
-<div>
-  <input type="checkbox" id="music" name="checks[]" value="28">
-  <label for="music">ビデオマーケット(プレミアムコース)</label>
-</div>
-<div>
-  <input type="checkbox" id="music" name="checks[]" value="29">
-  <label for="music">ビデオマーケット(プレミアム&見放題コース)</label>
-</div>
             <div>
               <input type="submit" id="button" name="button" value="送信">
             </div>

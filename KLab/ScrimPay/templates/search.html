@@ -1,0 +1,108 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <title>Search</title>
+  </head>
+
+  <form action="/scrimpay/rod" method="POST">
+        {% csrf_token %}
+
+<body>
+    <h1>予算</h1>
+      <select name = "budget1">
+          <option>0</option>
+          <option>1000</option>
+          <option>2000</option>
+          <option>3000</option>
+          <option>4000</option>
+          <option>5000</option>
+      </select>
+
+円~
+        <select name = "budget2">
+            <option>1000</option>
+            <option>2000</option>
+            <option>3000</option>
+            <option>4000</option>
+            <option>5000</option>
+            <option>6000</option>
+            <option>7000</option>
+            <option>8000</option>
+            <option>9000</option>
+            <option>10000</option>
+        </select>
+
+        円
+    </body>
+
+<body>
+    <h1>優先度</h1>
+        1. 
+        <select name = "tag1">
+                <option>アニメ</option>
+                <option>ドラマ</option>
+                <option>映画</option>
+                <option>スポーツ</option>
+                <option>バラエティー</option>
+                <!-- <option>タグ6</option>
+                <option>タグ7</option>
+                <option>タグ8</option>
+                <option>タグ9</option>
+                <option>タグ10</option> -->
+        </select>
+
+        2. 
+            <select name = "tag2">
+                    <option>アニメ</option>
+                    <option>ドラマ</option>
+                    <option>映画</option>
+                    <option>スポーツ</option>
+                    <option>バラエティー</option>
+                    <!-- <option>タグ6</option>
+                    <option>タグ7</option>
+                    <option>タグ8</option>
+                    <option>タグ9</option>
+                    <option>タグ10</option> -->
+            </select>
+
+            3. 
+                <select name = "tag3">
+                    <option>アニメ</option>
+                    <option>ドラマ</option>
+                    <option>映画</option>
+                    <option>スポーツ</option>
+                    <option>バラエティー</option>
+                    <!-- <option>タグ6</option>
+                    <option>タグ7</option>
+                    <option>タグ8</option>
+                    <option>タグ9</option>
+                    <option>タグ10</option> -->
+                </select>
+</body>
+
+<body>
+    <h1>オプション</h1>
+    <input type="checkbox" name="checks[]" value="option1"><label>option1</label>
+    <input type="checkbox" name="checks[]" value="option2"><label>option2</label>
+    <input type="checkbox" name="checks[]" value="option3"><label>option3</label>
+    <br>
+    <input type="checkbox" name="checks[]" value="option4"><label>option4</label>
+    <input type="checkbox" name="checks[]" value="option5"><label>option5</label>
+    <input type="checkbox" name="checks[]" value="option6"><label>option6</label>
+</body>
+
+    <body>
+        <div style = "text-align:center">
+        <input type="submit" name='reverse' value="＜＜ 戻 る ＜＜" />
+        <span style="margin-left:100px"><input type="submit" name='move' value="＞＞ 検 索 ＞＞" /></span>
+        </div>
+
+
+
+    </body>
+
+    </form>
+
+</html>
