@@ -1,0 +1,139 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>サービス比較ページ</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  </head>
+  
+  <!-- <script type="text/javascript" src="{% static 'javascript/app.js' %}"></script> -->
+  <script src="https://unpkg.com/vue@2.5.17"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+  <script src="https://unpkg.com/vue-chartjs/dist/vue-chartjs.min.js"></script>
+
+  <body>
+      <div>サービスの組み合わせパターン一覧</div>
+
+    <div id="app">
+        <bar-chart></bar-chart>
+    </div>
+
+    <a href = "http://127.0.0.1:8000/scrimpay/search">プラン選択に戻る</a>
+
+
+    <div class="container">
+        <p>現在利用している動画配信サービス</p>
+        {% for i in val3 %}
+            {% for j in val%}
+
+                {% if i.service_id == j.service_id %}
+                <ul>
+                    <li>{{i.service_name}} {{i.fee_per_month}}円</li>
+                </ul>
+                    
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+
+        <p>選択した条件で作成したプラン</p>
+        <div>プラン１: <a href = "http://127.0.0.1:8000/scrimpay/service">このプランに移行</a></div>
+        {% for i in val3 %}
+            {% for list in plan1%}
+
+                {% if i.service_id == list %}
+                <ul>
+                    <li>{{i.service_name}} {{i.fee_per_month}}円</li>
+                </ul>
+                    
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+
+        <div>プラン２: <a href = "http://127.0.0.1:8000/scrimpay/service">このプランに移行</a></div>
+        {% for i in val3 %}
+            {% for list in plan2%}
+
+                {% if i.service_id == list %}
+                <ul>
+                    <li>{{i.service_name}} {{i.fee_per_month}}円</li>
+                </ul>
+                    
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+
+        <div>プラン３: <a href = "http://127.0.0.1:8000/scrimpay/service">このプランに移行</a></div>
+        {% for i in val3 %}
+            {% for list in plan3%}
+
+                {% if i.service_id == list %}
+                <ul>
+                    <li>{{i.service_name}} {{i.fee_per_month}}円</li>
+                </ul>
+                    
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+
+        <div style = "text-align:center">
+            <a href = "http://127.0.0.1:8000/scrimpay/main">メイン画面へ</a>
+        </div>
+        
+
+    </div>
+  </body>
+</html>
+
+
+
+<script>
+
+var aaa = '{{fee_sum}}';
+aaa = aaa.replace(/&#39;/g,"");
+aaa = aaa.replace(/, /g,",");
+aaa = aaa.replace("[","");
+aaa = aaa.replace("]","");
+fee_sum = aaa.split(',');
+
+var aaa = '{{plan_sum}}';
+aaa = aaa.replace(/&#39;/g,"");
+aaa = aaa.replace(/, /g,",");
+aaa = aaa.replace("[","");
+aaa = aaa.replace("]","");
+plan_sum = aaa.split(',');
+
+
+Vue.component('bar-chart', {
+    extends: VueChartJs.Bar,
+    mounted(){
+        this.renderChart({
+            labels: ['現状', 'プラン１', 'プラン２', 'プラン３'], //for文でサービスを複数表示
+            datasets:[
+                {
+                    label: '合計金額',
+                    backgroundColor: ['#FFFF44', '#FF4444', '#44BB44', '#4444FF'],
+                    data:plan_sum,
+                }
+            ],
+        }, {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales:{
+                yAxes:[
+                    {
+                        display:true,
+                        ticks:{min:0}
+                    }
+                ]
+            }
+        })
+    }
+})
+
+
+var vm = new Vue({
+    el: '#app',
+})
+</script>
