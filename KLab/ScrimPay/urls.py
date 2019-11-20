@@ -10,5 +10,5 @@ urlpatterns = [
     path('detail', views.detail, name='detail'),
     path('rod', views.rod, name='rod'),
     path('search',views.SearchCriteria,name='search'),
-    
+    path('support', views.support, name='support'),
 ]

@@ -42,6 +42,17 @@
 
     </div>
   </body>
+
+    <form action="/scrimpay/search" method="POST">
+        {% csrf_token %}
+        <body>
+            <div style = "text-align:center">
+                <input type="submit" name='reverse' value="検索へ" />
+            </div>
+        </body>
+    </form>
+
+
 </html>
 
 

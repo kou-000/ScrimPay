@@ -16,36 +16,40 @@ class ItemCreateView(TemplateView):
     # print("test")
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['val3'] = Service.objects.all()
+        data_user = Main.objects.all().filter(user_id='A001')
+        data_service = Service.objects.all()
+
+        list_unsigned=[]
+        for w in data_service:
+            flag = 1
+            for i in data_user:
+                data_name = Service.objects.all().filter(service_id=i.service_id)
+
+                if w.service_name == data_name[0].service_name:
+                    flag=0
+                    break
+
+            if flag==1:
+                list_unsigned = list_unsigned + [w]
+
+        context['val3'] = list_unsigned
         context['test'] = 'sample'
         return context
 
 
     def post(self, request, *args, **kwargs):
         some_var = request.POST.getlist('checks[]')
-        number = len(some_var)
+        print(str(some_var))
         data = Service.objects.all()
 
         #引数としてuser_id(A001)があった場合
 
         for w in some_var:
-            # main_data = Main(user_id = 'A001',service_id = str(data[int(w)-1].service_id))
             main_data = Main(user_id = 'A001',service_id = str(w))
-            # print(main_data.user_id)
-            # print(main_data.service_id)
             main_data.save()
-            # print(w)
-        
-        return redirect(to='/scrimpay/main')
 
-        # calc_dic = {
-        #     'sum':sum,
-        #     'service_rate_array':service_rate_list,
-        #     'service_id_array':service_id_list,
-        # }
-        # print(service_rate_list)
-        # print(service_id_list)
-        # return render(request,'scrimpay/main.html',calc_dic)
+        return redirect('/scrimpay/main')
+
 
 
 
@@ -192,7 +196,26 @@ def rod(request):
     plan1 = ["C001","C006","C016"]
     plan2 = ["C002","C007","C011"]
     plan3 = ["C005","C020","C021","C026"]
-    plan_sum = [fee_sum,1000,2000,3000]
+
+    plan1_sum = 0
+    for i in data3:
+        for j in plan1:
+            if i.service_id == j:
+                plan1_sum = plan1_sum + i.fee_per_month
+
+    plan2_sum = 0
+    for i in data3:
+        for j in plan2:
+            if i.service_id == j:
+                plan2_sum = plan2_sum + i.fee_per_month
+
+    plan3_sum = 0
+    for i in data3:
+        for j in plan3:
+            if i.service_id == j:
+                plan3_sum = plan3_sum + i.fee_per_month
+
+    plan_sum = [fee_sum, plan1_sum, plan2_sum, plan3_sum]
 
     my_dict4 = {
         'val':data1,
@@ -209,3 +232,109 @@ def rod(request):
 
 
     return render(request, 'scrimpay/rod.html',my_dict4) 
+
+
+def support(request):
+    data1 = Main.objects.all().filter(user_id='A001')
+    data2 = User.objects.all().filter(user_id='A001')
+    data3 = Service.objects.order_by('-fee_per_month')
+    # data3 = Service.objects.order_by('fee_per_month').first()
+
+    if request.method =='POST':
+        if 'reverse' in request.POST:
+            print('pressed 戻る')
+            return redirect('/scrimpay/main')
+
+        elif 'move' in request.POST:
+            print('pressed 検索')
+            some_var = request.POST.getlist('checks[]')
+            tag1 = request.POST.getlist('tag1')
+            tag2 = request.POST.getlist('tag2')
+            tag3 = request.POST.getlist('tag3')
+            budget1 = request.POST.getlist('budget1')
+            budget2 = request.POST.getlist('budget2')
+
+            if int(budget1[0]) > int(budget2[0]):
+                tmp = budget1[0]
+                budget1[0] = budget2[0]
+                budget2[0] = tmp
+
+            elif int(budget1[0]) == int(budget2[0]):
+                return redirect('/scrimpay/search')
+
+            print(str(some_var))
+            print(str(tag1))
+            print(str(tag2))
+            print(str(tag3))
+            print(str(budget1))
+            print(str(budget2))
+
+    array = []
+    for i in data3:
+        for j in data1:
+            if i.service_id == j.service_id:
+                array.append(i.service_name)
+
+    fee_sum = 0
+    for i in data3:
+        for j in data1:
+            if i.service_id == j.service_id:
+                fee_sum = fee_sum + i.fee_per_month
+
+    rate_array = []
+    for i in data3:
+        for j in data1:
+            if i.service_id == j.service_id:
+                rate = round(i.fee_per_month/fee_sum, 2)
+                rate_array.append(rate)
+
+    color_array = []
+    for i in data3:
+        for j in data1:
+            if i.service_id == j.service_id:
+                color_array.append(i.color)
+
+    # calcuration
+    # search画面で入力した条件を元に複数のplanの組み合わせを作成
+    # 出力は、plan1,plan2,plan3の複数
+    # plan1 = i.service_name のような形で複数入ってる
+
+    plan1 = ["C001","C006","C016"]
+    plan2 = ["C002","C007","C011"]
+    plan3 = ["C005","C020","C021","C026"]
+
+    plan1_sum = 0
+    for i in data3:
+        for j in plan1:
+            if i.service_id == j:
+                plan1_sum = plan1_sum + i.fee_per_month
+
+    plan2_sum = 0
+    for i in data3:
+        for j in plan2:
+            if i.service_id == j:
+                plan2_sum = plan2_sum + i.fee_per_month
+
+    plan3_sum = 0
+    for i in data3:
+        for j in plan3:
+            if i.service_id == j:
+                plan3_sum = plan3_sum + i.fee_per_month
+
+    plan_sum = [fee_sum, plan1_sum, plan2_sum, plan3_sum]
+
+    my_dict5 = {
+        'val':data1,
+        'val2':data2,
+        'val3':data3,
+        'array':array,
+        'rate_array':rate_array,
+        'color_array':color_array,
+        'plan1':plan1,
+        'plan2':plan2,
+        'plan3':plan3,
+        'plan_sum':plan_sum
+    }             
+
+
+    return render(request, 'scrimpay/support.html',my_dict5) 

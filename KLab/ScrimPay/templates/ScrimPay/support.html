@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <title>Support page</title>
+  </head>
+  <body>
+
+
+    <form method="POST">
+    <!-- <form action ="test" method="POST"> -->
+      {% csrf_token %}
+        <fieldset>
+          <legend>新規で加入するサービス</legend>
+              
+
+            <div>
+              <input type="submit" id="button" name="button" value="送信">
+            </div>
+        </fieldset>
+
+        <fieldset>
+                <legend>解約するサービス</legend>
+                    
+      
+                  <div>
+                    <input type="submit" id="button" name="button" value="送信">
+                  </div>
+        </fieldset>
+    </form>
+
+
+                            
+
+
+
+  </body>
+</html>
