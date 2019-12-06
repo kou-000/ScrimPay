@@ -5,31 +5,150 @@
     <meta charset="utf-8">
     <title>ScrimPay</title>
   </head>
-  <body>
 
+  <body>
+      <div class="header">
+          <div class="header-logo">ScrimPay</div>
+      </div>
 
     <form method="POST">
     <!-- <form action ="test" method="POST"> -->
       {% csrf_token %}
-        <fieldset>
-          <legend>加入しているサービスを選択してください</legend>
-              {% for i in val3 %}
-                  <div>
-                  <input type="checkbox" id = "music" name="checks[]" value="{{i.service_id}}">
-                  <label>{{i.service_name}} {{i.plan_name}}</label>
-                </div>
-            {% endfor %}
 
-            <div>
-              <input type="submit" id="button" name="button" value="送信">
-            </div>
-          </fieldset>
+        <div class="line">加入しているサービスを選択してください</div>
+        {% for i in val3 %}
+          <!-- <div class="boxes">
+            <input type="checkbox" id="music" name="checks[]" value="{{i.service_id}}">
+            <label>{{i.service_name}} {{i.plan_name}}</label>
+          </div> -->
+
+          <div class="boxes">
+            <label>
+              <input type="checkbox" class="check-1" name="checks[]" value="{{i.service_id}}">
+              <span class="check-sp">{{i.service_name}} {{i.plan_name}}</span>
+            </label>
+          </div>
+
+          <!-- <div class="boxes">
+              <input type="checkbox" id="{$i}" name="checks[]" value="{{i.service_id}}">
+              <label for="{$i}">{{i.service_name}} {{i.plan_name}}</label>
+          </div> -->
+        {% endfor %}
+
+        <div class="btn-border">
+          <!-- <input type="submit" id="button" name="button" value="送信"> -->
+          <button class="cp_btn" id="button" name="button">送信</button>
+        </div>
     </form>
-
-
-                            
-
 
 
   </body>
 </html>
+
+<style>
+  .line{
+    color: whitesmoke;
+  }
+  .header{
+    color: aliceblue;
+    height: 85px;
+  }
+  .header-logo{
+    float: left;
+    font-size: 40px;
+    padding: 5px 30px;
+  }
+  .graph{
+    background-color: gray;
+    text-emphasis-color: #fff;
+  }
+  h2 {
+    position: relative;
+    /* background: linear-gradient(-30deg, #636fa4, #000c40) fixed; */
+    background: dimgray;
+    padding: 2px 5px 2px 20px;
+    margin-bottom: 0px;
+    font-size: 20px;
+    color: whitesmoke;
+    /* border-radius: 0 10px 10px 0; */
+  }
+  .cp_btn {
+    display: block;
+    width: 160px;
+    padding: 0.8em;
+    text-align: center;
+    text-decoration: none;
+    background: #363636;
+    color: #6cc0e5;
+    border: 2px solid #6cc0e5;
+    border-radius: 3px;
+    transition: .4s;
+  }
+  .cp_btn:hover {
+    background: #6cc0e5;
+    color: #363636;
+  }
+
+  @import url(https://fonts.googleapis.com/css?family=Open+Sans);
+  html { height: 100%; }
+  body {
+    /* height: 100%; */
+    margin: 0;
+    background: #363636;
+    /* display: -webkit-flex; */
+    /* display: flex; */
+    align-items: center;
+  }
+.boxes {
+  margin: auto;
+  padding: 10px;
+  background: #484848;
+}
+
+/*Checkboxes styles*/
+/* ------------------------------------------------------------------------- */
+
+.check-1{ display: none; }
+
+.check-1 + .check-sp{
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 10px;
+  font: 14px/20px 'Open Sans', Arial, sans-serif;
+  color: #ddd;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+.check-1 + .check-sp:last-child{ margin-bottom: 0; }
+
+.check-1 + .check-sp:before{
+  content: '';
+  display: block;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #6cc0e5;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: .6;
+  -webkit-transition: all .12s, border-color .08s;
+  transition: all .12s, border-color .08s;
+}
+
+.check-1:checked + .check-sp:before {
+  width: 10px;
+  top: -5px;
+  left: 5px;
+  border-radius: 0;
+  opacity: 1;
+  border-top-color: transparent;
+  border-left-color: transparent;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+</style>

@@ -4,36 +4,399 @@
   <head>
     <meta charset="utf-8">
     <title>Support page</title>
+    <!-- <link rel="stylesheet" href="../../static/css/style.css" type="text/css"> -->
+    <link rel="stylesheet" href="../../static/css/style.css">
   </head>
-  <body>
 
+  <body>
+    <div class="header">
+            <a class="header-logo" href="http://127.0.0.1:8000/scrimpay/top">ScrimPay</a>
+    </div>
 
     <form method="POST">
     <!-- <form action ="test" method="POST"> -->
       {% csrf_token %}
-        <fieldset>
-          <legend>新規で加入するサービス</legend>
-              
+          <h2>新規で加入するサービス</h2>
+          <div class="click-drawing-container">
+            {% for i in val3 %}
+                {% for list in addlist%}
+                    {% if i.service_id == list %}
+                        {% if "C002" == list %}
+                            <div class="tab">
+                                    <input id="tab-c002" type="checkbox" name="tabs">
+                                    <label for="tab-c002">{{i.service_name}}</label>
+                                    <div class="tab-content">
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur, architecto, explicabo perferendis nostrum, maxime impedit atque odit sunt pariatur illo obcaecati soluta molestias iure facere dolorum adipisci eum? Saepe, itaque.</p>
+                                    </div>
+                            </div>
+                        {% endif %}
+                        {% if "C005" == list %}
+                            <div class="tab">
+                                    <input id="tab-c005" type="checkbox" name="tabs">
+                                    <label for="tab-c005">{{i.service_name}}</label>
+                                    <div class="tab-content">
+                                        <p>5</p>    
+                                    </div>
+                            </div>
+                        {% endif %}
+                        {% if "C007" == list %}
+                            <div class="tab">
+                                    <input id="tab-c007" type="checkbox" name="tabs">
+                                    <label for="tab-c007">{{i.service_name}}</label>
+                                    <div class="tab-content">
+                                       <p>netflix</p>
+                                    </div>
+                            </div>
+                        {% endif %}
+                        {% if "C011" == list %}
+                            <div class="tab">
+                                    <input id="tab-c011" type="checkbox" name="tabs">
+                                    <label for="tab-c011">{{i.service_name}}</label>
+                                    <div class="tab-content">
+                                        <p>- 料金 : {{i.fee_per_month}}円</p>
+                                        <p>- 引き落とし日 : (外部サイト) dアニメストアの請求日はいつ？</p>
+                                        <p>- 登録日 : [不要]</p>
+                                        <p>- 解約URL : https://anime.dmkt-sp.jp/animestore/can_pc</p>
+                                    </div>
+                            </div>
+                        {% endif %}
+                        {% if "C020" == list %}
+                            <div class="tab">
+                                    <input id="tab-c020" type="checkbox" name="tabs">
+                                    <label for="tab-c020">{{i.service_name}}</label>
+                                    <div class="tab-content">
+                                        <p>20</p>    
+                                    </div>
+                            </div>
+                        {% endif %}
+                        {% if "C021" == list %}
+                            <div class="tab">
+                                    <input id="tab-c021" type="checkbox" name="tabs">
+                                    <label for="tab-c021">{{i.service_name}}</label>
+                                    <div class="tab-content">
+                                        <p>21</p>    
+                                    </div>
+                            </div>
+                        {% endif %}
+                        {% if "C026" == list %}
+                            <div class="tab">
+                                    <input id="tab-c026" type="checkbox" name="tabs">
+                                    <label for="tab-c026">{{i.service_name}}</label>
+                                    <div class="tab-content">
+                                        <p>26</p>
+                                    </div>
+                            </div>
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+          </div>
 
-            <div>
-              <input type="submit" id="button" name="button" value="送信">
-            </div>
-        </fieldset>
-
-        <fieldset>
-                <legend>解約するサービス</legend>
-                    
-      
-                  <div>
-                    <input type="submit" id="button" name="button" value="送信">
-                  </div>
-        </fieldset>
+        <h2 class="under-element">解約するサービス</h2>
+            {% for i in val3 %}
+                {% for list in dellist%}
+                    {% if i.service_id == list %}
+                        {% if "C001" == list %}
+                            <div class="tab">
+                                    <input id="tab-c001" type="checkbox" name="tabs">
+                                    <label for="tab-c001">{{i.service_name}}</label>
+                                    <div class="tab-content">
+                                        <p>1</p>
+                                    </div>
+                            </div>
+                        {% endif %}
+                        {% if "C002" == list %}
+                            <div class="tab">
+                                    <input id="tab-c002" type="checkbox" name="tabs">
+                                    <label for="tab-c002">{{i.service_name}}</label>
+                                    <div class="tab-content">
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur, architecto, explicabo perferendis nostrum, maxime impedit atque odit sunt pariatur illo obcaecati soluta molestias iure facere dolorum adipisci eum? Saepe, itaque.</p>
+                                    </div>
+                            </div>
+                        {% endif %}
+                        {% if "C005" == list %}
+                            <div class="tab">
+                                    <input id="tab-c005" type="checkbox" name="tabs">
+                                    <label for="tab-c005">{{i.service_name}}</label>
+                                    <div class="tab-content">
+                                        <p>5</p>    
+                                    </div>
+                            </div>
+                        {% endif %}
+                        {% if "C006" == list %}
+                            <div class="tab">
+                                    <input id="tab-c006" type="checkbox" name="tabs">
+                                    <label for="tab-c006">{{i.service_name}}</label>
+                                    <div class="tab-content">
+                                        <p>6</p>    
+                                    </div>
+                            </div>
+                        {% endif %}
+                        {% if "C007" == list %}
+                            <div class="tab">
+                                    <input id="tab-c007" type="checkbox" name="tabs">
+                                    <label for="tab-c007">{{i.service_name}}</label>
+                                    <div class="tab-content">
+                                       <p>netflix</p>
+                                    </div>
+                            </div>
+                        {% endif %}
+                        {% if "C011" == list %}
+                            <div class="tab">
+                                    <input id="tab-c011" type="checkbox" name="tabs">
+                                    <label for="tab-c011">{{i.service_name}}</label>
+                                    <div class="tab-content">
+                                        <p>- 料金 : {{i.fee_per_month}}円</p>
+                                        <p>- 引き落とし日 : (外部サイト) dアニメストアの請求日はいつ？</p>
+                                        <p>- 登録日 : [不要]</p>
+                                        <p>- 解約URL : https://anime.dmkt-sp.jp/animestore/can_pc</p>
+                                    </div>
+                            </div>
+                        {% endif %}
+                        {% if "C016" == list %}
+                            <div class="tab">
+                                    <input id="tab-c016" type="checkbox" name="tabs">
+                                    <label for="tab-c016">{{i.service_name}}</label>
+                                    <div class="tab-content">
+                                        <p>16</p>    
+                                    </div>
+                            </div>
+                        {% endif %}
+                        {% if "C020" == list %}
+                            <div class="tab">
+                                    <input id="tab-c020" type="checkbox" name="tabs">
+                                    <label for="tab-c020">{{i.service_name}}</label>
+                                    <div class="tab-content">
+                                        <p>20</p>    
+                                    </div>
+                            </div>
+                        {% endif %}
+                        {% if "C021" == list %}
+                            <div class="tab">
+                                    <input id="tab-c021" type="checkbox" name="tabs">
+                                    <label for="tab-c021">{{i.service_name}}</label>
+                                    <div class="tab-content">
+                                        <p>21</p>    
+                                    </div>
+                            </div>
+                        {% endif %}
+                        {% if "C026" == list %}
+                            <div class="tab">
+                                    <input id="tab-c026" type="checkbox" name="tabs">
+                                    <label for="tab-c026">{{i.service_name}}</label>
+                                    <div class="tab-content">
+                                        <p>26</p>
+                                    </div>
+                            </div>
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
     </form>
-
-
-                            
-
-
 
   </body>
 </html>
+
+<style>
+        /* body{
+            font-family: Arial, Helvetica, sans-serif;
+        } */
+        .header{
+            /* background-color: yellowgreen; */
+            color: aliceblue;
+            /* background: linear-gradient(-50deg, #34e89e, #0f3443) fixed;
+            background-size: cover; */
+            height: 85px;
+        }
+        .header-logo{
+            float: left;
+            font-size: 40px;
+            padding: 5px 30px;
+            color: whitesmoke;
+            text-decoration: none;
+        }
+        .graph{
+            background-color: gray;
+            text-emphasis-color: #fff;
+        }
+        body {
+            /* background: linear-gradient(-40deg,#fada84,#6cb9cc) fixed; */
+            background: #363636;
+            background-size: cover;
+        }
+
+        /* div {
+            margin: 10px 0;
+            /* text-align: center; 
+        }*/
+        p {
+            font-family: Meiryo, "Hiragino Kaku Gothic Pro W3", Courier New, sans-serif;
+            line-height: 1.5;
+            margin-bottom: 25px;
+            color: #fff;
+        }
+        .box{
+            display: inline-block;
+            /* vertical-align: middle; */
+            float: left;
+            width: 200px;
+            height: 150px;
+            margin: 10px;
+            padding: 2px 5px 2px 20px;
+            font-size: 14px;
+            background-color: #484848;
+            color: whitesmoke;
+        }
+        .under-element{
+            clear: both;
+        }
+        .btn-flat-border{
+            display: inline-block;
+            position: relative;
+            float: left;
+            width: 200px;
+            height: 350px;
+            margin: 0px 0px 5px;
+            padding: 0.3em 1em;
+            text-decoration: none;
+            background-color: #484848;
+            color: whitesmoke;
+            border: solid 2px dimgray;
+            border-radius: 3px;
+            transition: .4s;
+        }
+        .btn-flat-border:hover {
+            background: linear-gradient(-130deg, #f202fa, #fa7101) fixed;
+            /* background: #67c5ff; */
+            color: white;
+        }
+        .btn-border{
+            display: inline-block;
+            width: 100px;
+            height: 40px;
+            padding: 0.3em 1em;
+            text-decoration: none;
+            background-color: gray;
+            color: whitesmoke;
+            border: solid 2px whitesmoke;
+            border-radius: 3px;
+            transition: .4s;
+        }
+        .btn-border:hover {
+            background: linear-gradient(-130deg, #f202fa, #fa7101) fixed;
+            /* background: #67c5ff; */
+            color: whitesmoke
+        }
+        h2 {
+            position: relative;
+            /* background: linear-gradient(-30deg, #636fa4, #000c40) fixed; */
+            background: dimgray;
+            padding: 2px 5px 2px 20px;
+            margin-bottom: 0px;
+            font-size: 20px;
+            color: whitesmoke;
+            /* border-radius: 0 10px 10px 0; */
+        }
+        /* ul, ol {
+            padding: 0;
+            position: relative;
+        }
+        ul li, ol li {
+            color: #2d8fdd;
+            border-left: solid 6px #2d8fdd;
+            background: #f1f8ff;
+            margin-bottom: 3px;
+            line-height: 1.5;
+            padding: 0.5em;
+            list-style-type: none!important;
+        } */
+        .cp_btn {
+            display: block;
+            width: 100px;
+            padding: 0.8em;
+            text-align: center;
+            text-decoration: none;
+            color: #6cc0e5;
+            border: 2px solid #6cc0e5;
+            border-radius: 3px;
+            transition: .4s;
+        }
+        .cp_btn:hover {
+            background: #6cc0e5;
+            color: #fff;
+        }
+
+         /* Acordion Faq */
+.tab {
+  position: relative;
+  margin-bottom: 1px;
+  width: 100%;
+  color: #fff;
+  overflow: hidden;
+}
+input {
+  position: absolute;
+  opacity: 0;
+  z-index: -1;
+}
+label {
+  position: relative;
+  display: block;
+  padding: 0 0 0 1em;
+  background: #000;
+  font-weight: bold;
+  line-height: 3;
+  cursor: pointer;
+  background-color: #6cc0e5;
+}
+
+.tab-content {
+  max-height: 0;
+  overflow: hidden;
+  -webkit-transition: max-height .35s;
+  -o-transition: max-height .35s;
+  transition: max-height .35s;
+  color: #000;
+}
+
+.tab-content p {
+  margin: 1em;
+}
+/* :checked */
+input:checked ~ .tab-content {
+  max-height: 100%;
+}
+/* Icon */
+label::after {
+  position: absolute;
+  right: 0;
+  top: 0;
+  display: block;
+  width: 3em;
+  height: 3em;
+  line-height: 3;
+  text-align: center;
+  -webkit-transition: all .35s;
+  -o-transition: all .35s;
+  transition: all .35s;
+}
+input[type=checkbox] + label::after {
+  content: "+";
+}
+input[type=radio] + label::after {
+  content: "\25BC";
+}
+input[type=checkbox]:checked + label::after {
+  transform: rotate(315deg);
+}
+input[type=radio]:checked + label::after {
+  transform: rotateX(180deg);
+}
+</style>
+
+<script>
+
+function navigateTargetUrl(){
+    window.open("https://www.google.com", "window1", "noopener");
+}
+</script>

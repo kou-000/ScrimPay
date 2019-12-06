@@ -147,6 +147,9 @@ def rod(request):
             tag3 = request.POST.getlist('tag3')
             budget1 = request.POST.getlist('budget1')
             budget2 = request.POST.getlist('budget2')
+            slider1 = request.POST.getlist('slider1')
+            slider2 = request.POST.getlist('slider2')
+            slider3 = request.POST.getlist('slider3')
 
             if int(budget1[0]) > int(budget2[0]):
                 tmp = budget1[0]
@@ -156,12 +159,6 @@ def rod(request):
             elif int(budget1[0]) == int(budget2[0]):
                 return redirect('/scrimpay/search')
 
-            print(str(some_var))
-            print(str(tag1))
-            print(str(tag2))
-            print(str(tag3))
-            print(str(budget1))
-            print(str(budget2))
 
     array = []
     for i in data3:
@@ -238,36 +235,16 @@ def support(request):
     data1 = Main.objects.all().filter(user_id='A001')
     data2 = User.objects.all().filter(user_id='A001')
     data3 = Service.objects.order_by('-fee_per_month')
-    # data3 = Service.objects.order_by('fee_per_month').first()
 
     if request.method =='POST':
-        if 'reverse' in request.POST:
-            print('pressed 戻る')
-            return redirect('/scrimpay/main')
+        if 'change1' in request.POST:
+            plan = request.POST.getlist('pl1[]')
 
-        elif 'move' in request.POST:
-            print('pressed 検索')
-            some_var = request.POST.getlist('checks[]')
-            tag1 = request.POST.getlist('tag1')
-            tag2 = request.POST.getlist('tag2')
-            tag3 = request.POST.getlist('tag3')
-            budget1 = request.POST.getlist('budget1')
-            budget2 = request.POST.getlist('budget2')
+        elif 'change2' in request.POST:
+            plan = request.POST.getlist('pl2[]')
 
-            if int(budget1[0]) > int(budget2[0]):
-                tmp = budget1[0]
-                budget1[0] = budget2[0]
-                budget2[0] = tmp
-
-            elif int(budget1[0]) == int(budget2[0]):
-                return redirect('/scrimpay/search')
-
-            print(str(some_var))
-            print(str(tag1))
-            print(str(tag2))
-            print(str(tag3))
-            print(str(budget1))
-            print(str(budget2))
+        elif 'change3' in request.POST:
+            plan = request.POST.getlist('pl3[]')
 
     array = []
     for i in data3:
@@ -294,34 +271,41 @@ def support(request):
             if i.service_id == j.service_id:
                 color_array.append(i.color)
 
-    # calcuration
-    # search画面で入力した条件を元に複数のplanの組み合わせを作成
-    # 出力は、plan1,plan2,plan3の複数
-    # plan1 = i.service_name のような形で複数入ってる
-
-    plan1 = ["C001","C006","C016"]
-    plan2 = ["C002","C007","C011"]
-    plan3 = ["C005","C020","C021","C026"]
-
-    plan1_sum = 0
+    # calculate
+    # 現在利用しているサービスのID取得
+    sevid = []
     for i in data3:
-        for j in plan1:
-            if i.service_id == j:
-                plan1_sum = plan1_sum + i.fee_per_month
+        for j in data1:
+            if i.service_id == j.service_id:
+                sevid.append(i.service_id)
 
-    plan2_sum = 0
-    for i in data3:
-        for j in plan2:
-            if i.service_id == j:
-                plan2_sum = plan2_sum + i.fee_per_month
+    # 新しく加入するサービスを格納
+    addlist = []
+    flag = 0
+    for i in plan:
+        for j in sevid:
+            if i == j:
+                flag = 0
+                break
+            else:
+                flag = 1           
+        if flag == 1:
+            addlist.append(i)
+            flag = 0
 
-    plan3_sum = 0
-    for i in data3:
-        for j in plan3:
-            if i.service_id == j:
-                plan3_sum = plan3_sum + i.fee_per_month
-
-    plan_sum = [fee_sum, plan1_sum, plan2_sum, plan3_sum]
+    # 解約するサービスを格納
+    dellist = []
+    flag = 0
+    for i in sevid:
+        for j in plan:
+            if i == j:
+                flag = 0
+                break
+            else:
+                flag = 1
+        if flag == 1:
+            dellist.append(i)
+            flag = 0
 
     my_dict5 = {
         'val':data1,
@@ -330,11 +314,13 @@ def support(request):
         'array':array,
         'rate_array':rate_array,
         'color_array':color_array,
-        'plan1':plan1,
-        'plan2':plan2,
-        'plan3':plan3,
-        'plan_sum':plan_sum
+        'plan':plan,
+        'addlist':addlist,
+        'dellist':dellist,
     }             
 
 
     return render(request, 'scrimpay/support.html',my_dict5) 
+
+def top(request):
+    return render(request,'scrimpay/top.html')

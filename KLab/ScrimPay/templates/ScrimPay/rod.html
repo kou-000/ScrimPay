@@ -14,71 +14,137 @@
   <script src="https://unpkg.com/vue-chartjs/dist/vue-chartjs.min.js"></script>
 
   <body>
-      <div>サービスの組み合わせパターン一覧</div>
+        <div class="header">
+                <a class="header-logo" href="http://127.0.0.1:8000/scrimpay/top">ScrimPay</a>
+        </div>
 
-    <div id="app">
+      <h2> サービスの組み合わせパターン一覧</h2>
+
+    <div id="app" class="graph">
         <bar-chart></bar-chart>
     </div>
 
-    <a href = "http://127.0.0.1:8000/scrimpay/search">プラン選択に戻る</a>
-
-
     <div class="container">
-        <p>現在利用している動画配信サービス</p>
-        {% for i in val3 %}
-            {% for j in val%}
+        <h2 class="under-element"> 現在利用しているサブスクリプションサービス</h2>
+        <div>
+            {% for i in val3 %}
+                {% for j in val%}
 
-                {% if i.service_id == j.service_id %}
-                <ul>
-                    <li>{{i.service_name}} {{i.fee_per_month}}円</li>
-                </ul>
-                    
-                {% endif %}
+                    {% if i.service_id == j.service_id %}
+                    <!-- <ul>
+                        <div class="box"><font size="6">{{i.service_name}}</font> <br><font size="3">{{i.fee_per_month}}円</font></div>
+                    </ul> -->
+
+                    <div class="tab">
+                            <input id="tab-cinco" type="checkbox" name="tabs">
+                            <label for="tab-cinco">{{i.service_name}}</label>
+                            <!-- <div class="tab-content">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur, architecto, explicabo perferendis nostrum, maxime impedit atque odit sunt pariatur illo obcaecati soluta molestias iure facere dolorum adipisci eum? Saepe, itaque.</p>
+                            </div>
+                            <div class="tab-content">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur, architecto, explicabo perferendis nostrum, maxime impedit atque odit sunt pariatur illo obcaecati soluta molestias iure facere dolorum adipisci eum? Saepe, itaque.</p>
+                            </div> -->
+                    </div>
+                        
+                    {% endif %}
+                {% endfor %}
             {% endfor %}
-        {% endfor %}
+        </div>
 
-        <p>選択した条件で作成したプラン</p>
-        <div>プラン１: <a href = "http://127.0.0.1:8000/scrimpay/support">このプランに移行</a></div>
-        {% for i in val3 %}
-            {% for list in plan1%}
-
-                {% if i.service_id == list %}
-                <ul>
-                    <li>{{i.service_name}} {{i.fee_per_month}}円</li>
-                </ul>
+        <form action="/scrimpay/support" method="POST">
+            {% csrf_token %}
+        <h2 class="under-element"> 選択した条件で作成したプラン</h2>
+        <!-- <div><input class="btn-flat-border" type="submit" name="change1" value="プラン１" onclick="valueChange1()">
+            <input type="hidden" name="pl1[]" value="" id="num10">
+            <input type="hidden" name="pl1[]" value="" id="num11">
+            <input type="hidden" name="pl1[]" value="" id="num12">
+            <input type="hidden" name="pl1[]" value="" id="num13">
+            <input type="hidden" name="pl1[]" value="" id="num14">
+            {% for i in val3 %}
+                {% for list in plan1%}
+                    {% if i.service_id == list %}
+                    <ul>
+                        <li>{{i.service_name}} <br>{{i.fee_per_month}}円</li>
+                    </ul>
                     
-                {% endif %}
+                    {% endif %}
+                {% endfor %}
             {% endfor %}
-        {% endfor %}
+        </div> -->
 
-        <div>プラン２: <a href = "http://127.0.0.1:8000/scrimpay/support">このプランに移行</a></div>
-        {% for i in val3 %}
-            {% for list in plan2%}
+        <div>
+            <button class="btn-flat-border" name="change1" onclick="valueChange1()">
+            <!-- <button class="btn-open" name="change1" onclick="valueChange1()"> -->
+                    <input type="hidden" name="pl1[]" value="" id="num10">
+                    <input type="hidden" name="pl1[]" value="" id="num11">
+                    <input type="hidden" name="pl1[]" value="" id="num12">
+                    <input type="hidden" name="pl1[]" value="" id="num13">
+                    <input type="hidden" name="pl1[]" value="" id="num14">
+                    <font size="6">plan1</font>
+                    <font size="3">
+                    {% for i in val3 %}
+                        {% for list in plan1%}
+                            {% if i.service_id == list %}
+                            <ul>
+                                <!-- <div class="box">{{i.service_name}} <br>{{i.fee_per_month}}円</div> -->
+                                <li>{{i.service_name}} {{i.fee_per_month}}円</li>
+                            </ul>
+                            
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+                    </font>
+            </button>
+        </div>
 
-                {% if i.service_id == list %}
-                <ul>
-                    <li>{{i.service_name}} {{i.fee_per_month}}円</li>
-                </ul>
-                    
-                {% endif %}
-            {% endfor %}
-        {% endfor %}
+        <div>
+            <button class="btn-flat-border" name="change2" onclick="valueChange2()">
+                    <input type="hidden" name="pl2[]" value="" id="num20">
+                    <input type="hidden" name="pl2[]" value="" id="num21">
+                    <input type="hidden" name="pl2[]" value="" id="num22">
+                    <input type="hidden" name="pl2[]" value="" id="num23">
+                    <input type="hidden" name="pl2[]" value="" id="num24">
+                    <font size="6">plan2</font>
+                    <font size="3">
+                    {% for i in val3 %}
+                        {% for list in plan2%}
+                            {% if i.service_id == list %}
+                            <ul>
+                                <li>{{i.service_name}} {{i.fee_per_month}}円</li>
+                            </ul>
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+                    </font>
+            </button>
+        </div>
 
-        <div>プラン３: <a href = "http://127.0.0.1:8000/scrimpay/support">このプランに移行</a></div>
-        {% for i in val3 %}
-            {% for list in plan3%}
+        <div>
+            <button class="btn-flat-border" name="change3" onclick="valueChange3()">
+                    <input type="hidden" name="pl3[]" value="" id="num30">
+                    <input type="hidden" name="pl3[]" value="" id="num31">
+                    <input type="hidden" name="pl3[]" value="" id="num32">
+                    <input type="hidden" name="pl3[]" value="" id="num33">
+                    <input type="hidden" name="pl3[]" value="" id="num34">
+                    <font size="6">plan3</font>
+                    <font size="3">
+                    {% for i in val3 %}
+                        {% for list in plan3%}
+                            {% if i.service_id == list %}
+                            <ul>
+                                <li>{{i.service_name}} {{i.fee_per_month}}円</li>
+                            </ul>
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+                    </font>
+            </button>
+        </div>
 
-                {% if i.service_id == list %}
-                <ul>
-                    <li>{{i.service_name}} {{i.fee_per_month}}円</li>
-                </ul>
-                    
-                {% endif %}
-            {% endfor %}
-        {% endfor %}
-
-        <div style = "text-align:center">
-            <a href = "http://127.0.0.1:8000/scrimpay/main">メイン画面へ</a>
+        <div class="under-element" style = "text-align:center">
+        <!-- <div style = "text-align:center"> -->
+            <a class="cp_btn" href="http://127.0.0.1:8000/scrimpay/search">プラン選択に戻る</a>
+            <a class="cp_btn" href = "http://127.0.0.1:8000/scrimpay/main">メイン画面へ</a>
         </div>
         
 
@@ -86,7 +152,207 @@
   </body>
 </html>
 
+<style>
+        /* body{
+            font-family: Arial, Helvetica, sans-serif;
+        } */
+        .header{
+            /* background-color: yellowgreen; */
+            color: aliceblue;
+            /* background: linear-gradient(-50deg, #34e89e, #0f3443) fixed;
+            background-size: cover; */
+            height: 85px;
+        }
+        .header-logo{
+            float: left;
+            font-size: 40px;
+            padding: 5px 30px;
+            color: whitesmoke;
+            text-decoration: none;
+        }
+        .graph{
+            background-color: gray;
+            text-emphasis-color: #fff;
+        }
+        body {
+            /* background: linear-gradient(-40deg,#fada84,#6cb9cc) fixed; */
+            background: #363636;
+            background-size: cover;
+        }
 
+        /* div {
+            margin: 10px 0;
+            /* text-align: center; 
+        }*/
+        p {
+            font-family: Meiryo, "Hiragino Kaku Gothic Pro W3", Courier New, sans-serif;
+            line-height: 1.5;
+            margin-bottom: 25px;
+            color: #fff;
+        }
+        .box{
+            display: inline-block;
+            /* vertical-align: middle; */
+            float: left;
+            width: 150px;
+            height: 150px;
+            margin: -17px 0px 50px 0px;
+            position: relative;
+            padding: 0.3em 1em;
+            text-decoration: none;
+            font-size: 14px;
+            background-color: #484848;
+            color: whitesmoke;
+            border: solid 2px dimgray;
+            border-radius: 3px;
+        }
+        .under-element{
+            clear: both;
+        }
+        .btn-flat-border{
+            display: inline-block;
+            position: relative;
+            float: left;
+            width: 33.3%;
+            height: 350px;
+            margin: 0px 0px 5px;
+            padding: 0.3em 1em;
+            text-decoration: none;
+            background-color: #484848;
+            color: whitesmoke;
+            border: solid 2px dimgray;
+            border-radius: 3px;
+            transition: .4s;
+        }
+        .btn-flat-border:hover {
+            background: linear-gradient(-130deg, #f202fa, #fa7101) fixed;
+            /* background: #67c5ff; */
+            color: white;
+        }
+        .btn-border{
+            display: inline-block;
+            width: 100px;
+            height: 40px;
+            padding: 0.3em 1em;
+            text-decoration: none;
+            background-color: gray;
+            color: whitesmoke;
+            border: solid 2px whitesmoke;
+            border-radius: 3px;
+            transition: .4s;
+        }
+        .btn-border:hover {
+            background: linear-gradient(-130deg, #f202fa, #fa7101) fixed;
+            /* background: #67c5ff; */
+            color: whitesmoke
+        }
+        h2 {
+            position: relative;
+            /* background: linear-gradient(-30deg, #636fa4, #000c40) fixed; */
+            background: dimgray;
+            padding: 2px 5px 2px 20px;
+            margin-bottom: 0px;
+            font-size: 20px;
+            color: whitesmoke;
+            /* border-radius: 0 10px 10px 0; */
+        }
+        /* ul, ol {
+            padding: 0;
+            position: relative;
+        }
+        ul li, ol li {
+            color: #2d8fdd;
+            border-left: solid 6px #2d8fdd;
+            background: #f1f8ff;
+            margin-bottom: 3px;
+            line-height: 1.5;
+            padding: 0.5em;
+            list-style-type: none!important;
+        } */
+        .cp_btn {
+            display: block;
+            width: 100px;
+            padding: 0.8em;
+            text-align: center;
+            text-decoration: none;
+            color: #6cc0e5;
+            border: 2px solid #6cc0e5;
+            border-radius: 3px;
+            transition: .4s;
+        }
+        .cp_btn:hover {
+            background: #6cc0e5;
+            color: #fff;
+        }
+
+        /* Acordion Faq */
+.tab {
+  position: relative;
+  margin-bottom: 1px;
+  width: 100%;
+  color: #fff;
+  overflow: hidden;
+}
+input {
+  position: absolute;
+  opacity: 0;
+  z-index: -1;
+}
+label {
+  position: relative;
+  display: block;
+  padding: 0 0 0 1em;
+  background: #000;
+  font-weight: bold;
+  line-height: 3;
+  cursor: pointer;
+  background-color: #6cc0e5;
+}
+
+.tab-content {
+  max-height: 0;
+  overflow: hidden;
+  -webkit-transition: max-height .35s;
+  -o-transition: max-height .35s;
+  transition: max-height .35s;
+  color: #000;
+}
+
+.tab-content p {
+  margin: 1em;
+}
+/* :checked */
+input:checked ~ .tab-content {
+  max-height: 100%;
+}
+/* Icon */
+label::after {
+  position: absolute;
+  right: 0;
+  top: 0;
+  display: block;
+  width: 3em;
+  height: 3em;
+  line-height: 3;
+  text-align: center;
+  -webkit-transition: all .35s;
+  -o-transition: all .35s;
+  transition: all .35s;
+}
+input[type=checkbox] + label::after {
+  content: "+";
+}
+input[type=radio] + label::after {
+  content: "\25BC";
+}
+input[type=checkbox]:checked + label::after {
+  transform: rotate(315deg);
+}
+input[type=radio]:checked + label::after {
+  transform: rotateX(180deg);
+}
+
+</style>
 
 <script>
 
@@ -104,6 +370,44 @@ aaa = aaa.replace("[","");
 aaa = aaa.replace("]","");
 plan_sum = aaa.split(',');
 
+var aaa = '{{plan1}}';
+aaa = aaa.replace(/&#39;/g,"");
+aaa = aaa.replace(/, /g,",");
+aaa = aaa.replace("[","");
+aaa = aaa.replace("]","");
+plan1 = aaa.split(',');
+
+var aaa = '{{plan2}}';
+aaa = aaa.replace(/&#39;/g,"");
+aaa = aaa.replace(/, /g,",");
+aaa = aaa.replace("[","");
+aaa = aaa.replace("]","");
+plan2 = aaa.split(',');
+
+var aaa = '{{plan3}}';
+aaa = aaa.replace(/&#39;/g,"");
+aaa = aaa.replace(/, /g,",");
+aaa = aaa.replace("[","");
+aaa = aaa.replace("]","");
+plan3 = aaa.split(',');
+
+function valueChange1(){
+    for(let k in plan1){
+        document.getElementById('num1'+k).value = plan1[k];
+    }
+}
+
+function valueChange2(){
+    for(let k in plan2){
+        document.getElementById('num2'+k).value = plan2[k];
+    }
+}
+
+function valueChange3(){
+    for(let k in plan3){
+        document.getElementById('num3'+k).value = plan3[k];
+    }
+}
 
 Vue.component('bar-chart', {
     extends: VueChartJs.Bar,
@@ -112,19 +416,43 @@ Vue.component('bar-chart', {
             labels: ['現状', 'プラン１', 'プラン２', 'プラン３'], //for文でサービスを複数表示
             datasets:[
                 {
-                    label: '合計金額',
-                    backgroundColor: ['#FFFF44', '#FF4444', '#44BB44', '#4444FF'],
+                    // label: '合計金額',
+                    // backgroundColor: ['#FFFF44', '#FF4444', '#44BB44', '#4444FF'],
+                    backgroundColor: ['#037712','#6cc0e5','#6cc0e5','#6cc0e5'],
                     data:plan_sum,
                 }
             ],
         }, {
             responsive: true,
             maintainAspectRatio: false,
+            legend:{
+                display: false
+            },
             scales:{
+                xAxes:[
+                    {
+                        display: true,
+                        gridLines:{
+                            color: "white"
+                        },
+                        ticks:{
+                            fontColor: "white"
+                        },
+                    }
+                ],
                 yAxes:[
                     {
                         display:true,
-                        ticks:{min:0}
+                        scaleLabel:{
+                            fontColor: "white",
+                        },
+                        gridLines:{
+                            color: "white",
+                        },
+                        ticks:{
+                            min:0,
+                            fontColor: "white"
+                        },
                     }
                 ]
             }

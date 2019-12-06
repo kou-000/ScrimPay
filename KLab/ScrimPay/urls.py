@@ -11,4 +11,5 @@ urlpatterns = [
     path('rod', views.rod, name='rod'),
     path('search',views.SearchCriteria,name='search'),
     path('support', views.support, name='support'),
+    path('top', views.top, name='top'),
 ]

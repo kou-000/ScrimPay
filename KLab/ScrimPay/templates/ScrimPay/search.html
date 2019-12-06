@@ -10,35 +10,35 @@
         {% csrf_token %}
 
 <body>
-    <h1>予算</h1>
-      <select name = "budget1">
-          <option>0</option>
-          <option>1000</option>
-          <option>2000</option>
-          <option>3000</option>
-          <option>4000</option>
-          <option>5000</option>
-      </select>
+    <div class="header">
+            <a class="header-logo" href="http://127.0.0.1:8000/scrimpay/top">ScrimPay</a>
+    </div>
 
-円~
+    <h2>予算</h2>
+        <select name = "budget1">
+            <option value="0">¥0</option>
+            <option value="1000">¥1000</option>
+            <option value="2000">¥2000</option>
+            <option value="3000">¥3000</option>
+            <option value="4000">¥4000</option>
+            <option value="5000">¥5000</option>
+        </select>~
         <select name = "budget2">
-            <option>1000</option>
-            <option>2000</option>
-            <option>3000</option>
-            <option>4000</option>
-            <option>5000</option>
-            <option>6000</option>
-            <option>7000</option>
-            <option>8000</option>
-            <option>9000</option>
-            <option>10000</option>
+            <option value="1000">¥1000</option>
+            <option value="2000">¥2000</option>
+            <option value="3000">¥3000</option>
+            <option value="4000">¥4000</option>
+            <option value="5000">¥5000</option>
+            <option value="6000">¥6000</option>
+            <option value="7000">¥7000</option>
+            <option value="8000">¥8000</option>
+            <option value="9000">¥9000</option>
+            <option value="10000">¥10000</option>
         </select>
-
-        円
-    </body>
+</body>
 
 <body>
-    <h1>優先度</h1>
+    <h2>優先度</h2>
         1. 
         <select name = "tag1">
                 <option>アニメ</option>
@@ -52,6 +52,11 @@
                 <option>タグ9</option>
                 <option>タグ10</option> -->
         </select>
+        <input name = "slider1" type="range" value="1" min="1" max="10" step="1"
+          oninput="document.getElementById('output1').value=this.value">
+        <!-- <output id="output1">1</output> -->
+        
+        <br>
 
         2. 
             <select name = "tag2">
@@ -66,6 +71,11 @@
                     <option>タグ9</option>
                     <option>タグ10</option> -->
             </select>
+            <input name = "slider2" type="range" value="1" min="1" max="10" step="1"
+            oninput="document.getElementById('output2').value=this.value">
+            <!-- <output id="output2">1</output> -->
+
+        <br>
 
             3. 
                 <select name = "tag3">
@@ -80,29 +90,436 @@
                     <option>タグ9</option>
                     <option>タグ10</option> -->
                 </select>
+                <!-- <input name = "slider3" type="range" value="1" min="1" max="10" step="1"
+                oninput="document.getElementById('output3').value=this.value"> -->
+
+                <div class="container">
+  
+                        <div class="range-slider">
+                          <span id="rs-bullet" class="rs-label">0</span>
+                          <input name="slider3" id="rs-range-line" class="rs-range" type="range" value="1" min="1" max="10" oninput="document.getElementById('output3').value=this.value">
+                          
+                        </div>
+                        
+                        <div class="box-minmax">
+                          <span>0</span><span>10</span>
+                        </div>
+                        
+                </div>
+                <!-- <output id="output3">1</output> -->
 </body>
 
 <body>
-    <h1>オプション</h1>
-    <input type="checkbox" name="checks[]" value="option1"><label>option1</label>
-    <input type="checkbox" name="checks[]" value="option2"><label>option2</label>
-    <input type="checkbox" name="checks[]" value="option3"><label>option3</label>
-    <br>
-    <input type="checkbox" name="checks[]" value="option4"><label>option4</label>
-    <input type="checkbox" name="checks[]" value="option5"><label>option5</label>
-    <input type="checkbox" name="checks[]" value="option6"><label>option6</label>
+    <h2>オプション</h2>
+    <div class="boxes">
+        <input type="checkbox" name="checks[]" value="option1" id="option1"/><label for="option1">option1</label>
+        <input type="checkbox" name="checks[]" value="option2" id="option2"/><label for="option2">option2</label>
+        <input type="checkbox" name="checks[]" value="option3" id="option3"/><label for="option3">option3</label>
+        <br>
+        <input type="checkbox" name="checks[]" value="option4" id="option4"/><label for="option4">option4</label>
+        <input type="checkbox" name="checks[]" value="option5" id="option5"/><label for="option5">option5</label>
+        <input type="checkbox" name="checks[]" value="option6" id="option6"/><label for="option6">option6</label>
+    </div>
 </body>
 
+<br>
+
+<body>
+    <h2>表示件数</h2>
+    <div class="container pt20">
+        <!-- <div class="row"></div>
+        <div class="col-xs-12"></div> -->
+        <div class="form-group">
+            <div class="select-wrap">
+                <select name = "type">
+                    <option value="1">1件</option>
+                    <option value="2">2件</option>
+                    <option value="3">3件</option>
+                    <option value="4">4件</option>
+                    <option value="5">5件</option>
+                    <!-- <option>6件</option>
+                    <option>7件</option>
+                    <option>8件</option>
+                    <option>9件</option>
+                    <option>10件</option> -->
+                </select>
+            </div>
+        </div>
+    </div>
+</body>
+<br>
+<br>
+<br>
+<br>
+
     <body>
-        <div style = "text-align:center">
-        <input type="submit" name='reverse' value="＜＜ 戻 る ＜＜" />
-        <span style="margin-left:100px"><input type="submit" name='move' value="＞＞ 検 索 ＞＞" /></span>
+        <div style = "align-items:center">
+            <!-- <input type="submit" name='reverse' value="＜＜ 戻 る ＜＜" /> -->
+            <button name="reverse" class="cp_btn">戻る</button>
+            <span style="margin-left:100px">
+                <!-- <input type="submit" name='move' value="＞＞ 検 索 ＞＞" /> -->
+                <button name="move" class="cp_btn">検索</button>
+            </span>
         </div>
 
-
-
     </body>
+
+
+
+
 
     </form>
 
 </html>
+
+<style>
+        .header{
+            /* background-color: yellowgreen; */
+            color: aliceblue;
+            /* background: linear-gradient(-50deg, #34e89e, #0f3443) fixed;
+            background-size: cover; */
+            height: 90px;
+            padding-top: -60px;
+        }
+        .header-logo{
+            float: left;
+            /* font-family: 'Kaushan Script', cursive; */
+            /* font-family: 'Montserrat Subrayada', sans-serif; */
+            font-size: 40px;
+            padding: 5px 30px;
+            color: whitesmoke;
+            text-decoration: none;
+        }
+        .graph{
+            background-color: gray;
+            text-emphasis-color: #fff;
+        }
+    
+        /* div {
+            margin: 10px 0;
+            /* text-align: center; 
+        }*/
+        p {
+            font-family: Meiryo, "Hiragino Kaku Gothic Pro W3", Courier New, sans-serif;
+            line-height: 1.5;
+            margin-bottom: 25px;
+            color: #fff;
+        }
+        .box{
+            display: inline-block;
+            /* vertical-align: middle; */
+            float: left;
+            width: 200px;
+            height: 150px;
+            margin: 10px;
+            padding: 2px 5px 2px 20px;
+            font-size: 14px;
+            background-color: #484848;
+            color: whitesmoke;
+        }
+        .under-element{
+            clear: both;
+        }
+        .btn-flat-border{
+            display: inline-block;
+            position: relative;
+            float: left;
+            width: 200px;
+            height: 350px;
+            margin: 0px 0px 5px;
+            padding: 0.3em 1em;
+            text-decoration: none;
+            background-color: gray;
+            color: whitesmoke;
+            border: solid 2px dimgray;
+            border-radius: 3px;
+            transition: .4s;
+        }
+        .btn-flat-border:hover {
+            background: linear-gradient(-130deg, #f202fa, #fa7101) fixed;
+            /* background: #67c5ff; */
+            color: white;
+        }
+        .btn-border{
+            display: inline-block;
+            width: 100px;
+            height: 40px;
+            padding: 0.3em 1em;
+            text-decoration: none;
+            background-color: gray;
+            color: whitesmoke;
+            border: solid 2px whitesmoke;
+            border-radius: 3px;
+            transition: .4s;
+        }
+        .btn-border:hover {
+            background: linear-gradient(-130deg, #f202fa, #fa7101) fixed;
+            /* background: #67c5ff; */
+            color: whitesmoke
+        }
+        h2 {
+            position: relative;
+            /* background: linear-gradient(-30deg, #636fa4, #000c40) fixed; */
+            background: dimgray;
+            padding: 2px 5px 2px 20px;
+            margin-bottom: 0px;
+            font-size: 20px;
+            color: whitesmoke;
+            /* border-radius: 0 10px 10px 0; */
+        }
+        .cp_btn {
+            display: block;
+            width: 160px;
+            padding: 0.8em;
+            text-align: center;
+            text-decoration: none;
+            background: #363636;
+            color: #6cc0e5;
+            border: 2px solid #6cc0e5;
+            border-radius: 3px;
+            transition: .4s;
+        }
+        .cp_btn:hover {
+            background: #6cc0e5;
+            color: #363636;
+        }
+
+    * {
+    padding: 0;
+    margin: 0;
+    }
+
+    html {
+    font-size: 16px;
+    }
+
+    @import url(https://fonts.googleapis.com/css?family=Open+Sans);
+    body {
+        /* height: 100%; */
+        margin: 0px;
+        background: #363636;
+        /* display: -webkit-flex; */
+        /* display: flex; */
+        align-items: center;
+        padding: 100px 20px;
+        /* text-align: center; */
+    }
+    .boxes {
+    margin: auto;
+    padding: 10px;
+    background: #484848;
+    }
+
+    /*Checkboxes styles*/
+    input[type="checkbox"] { display:none; }
+    input[type="checkbox"] + label {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 10px;
+    font: 14px/20px 'Open Sans', Arial, sans-serif;
+    color: #ddd;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    }
+    input[type="checkbox"] + label:last-child { margin-bottom: 0; }
+    input[type="checkbox"] + label:before {
+    content: '';
+    display: block;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #6cc0e5;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: .6;
+    -webkit-transition: all .12s, border-color .08s;
+    transition: all .12s, border-color .08s;
+    }
+    input[type="checkbox"]:checked + label:before {
+    width: 10px;
+    top: -5px;
+    left: 5px;
+    border-radius: 0;
+    opacity: 1;
+    border-top-color: transparent;
+    border-left-color: transparent;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    }
+
+    /*  */
+@font-face{font-family:"IonIcons";src:url("//code.ionicframework.com/ionicons/2.0.1/fonts/ionicons.eot?v=2.0.1");src:url("//code.ionicframework.com/ionicons/2.0.1/fonts/ionicons.eot?v=2.0.1#iefix") format("embedded-opentype"),url("//code.ionicframework.com/ionicons/2.0.1/fonts/ionicons.ttf?v=2.0.1") format("truetype"),url("//code.ionicframework.com/ionicons/2.0.1/fonts/ionicons.woff?v=2.0.1") format("woff"),url("//code.ionicframework.com/ionicons/2.0.1/fonts/ionicons.svg?v=2.0.1#Ionicons") format("svg");font-weight:normal;font-style:normal}
+
+.pt20{
+  padding-top: 20px;
+}
+.select-wrap {
+    position: relative;
+}
+.select-wrap:before {
+    z-index: 1;
+    position: absolute;
+    left: 290px;
+    top: 0;
+    content: "\f123";
+    font-family: "IonIcons";
+    line-height: 43px;
+    color: #6cc0e5;
+    pointer-events: none;
+}
+select{
+    outline:none;
+    -moz-appearance: none;
+    text-indent: 0.01px;
+    text-overflow: '';
+    background: none transparent;
+    vertical-align: middle;
+    font-size: inherit;
+    color: inherit;
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    height: 40px;
+    padding: 8px 12px;
+    border:1px solid #6cc0e5;
+    color:#6cc0e5;
+    width:50%;
+    border-radius:3px;
+}
+select option{
+  background-color: #f202fa;
+  color: #333;
+}
+select::-ms-expand {
+  display: none;
+}
+select:-moz-focusring { 
+  color: transparent; 
+  text-shadow: 0 0 0 #828c9a;
+}
+
+/* ---------------------------------------------------- */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.box-minmax{
+  margin-top: 30px;
+  width: 608px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 20px;
+  color: #FFFFFF;
+  span:first-child{
+    margin-left: 10px;
+  }
+}
+.range-slider {
+    margin-top: 30vh;
+    
+}
+.rs-range {
+    margin-top: 29px;
+    width: 600px;
+    -webkit-appearance: none;
+}
+.rs-range :focus {
+        outline: none;
+}
+.rs-range::-webkit-slider-runnable-track {
+        width: 100%;
+        height: 1px;
+        cursor: pointer;
+        box-shadow: none;
+        background: #ffffff;
+        border-radius: 0px;
+        border: 0px solid #010101;
+}
+.rs-range::-moz-range-track {
+        width: 100%;
+        height: 1px;
+        cursor: pointer;
+        box-shadow: none;
+        background: #ffffff;
+        border-radius: 0px;
+        border: 0px solid #010101;
+    }
+  
+.rs-range::-webkit-slider-thumb {
+        box-shadow: none;
+        border: 0px solid #ffffff;
+        box-shadow: 0px 10px 10px rgba(0,0,0,0.25);
+        height: 42px;
+        width: 22px;
+        border-radius: 22px;
+        background: rgba(255,255,255,1);
+        cursor: pointer;
+        -webkit-appearance: none;
+        margin-top: -20px;
+    }
+.rs-range::-moz-range-thumb{
+        box-shadow: none;
+        border: 0px solid #ffffff;
+        box-shadow: 0px 10px 10px rgba(0,0,0,0.25);
+        height: 42px;
+        width: 22px;
+        border-radius: 22px;
+        background: rgba(255,255,255,1);
+        cursor: pointer;
+        -webkit-appearance: none;
+        margin-top: -20px;
+  }
+.rs-range::-moz-focus-outer {
+    border: 0;
+    }
+.rs-label {
+    position: relative;
+    transform-origin: center center;
+    display: block;
+    width: 98px;
+    height: 98px;
+    background: transparent;
+    border-radius: 50%;
+    line-height: 30px;
+    text-align: center;
+    font-weight: bold;
+    padding-top: 22px;
+    box-sizing: border-box;
+    border: 2px solid #fff;
+    margin-top: 20px;
+    margin-left: -38px;
+    left: attr(value);
+    color: #fff;
+    font-style: normal;
+    font-weight: normal;
+    line-height: normal;
+    font-size: 36px;
+}
+.rs-label::after {
+        display: block;
+        font-size: 20px;
+        letter-spacing: 0.07em;
+        margin-top: -2px;
+    }
+</style>
+
+<script>
+var rangeSlider = document.getElementById("rs-range-line");
+var rangeBullet = document.getElementById("rs-bullet");
+
+rangeSlider.addEventListener("input", showSliderValue, false);
+
+function showSliderValue() {
+  rangeBullet.innerHTML = rangeSlider.value;
+  var bulletPosition = (rangeSlider.value /rangeSlider.max);
+  rangeBullet.style.left = (bulletPosition * 578) + "px";
+}
+</script>
