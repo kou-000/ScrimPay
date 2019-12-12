@@ -12,4 +12,5 @@ urlpatterns = [
     path('search',views.SearchCriteria,name='search'),
     path('support', views.support, name='support'),
     path('top', views.top, name='top'),
+    path('deletedb', views.deletedb, name='deletedb'),
 ]

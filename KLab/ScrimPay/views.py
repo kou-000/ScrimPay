@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from .models import Main, User, Service
 import json
 from django.views.generic.edit import CreateView
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, DeleteView
 # import logging
 # Create your views here.
 
@@ -50,8 +50,23 @@ class ItemCreateView(TemplateView):
 
         return redirect('/scrimpay/main')
 
+# class ItemDeleteView(DeleteView):
 
+#     template_name = 'Scrimpay/deletedb.html'
+#     model = Main
+#     print("test1")
 
+#     def post(self, request, *args, **kwargs):
+#         print("tests")
+#         post_id = request.POST.getlist('deletes[]')
+#         print(str(post_id))
+
+#         print("test3")
+#         # del_data = Main(user_id = 'A001', service_id = post_id)
+#         # del_data.delete()
+#         Main.objects.filter(pub_data = post_id).delete()
+
+#         return redirect('/scimpay/main')
 
 def index(request):
     data1 = Main.objects.all()
@@ -74,6 +89,17 @@ def main(request):
     data1 = Main.objects.all().filter(user_id='A001')
     data2 = User.objects.all().filter(user_id='A001')
     data3 = Service.objects.order_by('-fee_per_month')
+
+    if request.method =='POST':
+        if 'button' in request.POST:
+            some_var = request.POST.getlist('deletes[]')
+            print(str(some_var))
+
+            for w in some_var:
+                main_data = Main.objects.filter(user_id = 'A001', service_id = str(w))
+                main_data.delete()
+
+            
 
     array = []
     for i in data3:
@@ -321,6 +347,22 @@ def support(request):
 
 
     return render(request, 'scrimpay/support.html',my_dict5) 
+
+def deletedb(request):
+    data1 = Main.objects.all()
+    data2 = User.objects.all()
+    data3 = Service.objects.all()
+
+    value = 0
+   
+    my_dict6 = {
+        'val':data1,
+        'val2':data2,
+        'val3':data3,
+        'v':value,
+    }    
+
+    return render(request,'scrimpay/deletedb.html',my_dict6)
 
 def top(request):
     return render(request,'scrimpay/top.html')

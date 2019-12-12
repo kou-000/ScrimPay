@@ -11,27 +11,23 @@
           <a class="header-logo" href="http://127.0.0.1:8000/scrimpay/top">ScrimPay</a>
       </div>
 
-    <form method="POST">
+    <form action="main" method="POST">
+    <!-- <form action ="test" method="POST"> -->
       {% csrf_token %}
 
-        <div class="line">加入しているサービスを選択してください</div>
+        <div class="line">削除するサービスを選択してください</div>
+
         {% for i in val3 %}
-          <!-- <div class="boxes">
-            <input type="checkbox" id="music" name="checks[]" value="{{i.service_id}}">
-            <label>{{i.service_name}} {{i.plan_name}}</label>
-          </div> -->
-
-          <div class="boxes">
-            <label>
-              <input type="checkbox" class="check-1" name="checks[]" value="{{i.service_id}}">
-              <span class="check-sp">{{i.service_name}} {{i.plan_name}}</span>
-            </label>
-          </div>
-
-          <!-- <div class="boxes">
-              <input type="checkbox" id="{$i}" name="checks[]" value="{{i.service_id}}">
-              <label for="{$i}">{{i.service_name}} {{i.plan_name}}</label>
-          </div> -->
+            {% for j in val%}
+                {% if i.service_id == j.service_id %}
+                <div class="boxes">
+                    <label>
+                    <input type="checkbox" class="check-1" name="deletes[]" value="{{i.service_id}}">
+                    <span class="check-sp">{{i.service_name}}</span>
+                    </label>
+                </div>
+                {% endif %}
+            {% endfor %}
         {% endfor %}
 
         <div class="btn-border">

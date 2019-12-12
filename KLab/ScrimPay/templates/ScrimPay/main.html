@@ -24,13 +24,16 @@
     <div id="app" class="graph chart_price">
         <doughnut-chart></doughnut-chart>
         <canvas id="chartPrice" width="300" height="45"></canvas>
-        <p>合計金額<br><font size="6">¥{{fee_sum}}</font></p>
+        <p>
+            合計金額<br><font size="6">¥{{fee_sum}}</font>
+        </p>
         
     </div>
     
 
     <div class="container">
         <a href = "http://127.0.0.1:8000/scrimpay/" class="cp_btn">契約サービス追加</a>
+        <a href = "http://127.0.0.1:8000/scrimpay/deletedb" class="cp_btn">契約サービス削除</a>
         <h2>動画配信サービス</h2>
         {% for i in val3 %}
 
@@ -267,7 +270,6 @@
                 {% endif %}
             {% endfor %}
       {% endfor %}
-
     </div>
 
   </body>
@@ -334,6 +336,11 @@
         background-color: #484848;
         color: whitesmoke;
     }
+    .boxes {
+  margin: auto;
+  padding: 10px;
+  background: #484848;
+}
     .under-element{
         clear: both;
     }
@@ -470,6 +477,52 @@ input[type=radio]:checked + label::after {
    top: 50%;
    -webkit-transform: translateY(-50%);
    transform: translateY(-50%); 
+}
+
+/*Checkboxes styles*/
+/* ------------------------------------------------------------------------- */
+
+.check-1{ display: none; }
+
+.check-1 + .check-sp{
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 10px;
+  font: 14px/20px 'Open Sans', Arial, sans-serif;
+  color: #ddd;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+.check-1 + .check-sp:last-child{ margin-bottom: 0; }
+
+.check-1 + .check-sp:before{
+  content: '';
+  display: block;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #6cc0e5;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: .6;
+  -webkit-transition: all .12s, border-color .08s;
+  transition: all .12s, border-color .08s;
+}
+
+.check-1:checked + .check-sp:before {
+  width: 10px;
+  top: -5px;
+  left: 5px;
+  border-radius: 0;
+  opacity: 1;
+  border-top-color: transparent;
+  border-left-color: transparent;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
 }
 </style>
 
