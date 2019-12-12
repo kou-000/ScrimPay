@@ -21,9 +21,13 @@
     <!-- <div>月々の支払い ¥{{fee_sum}}</div> -->
     <h2>月々の支払い</h2>
 
-    <div id="app" class="graph">
+    <div id="app" class="graph chart_price">
         <doughnut-chart></doughnut-chart>
+        <canvas id="chartPrice" width="300" height="45"></canvas>
+        <p>合計金額<br><font size="6">¥{{fee_sum}}</font></p>
+        
     </div>
+    
 
     <div class="container">
         <a href = "http://127.0.0.1:8000/scrimpay/" class="cp_btn">契約サービス追加</a>
@@ -271,9 +275,9 @@
     <form action="/scrimpay/search" method="POST">
         {% csrf_token %}
         <body>
-            <div style = "text-align:center" class="under-element">
+            <div class="box_range under-element pt20">
                 <!-- <input class="cp_btn" type="submit" name='reverse' value="検索へ" /> -->
-                <button class="cp_btn" name="reverse">検索</button>
+                <button class="cp_btn cp_btn_r" name="reverse">検索</button>
             </div>
         </body>
     </form>
@@ -286,6 +290,7 @@
         /* background-color: yellowgreen; */
         color: aliceblue;
         background: linear-gradient(-50deg, #6cc1e5bd, #0f3443ad);
+        /* background: linear-gradient(-50deg, #d9e56cbd, #433b0fad); */
         /* background-size: cover; */
         height: 85px;
     }
@@ -332,42 +337,14 @@
     .under-element{
         clear: both;
     }
-    .btn-flat-border{
-        display: inline-block;
-        position: relative;
-        float: left;
-        width: 200px;
-        height: 350px;
-        margin: 0px 0px 5px;
-        padding: 0.3em 1em;
-        text-decoration: none;
-        background-color: gray;
-        color: whitesmoke;
-        border: solid 2px dimgray;
-        border-radius: 3px;
-        transition: .4s;
-    }
-    .btn-flat-border:hover {
-        background: linear-gradient(-130deg, #f202fa, #fa7101) fixed;
-        /* background: #67c5ff; */
-        color: white;
-    }
-    .btn-border{
-        display: inline-block;
-        width: 100px;
+    .box_range{
+        /* background-color: #f202fa; */
+        margin-left: auto;
+        margin-right: auto;
+        padding: auto;
+        /* width: 20%; */
         height: 40px;
-        padding: 0.3em 1em;
-        text-decoration: none;
-        background-color: gray;
-        color: whitesmoke;
-        border: solid 2px whitesmoke;
-        border-radius: 3px;
-        transition: .4s;
-    }
-    .btn-border:hover {
-        background: linear-gradient(-130deg, #f202fa, #fa7101) fixed;
-        /* background: #67c5ff; */
-        color: whitesmoke
+        /* background-color: violet; */
     }
     h2 {
         position: relative;
@@ -381,20 +358,33 @@
     }
     .cp_btn {
         display: block;
+        /* font-size: 10px; */
         width: 160px;
         padding: 0.8em;
         text-align: center;
         text-decoration: none;
         background: #363636;
-        color: #6cc0e5;
-        border: 2px solid #6cc0e5;
+        /* color: #d9e56cbd; */
+        color: #6cc1e5bd;
+        /* border: 2px solid #d9e56cbd; */
+        border: 2px solid #6cc1e5bd;
         border-radius: 3px;
         transition: .4s;
     }
     .cp_btn:hover {
-        background: #6cc0e5;
+        /* background: #d9e56cbd; */
+        background: #6cc1e5bd;
         color: #363636;
     }
+    .cp_btn_r{
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .pt20{
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 20px;
+}
 
          /* Acordion Faq */
 .tab {
@@ -414,7 +404,9 @@ label {
   position: relative;
   display: block;
   padding: 0 0 0 1em;
-  background: linear-gradient(-50deg, #6cc1e5bd, #0f3443ad);
+  /* background: linear-gradient(-50deg, #6cc1e5bd, #0f3443ad); */
+  /* background: #d9e56cbd; */
+  background-color: #6cc1e5bd;
   font-weight: bold;
   line-height: 3;
   cursor: pointer;
@@ -463,7 +455,22 @@ input[type=radio]:checked + label::after {
   transform: rotateX(180deg);
 }
 
+.chart_price {
+  position: relative;
+}
 
+.chart_price p{
+   position: absolute;
+   top: 0;
+   left: 0;
+   margin: auto;
+   right: 0;
+   margin: auto;
+   text-align: center;
+   top: 50%;
+   -webkit-transform: translateY(-50%);
+   transform: translateY(-50%); 
+}
 </style>
 
 <script>
@@ -501,7 +508,10 @@ Vue.component('doughnut-chart', {
                     data:rate_ary
                 }
             ],
-        }, {responsive: true, maintainAspectRatio: false})
+        }, {
+            responsive: true, 
+            maintainAspectRatio: false
+        })
     }
 })
 

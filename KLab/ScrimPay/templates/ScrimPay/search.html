@@ -15,6 +15,7 @@
     </div>
 
     <h2>予算</h2>
+    <div class="container_select pt20">
         <select name = "budget1">
             <option value="0">¥0</option>
             <option value="1000">¥1000</option>
@@ -22,7 +23,7 @@
             <option value="3000">¥3000</option>
             <option value="4000">¥4000</option>
             <option value="5000">¥5000</option>
-        </select>~
+        </select><a class="back-font">~</a>
         <select name = "budget2">
             <option value="1000">¥1000</option>
             <option value="2000">¥2000</option>
@@ -35,11 +36,14 @@
             <option value="9000">¥9000</option>
             <option value="10000">¥10000</option>
         </select>
-</body>
+    </div>
 
-<body>
+
     <h2>優先度</h2>
-        1. 
+    <div class="container_select pt20">
+
+        <div class="pt20">
+            <a class="back-font2">1.</a>
         <select name = "tag1">
                 <option>アニメ</option>
                 <option>ドラマ</option>
@@ -55,11 +59,13 @@
         <input name = "slider1" type="range" value="1" min="1" max="10" step="1"
           oninput="document.getElementById('output1').value=this.value">
         <!-- <output id="output1">1</output> -->
+        </div>
         
         <br>
 
-        2. 
-            <select name = "tag2">
+        <div class="pt20">
+            <a class="back-font2">2.</a>
+            <select name = "tag2" class="pt20">
                     <option>アニメ</option>
                     <option>ドラマ</option>
                     <option>映画</option>
@@ -74,42 +80,43 @@
             <input name = "slider2" type="range" value="1" min="1" max="10" step="1"
             oninput="document.getElementById('output2').value=this.value">
             <!-- <output id="output2">1</output> -->
+        </div>
 
         <br>
 
-            3. 
-                <select name = "tag3">
-                    <option>アニメ</option>
-                    <option>ドラマ</option>
-                    <option>映画</option>
-                    <option>スポーツ</option>
-                    <option>バラエティー</option>
-                    <!-- <option>タグ6</option>
-                    <option>タグ7</option>
-                    <option>タグ8</option>
-                    <option>タグ9</option>
-                    <option>タグ10</option> -->
-                </select>
-                <!-- <input name = "slider3" type="range" value="1" min="1" max="10" step="1"
-                oninput="document.getElementById('output3').value=this.value"> -->
+        <div class="pt20">
+            <a class="back-font2">3.</a>
+            <select name = "tag3" class="pt20">
+                <option>アニメ</option>
+                <option>ドラマ</option>
+                <option>映画</option>
+                <option>スポーツ</option>
+                <option>バラエティー</option>
+                <!-- <option>タグ6</option>
+                <option>タグ7</option>
+                <option>タグ8</option>
+                <option>タグ9</option>
+                <option>タグ10</option> -->
+            </select>
+            <input name = "slider3" type="range" value="1" min="1" max="10" step="1"
+            oninput="document.getElementById('output3').value=this.value">
 
-                <div class="container">
-  
-                        <div class="range-slider">
-                          <span id="rs-bullet" class="rs-label">0</span>
-                          <input name="slider3" id="rs-range-line" class="rs-range" type="range" value="1" min="1" max="10" oninput="document.getElementById('output3').value=this.value">
-                          
-                        </div>
-                        
-                        <div class="box-minmax">
-                          <span>0</span><span>10</span>
-                        </div>
-                        
-                </div>
-                <!-- <output id="output3">1</output> -->
-</body>
+            <!-- <div class="container"> -->
 
-<body>
+                <!-- <div class="range-slider"> -->
+                    <!-- <span id="rs-bullet" class="rs-label">1</span> -->
+                    <!-- <input name="slider3" id="rs-range-line" class="rs-range" type="range" value="1" min="1" max="10" oninput="document.getElementById('output3').value=this.value"> -->
+                <!-- </div> -->
+                
+                <!-- <div class="box-minmax">
+                    <span>1</span><span>10</span>
+                </div> -->
+                    
+            <!-- </div> -->
+            <!-- <output id="output3">1</output> -->
+        </div>
+    </div>
+
     <h2>オプション</h2>
     <div class="boxes">
         <input type="checkbox" name="checks[]" value="option1" id="option1"/><label for="option1">option1</label>
@@ -120,17 +127,14 @@
         <input type="checkbox" name="checks[]" value="option5" id="option5"/><label for="option5">option5</label>
         <input type="checkbox" name="checks[]" value="option6" id="option6"/><label for="option6">option6</label>
     </div>
-</body>
 
-<br>
 
-<body>
     <h2>表示件数</h2>
-    <div class="container pt20">
+    <div class="container_select pt20">
         <!-- <div class="row"></div>
         <div class="col-xs-12"></div> -->
         <div class="form-group">
-            <div class="select-wrap">
+            <!-- <div class="select-wrap"> -->
                 <select name = "type">
                     <option value="1">1件</option>
                     <option value="2">2件</option>
@@ -143,32 +147,20 @@
                     <option>9件</option>
                     <option>10件</option> -->
                 </select>
-            </div>
+            <!-- </div> -->
         </div>
     </div>
+
+
+    <div class="box_range">
+        <!-- <input type="submit" name='reverse' value="＜＜ 戻 る ＜＜" /> -->
+        <button name="reverse" class="cp_btn btn_left">戻る</button>
+            <!-- <input type="submit" name='move' value="＞＞ 検 索 ＞＞" /> -->
+        <button name="move" class="cp_btn btn_right">検索</button>
+    </div>
+
 </body>
-<br>
-<br>
-<br>
-<br>
-
-    <body>
-        <div style = "align-items:center">
-            <!-- <input type="submit" name='reverse' value="＜＜ 戻 る ＜＜" /> -->
-            <button name="reverse" class="cp_btn">戻る</button>
-            <span style="margin-left:100px">
-                <!-- <input type="submit" name='move' value="＞＞ 検 索 ＞＞" /> -->
-                <button name="move" class="cp_btn">検索</button>
-            </span>
-        </div>
-
-    </body>
-
-
-
-
-
-    </form>
+</form>
 
 </html>
 
@@ -178,8 +170,10 @@
             color: aliceblue;
             /* background: linear-gradient(-50deg, #34e89e, #0f3443) fixed;
             background-size: cover; */
+            background: linear-gradient(-50deg, #6cc1e5bd, #0f3443ad);
             height: 90px;
             padding-top: -60px;
+            /* background-color: #f202fa; */
         }
         .header-logo{
             float: left;
@@ -189,16 +183,26 @@
             padding: 5px 30px;
             color: whitesmoke;
             text-decoration: none;
+            /* background-color: #f202fa; */
         }
         .graph{
             background-color: gray;
             text-emphasis-color: #fff;
         }
-    
+        .back-font{
+            font-size: 23pt;
+            margin: 10px;
+            color: #6cc0e5;
+        }
+        .back-font2{
+            font-size: 23pt;
+            margin: 10px;
+            color: #fff;
+        }
         /* div {
             margin: 10px 0;
-            /* text-align: center; 
-        }*/
+            text-align: center; 
+        } */
         p {
             font-family: Meiryo, "Hiragino Kaku Gothic Pro W3", Courier New, sans-serif;
             line-height: 1.5;
@@ -220,43 +224,6 @@
         .under-element{
             clear: both;
         }
-        .btn-flat-border{
-            display: inline-block;
-            position: relative;
-            float: left;
-            width: 200px;
-            height: 350px;
-            margin: 0px 0px 5px;
-            padding: 0.3em 1em;
-            text-decoration: none;
-            background-color: gray;
-            color: whitesmoke;
-            border: solid 2px dimgray;
-            border-radius: 3px;
-            transition: .4s;
-        }
-        .btn-flat-border:hover {
-            background: linear-gradient(-130deg, #f202fa, #fa7101) fixed;
-            /* background: #67c5ff; */
-            color: white;
-        }
-        .btn-border{
-            display: inline-block;
-            width: 100px;
-            height: 40px;
-            padding: 0.3em 1em;
-            text-decoration: none;
-            background-color: gray;
-            color: whitesmoke;
-            border: solid 2px whitesmoke;
-            border-radius: 3px;
-            transition: .4s;
-        }
-        .btn-border:hover {
-            background: linear-gradient(-130deg, #f202fa, #fa7101) fixed;
-            /* background: #67c5ff; */
-            color: whitesmoke
-        }
         h2 {
             position: relative;
             /* background: linear-gradient(-30deg, #636fa4, #000c40) fixed; */
@@ -267,8 +234,27 @@
             color: whitesmoke;
             /* border-radius: 0 10px 10px 0; */
         }
+        .box_range{
+            /* background-color: #f202fa; */
+            margin-left: auto;
+            margin-right: auto;
+            padding: auto;
+            width: 25%;
+            height: 70px;
+        }
+        .btn_left{
+            /* margin-left: auto; */
+            /* margin-right: auto; */
+        }
+        .btn_right{
+            margin-left: 20px;
+            /* margin-right: auto; */
+        }
         .cp_btn {
             display: block;
+            float: left;
+            /* margin: 10px;
+            margin-left: 300px; */
             width: 160px;
             padding: 0.8em;
             text-align: center;
@@ -284,24 +270,20 @@
             color: #363636;
         }
 
-    * {
+    /* * {
     padding: 0;
     margin: 0;
-    }
-
-    html {
-    font-size: 16px;
-    }
+    } */
 
     @import url(https://fonts.googleapis.com/css?family=Open+Sans);
     body {
         /* height: 100%; */
-        margin: 0px;
+        /* margin: 0px; */
         background: #363636;
         /* display: -webkit-flex; */
         /* display: flex; */
-        align-items: center;
-        padding: 100px 20px;
+        /* align-items: center; */
+        /* padding: 100px 20px; */
         /* text-align: center; */
     }
     .boxes {
@@ -310,7 +292,7 @@
     background: #484848;
     }
 
-    /*Checkboxes styles*/
+    /*Checkboxes styles------------------------------------------------------------------------------*/
     input[type="checkbox"] { display:none; }
     input[type="checkbox"] + label {
     display: block;
@@ -350,46 +332,47 @@
     transform: rotate(45deg);
     }
 
-    /*  */
-@font-face{font-family:"IonIcons";src:url("//code.ionicframework.com/ionicons/2.0.1/fonts/ionicons.eot?v=2.0.1");src:url("//code.ionicframework.com/ionicons/2.0.1/fonts/ionicons.eot?v=2.0.1#iefix") format("embedded-opentype"),url("//code.ionicframework.com/ionicons/2.0.1/fonts/ionicons.ttf?v=2.0.1") format("truetype"),url("//code.ionicframework.com/ionicons/2.0.1/fonts/ionicons.woff?v=2.0.1") format("woff"),url("//code.ionicframework.com/ionicons/2.0.1/fonts/ionicons.svg?v=2.0.1#Ionicons") format("svg");font-weight:normal;font-style:normal}
-
+/* select bottun style ------------------------------------------------------------------------------------------ */
+/* @font-face{font-family:"IonIcons";src:url("//code.ionicframework.com/ionicons/2.0.1/fonts/ionicons.eot?v=2.0.1");src:url("//code.ionicframework.com/ionicons/2.0.1/fonts/ionicons.eot?v=2.0.1#iefix") format("embedded-opentype"),url("//code.ionicframework.com/ionicons/2.0.1/fonts/ionicons.ttf?v=2.0.1") format("truetype"),url("//code.ionicframework.com/ionicons/2.0.1/fonts/ionicons.woff?v=2.0.1") format("woff"),url("//code.ionicframework.com/ionicons/2.0.1/fonts/ionicons.svg?v=2.0.1#Ionicons") format("svg");font-weight:normal;font-style:normal} */
+.container_select{
+    /* display: flex; */
+    /* flex-direction: row; */
+    /* align-items: center; */
+    justify-content: center;
+    background-color: #484848;
+    margin-bottom: 20px;
+}
 .pt20{
   padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 20px;
 }
-.select-wrap {
+/* .select-wrap {
     position: relative;
 }
 .select-wrap:before {
     z-index: 1;
     position: absolute;
-    left: 290px;
+    left: 90px;
     top: 0;
     content: "\f123";
     font-family: "IonIcons";
     line-height: 43px;
     color: #6cc0e5;
     pointer-events: none;
-}
+} */
 select{
     outline:none;
     -moz-appearance: none;
     text-indent: 0.01px;
     text-overflow: '';
     background: none transparent;
-    vertical-align: middle;
     font-size: inherit;
-    color: inherit;
-    -webkit-appearance: button;
-    -moz-appearance: button;
-    appearance: button;
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
     height: 40px;
     padding: 8px 12px;
     border:1px solid #6cc0e5;
     color:#6cc0e5;
-    width:50%;
+    width:20%;
     border-radius:3px;
 }
 select option{
@@ -404,12 +387,13 @@ select:-moz-focusring {
   text-shadow: 0 0 0 #828c9a;
 }
 
-/* ---------------------------------------------------- */
-.container {
+/* slider style -------------------------------------------------------------------------------------- */
+.container{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    /* background-color: #f202fa; */
 }
 .box-minmax{
   margin-top: 30px;
@@ -418,12 +402,13 @@ select:-moz-focusring {
   justify-content: space-between;
   font-size: 20px;
   color: #FFFFFF;
-  span:first-child{
+}
+.box-minmax span{
     margin-left: 10px;
-  }
 }
 .range-slider {
-    margin-top: 30vh;
+    /* margin-top: 10vh; */
+    background-color: #f202fa;
     
 }
 .rs-range {
@@ -509,6 +494,8 @@ select:-moz-focusring {
         letter-spacing: 0.07em;
         margin-top: -2px;
     }
+/* slider style -------------------------------------------------------------------------------------- */
+
 </style>
 
 <script>
