@@ -14,7 +14,6 @@
     </div>
 
     <form method="POST">
-    <!-- <form action ="test" method="POST"> -->
       {% csrf_token %}
           <h2>新規で加入するサービス</h2>
           <div class="click-drawing-container">
@@ -194,6 +193,32 @@
             {% endfor %}
     </form>
 
+    <form action="main" method="POST">
+        {% csrf_token %}
+
+        <!-- 新規契約サービス -->
+        {% for i in val3 %}
+            {% for list in addlist%}
+                {% if i.service_id == list %}
+                    <input type="hidden" name="plan_add[]" value="{{i.service_id}}">
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+
+        <!-- 新規解約サービス -->
+        {% for i in val3 %}
+            {% for list in dellist%}
+                {% if i.service_id == list %}
+                    <input type="hidden" name="plan_del[]" value="{{i.service_id}}">
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+
+        <div>
+                <button class="cp_btn" name="plan_cd" id="plan_cd">このプランを反映する</button>
+        </div>
+    </form>
+
   </body>
 </html>
 
@@ -305,21 +330,22 @@
             padding: 0.5em;
             list-style-type: none!important;
         } */
-        .cp_btn {
-            display: block;
-            width: 100px;
-            padding: 0.8em;
-            text-align: center;
-            text-decoration: none;
-            color: #6cc0e5;
-            border: 2px solid #6cc0e5;
-            border-radius: 3px;
-            transition: .4s;
-        }
-        .cp_btn:hover {
-            background: #6cc0e5;
-            color: #fff;
-        }
+.cp_btn {
+    display: block;
+    width: 160px;
+    padding: 0.8em;
+    text-align: center;
+    text-decoration: none;
+    background: #363636;
+    color: #6cc0e5;
+    border: 2px solid #6cc0e5;
+    border-radius: 3px;
+    transition: .4s;
+}
+.cp_btn:hover {
+    background: #6cc0e5;
+    color: #363636;
+}
 
          /* Acordion Faq */
 .tab {

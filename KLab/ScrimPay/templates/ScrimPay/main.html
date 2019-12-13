@@ -32,8 +32,10 @@
     
 
     <div class="container">
+        <div class="box_range">
         <a href = "http://127.0.0.1:8000/scrimpay/" class="cp_btn">契約サービス追加</a>
-        <a href = "http://127.0.0.1:8000/scrimpay/deletedb" class="cp_btn">契約サービス削除</a>
+        <a href = "http://127.0.0.1:8000/scrimpay/deletedb" class="cp_btn btn_right">契約サービス削除</a>
+        </div>
         <h2>動画配信サービス</h2>
         {% for i in val3 %}
 
@@ -277,7 +279,7 @@
     <form action="/scrimpay/search" method="POST">
         {% csrf_token %}
         <body>
-            <div class="box_range under-element pt20">
+            <div class="box_onerange under-element pt20">
                 <!-- <input class="cp_btn" type="submit" name='reverse' value="検索へ" /> -->
                 <button class="cp_btn cp_btn_r" name="reverse">検索</button>
             </div>
@@ -344,7 +346,7 @@
     .under-element{
         clear: both;
     }
-    .box_range{
+    .box_onerange{
         /* background-color: #f202fa; */
         margin-left: auto;
         margin-right: auto;
@@ -363,21 +365,37 @@
         color: whitesmoke;
         /* border-radius: 0 10px 10px 0; */
     }
+    .box_range{
+        /* background-color: #f202fa; */
+        /* margin-top: 20px; */
+        margin-left: auto;
+        margin-right: auto;
+        padding: auto;
+        width: 28%;
+        height: 70px;
+    }
+    .btn_left{
+        /* margin-left: auto; */
+        /* margin-right: auto; */
+    }
+    .btn_right{
+        margin-left: 10px;
+        /* margin-right: auto; */
+    }
     .cp_btn {
         display: block;
-        /* font-size: 10px; */
+        float: left;
         width: 160px;
         padding: 0.8em;
+        margin-top: 20px;
         text-align: center;
         text-decoration: none;
         background: #363636;
-        /* color: #d9e56cbd; */
-        color: #6cc1e5bd;
-        /* border: 2px solid #d9e56cbd; */
-        border: 2px solid #6cc1e5bd;
+        color: #6cc0e5;
+        border: 2px solid #6cc0e5;
         border-radius: 3px;
         transition: .4s;
-    }
+        }
     .cp_btn:hover {
         /* background: #d9e56cbd; */
         background: #6cc1e5bd;

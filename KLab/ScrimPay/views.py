@@ -50,24 +50,6 @@ class ItemCreateView(TemplateView):
 
         return redirect('/scrimpay/main')
 
-# class ItemDeleteView(DeleteView):
-
-#     template_name = 'Scrimpay/deletedb.html'
-#     model = Main
-#     print("test1")
-
-#     def post(self, request, *args, **kwargs):
-#         print("tests")
-#         post_id = request.POST.getlist('deletes[]')
-#         print(str(post_id))
-
-#         print("test3")
-#         # del_data = Main(user_id = 'A001', service_id = post_id)
-#         # del_data.delete()
-#         Main.objects.filter(pub_data = post_id).delete()
-
-#         return redirect('/scimpay/main')
-
 def index(request):
     data1 = Main.objects.all()
     data2 = User.objects.all()
@@ -99,6 +81,19 @@ def main(request):
                 main_data = Main.objects.filter(user_id = 'A001', service_id = str(w))
                 main_data.delete()
 
+        elif 'plan_cd' in request.POST:
+            add_var = request.POST.getlist('plan_add[]')
+            print(str(add_var))
+            del_var = request.POST.getlist('plan_del[]')
+            print(str(del_var))
+
+            for n in add_var:
+                add_data = Main(user_id = 'A001', service_id = str(n))
+                add_data.save()
+
+            for k in del_var:
+                del_data = Main.objects.filter(user_id = 'A001', service_id = str(k))
+                del_data.delete()
             
 
     array = []
