@@ -51,5 +51,30 @@ class Service(models.Model):
     # グラフ表示用の色コード : Char型
     color = models.CharField(max_length=10, null=True, blank=True)
 
+    # プラン識別子 : Char型
+    plan_identifier = models.CharField(max_length=10, null=True, blank=True)
+
     def __str__(self):
         return self.service_id + ',' + self.service_name + ',' + str(self.fee_per_month)
+
+class Genre(models.Model):
+    # サービス ID : Char型で、主キー
+    service_id = models.CharField(max_length=30, primary_key=True)
+
+    # アニメの重み : Integer型
+    anime_weight = models.IntegerField()
+
+    # ドラマの重み : Integer型
+    drama_weight = models.IntegerField()
+
+    # 邦画の重み : Integer型
+    japanese_movie_weight = models.IntegerField()
+
+    # スポーツの重み : Integer型
+    sports_weight = models.IntegerField()
+
+    # バラエティーの重み : Integer型
+    variety_weight = models.IntegerField()
+
+    def __str__(self):
+        return self.service_id

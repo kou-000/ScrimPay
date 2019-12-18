@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import Main, User, Service
+from .models import Main, User, Service, Genre
 import json
 from django.views.generic.edit import CreateView
-from django.views.generic import TemplateView, DeleteView
+from django.views.generic import TemplateView
+import logging
 # import logging
 # Create your views here.
 
@@ -149,9 +150,9 @@ def SearchCriteria(request):
     return render(request,'ScrimPay/search.html')
 
 def rod(request):
-    data1 = Main.objects.all().filter(user_id='A001')
-    data2 = User.objects.all().filter(user_id='A001')
-    data3 = Service.objects.order_by('-fee_per_month')
+    plan1 = Main.objects.all().filter(user_id='A001')
+    plan2 = User.objects.all().filter(user_id='A001')
+    plan3 = Service.objects.order_by('-fee_per_month')
     # data3 = Service.objects.order_by('fee_per_month').first()
 
     if request.method =='POST':
@@ -160,7 +161,9 @@ def rod(request):
             return redirect('/scrimpay/main')
 
         elif 'move' in request.POST:
-            print('pressed 検索')
+            # print('pressed 検索')
+            # some_var = []
+            # some_var[0] = 
             some_var = request.POST.getlist('checks[]')
             tag1 = request.POST.getlist('tag1')
             tag2 = request.POST.getlist('tag2')
@@ -170,6 +173,7 @@ def rod(request):
             slider1 = request.POST.getlist('slider1')
             slider2 = request.POST.getlist('slider2')
             slider3 = request.POST.getlist('slider3')
+            display = request.POST.getlist('type')
 
             if int(budget1[0]) > int(budget2[0]):
                 tmp = budget1[0]
@@ -179,29 +183,393 @@ def rod(request):
             elif int(budget1[0]) == int(budget2[0]):
                 return redirect('/scrimpay/search')
 
+            # slider1 = int(slider1)
+            # slider2 = int(slider2)
+            # slider3 = int(slider3)
 
-    array = []
-    for i in data3:
-        for j in data1:
-            if i.service_id == j.service_id:
-                array.append(i.service_name)
+            # tmp = 'service_id'
+            # data_tag1 = Service.objects.values_list(tmp,flat = True)
+            
+
+            if str(tag1[0]) == "アニメ":
+                tag1[0] = "anime_weight"
+            elif str(tag1[0]) == "ドラマ":
+                tag1[0] = "drama_weight"
+            elif str(tag1[0]) == "邦画":
+                tag1[0] = "japanese_movie_weight"
+            elif str(tag1[0]) == "スポーツ":
+                tag1[0] = "sports_weight"
+            elif str(tag1[0]) == "バラエティー":
+                tag1[0] = "variety_weight"
+
+            if tag2[0] == "アニメ":
+                tag2[0] = "anime_weight"
+            elif tag2[0] == "ドラマ":
+                tag2[0] = "drama_weight"
+            elif tag2[0] == "邦画":
+                tag2[0] = "japanese_movie_weight"
+            elif tag2[0] == "スポーツ":
+                tag2[0] = "sports_weight"
+            elif tag2[0] == "バラエティー":
+                tag2[0] = "variety_weight" 
+
+            if tag3[0] == "アニメ":
+                tag3[0] = "anime_weight"
+            elif tag3[0] == "ドラマ":
+                tag3[0] = "drama_weight"
+            elif tag3[0] == "邦画":
+                tag3[0] = "japanese_movie_weight"
+            elif tag3[0] == "スポーツ":
+                tag3[0] = "sports_weight"
+            elif tag3[0] == "バラエティー":
+                tag3[0] = "variety_weight"               
+
+            # print(some_var[0])
+            if len(some_var) != 0:
+                if some_var[0] == "option1" :
+                # print("test")
+                    identifier = "学割"
+                else : 
+                    identifier = "一般"
+            else:
+                identifier = "一般"
+            
+            # print(identifier)
+
+            
+            ##ここから下は使います　あとでコメントアウトを解除しておいてください
+            data_tag1 = Genre.objects.values_list(tag1[0],flat = True)
+            data_tag2 = Genre.objects.values_list(tag2[0],flat = True)
+            data_tag3 = Genre.objects.values_list(tag3[0],flat = True)
+            data_id1 = Genre.objects.values_list('service_id',flat = True)
+            data_id2 = data_id1
+            data_id3 = data_id1
+            data_fee1 = Service.objects.values_list('fee_per_month',flat = True)
+            data_fee2 = data_fee1
+            data_fee3 = data_fee1
+            # data_all_service = Service.objects.all()
+            # data_identifier = Service.objects.all().filter(plan_identifier=identifier)
+
+            # print(data_all_service)
+            # print(data_identifier)
+            # sample = []
+            # print(len(data_identifier))
+            # if identifier == "学割":
+                # num = len(data_identifier)
+                # for w in range(2,len(data_all_service)):
+                    
+                    # sample.append(data_all_service[w])
+                # print(data_identifier[1])
+                # for s in range(len(data_identifier,len(data_all_service)-len(data_identifier))):
+                    # for t in range(len(data_identifier))
+            # print(sample)
+            # data = Service.objects.all()
+            # print(data[0])
+            
+            tag1_sort = []
+            tag2_sort = []
+            tag3_sort = []
+            id1_sort =[]
+            id2_sort =[]
+            id3_sort =[]
+            fee1_sort = []
+            fee2_sort = []
+            fee3_sort = []
+
+            ##ここから下は使います　あとでコメントアウトを解除しておいてください
+
+            num = len(data_tag1)
+            # print(num)
+            # print(len(data_fee1))
+
+            ##学割サブスク＋一般サブスクの格納
+            if identifier == "学割": 
+                for n in range(2,num):
+                    tag1_sort.append(data_tag1[n])
+                for n in range(2,num):
+                    tag2_sort.append(data_tag2[n])
+                for n in range(2,num):
+                    tag3_sort.append(data_tag3[n])
+
+                for n in range(2,num):
+                    id1_sort.append(data_id1[n])
+                for n in range(2,num):
+                    id2_sort.append(data_id2[n])
+                for n in range(2,num):
+                    id3_sort.append(data_id3[n])
+
+                for n in range(2,num):
+                    fee1_sort.append(data_fee1[n])
+                for n in range(2,num):
+                    fee2_sort.append(data_fee2[n])
+                for n in range(2,num):
+                    fee3_sort.append(data_fee3[n])
+            
+            ##一般サブスクの格納
+            else: 
+                for n in range(2):
+                    tag1_sort.append(data_tag1[n])
+                for n in range(2):
+                    tag2_sort.append(data_tag2[n])
+                for n in range(2):
+                    tag3_sort.append(data_tag3[n])
+
+                for n in range(2):
+                    id1_sort.append(data_id1[n])
+                for n in range(2):
+                    id2_sort.append(data_id2[n])
+                for n in range(2):
+                    id3_sort.append(data_id3[n])
+
+                for n in range(2):
+                    fee1_sort.append(data_fee1[n])
+                for n in range(2):
+                    fee2_sort.append(data_fee2[n])
+                for n in range(2):
+                    fee3_sort.append(data_fee3[n])
+
+                for n in range(4,num):
+                    tag1_sort.append(data_tag1[n])
+                for n in range(4,num):
+                    tag2_sort.append(data_tag2[n])
+                for n in range(4,num):
+                    tag3_sort.append(data_tag3[n])
+
+                for n in range(4,num):
+                    id1_sort.append(data_id1[n])
+                for n in range(4,num):
+                    id2_sort.append(data_id2[n])
+                for n in range(4,num):
+                    id3_sort.append(data_id3[n])
+
+                for n in range(4,num):
+                    fee1_sort.append(data_fee1[n])
+                for n in range(4,num):
+                    fee2_sort.append(data_fee2[n])
+                for n in range(4,num):
+                    fee3_sort.append(data_fee3[n]) 
+
+
+            # print(id1_sort[0])
+            # print(id1_sort[1])
+            # print(id1_sort[2])
+            
+            num = len(tag1_sort)
+            # print(num)
+
+            for n in range(num-1):
+                for j in range(n,num-1):
+                    if int(tag1_sort[n]) < int(tag1_sort[j+1]):
+                        tmp_tag1 = tag1_sort[j+1]
+                        tag1_sort[j+1] = tag1_sort[n]
+                        tag1_sort[n] = tmp_tag1
+
+                        tmp_id1 = id1_sort[n]
+                        id1_sort[n] = id1_sort[j+1]
+                        id1_sort[j+1] = tmp_id1
+
+                        tmp_fee1 = fee1_sort[n]
+                        fee1_sort[n] = fee1_sort[j+1]
+                        fee1_sort[j+1] = tmp_fee1
+
+            # print(tag1_sort)
+            # print(id1_sort)
+
+            for n in range(num-1):
+                for j in range(n,num-1):
+                    if int(tag2_sort[n]) < int(tag2_sort[j+1]):
+                        tmp_tag2 = tag2_sort[j+1]
+                        tag2_sort[j+1] = tag2_sort[n]
+                        tag2_sort[n] = tmp_tag2
+
+                        tmp_id2 = id2_sort[n]
+                        id2_sort[n] = id2_sort[j+1]
+                        id2_sort[j+1] = tmp_id2
+
+                        tmp_fee2 = fee2_sort[n]
+                        fee2_sort[n] = fee2_sort[j+1]
+                        fee2_sort[j+1] = tmp_fee2
+
+            for n in range(num-1):
+                for j in range(n,num-1):
+                    if int(tag3_sort[n]) < int(tag3_sort[j+1]):
+                        tmp_tag3 = tag3_sort[j+1]
+                        tag3_sort[j+1] = tag3_sort[n]
+                        tag3_sort[n] = tmp_tag3
+
+                        tmp_id3 = id3_sort[n]
+                        id3_sort[n] = id3_sort[j+1]
+                        id3_sort[j+1] = tmp_id3
+
+                        tmp_fee3 = fee3_sort[n]
+                        fee3_sort[n] = fee3_sort[j+1]
+                        fee3_sort[j+1] = tmp_fee3
+
+            # print(tag1_sort)
+            # print(tag2_sort)
+            # print(tag3_sort)
+
+            score = [[0 for i in range(5)] for j in range(num*num*num)]
+            
+            score_point = []
+            score_id1 = []
+            score_id2 = []
+            score_id3 = []
+            score_fee = []
+            
+            # print(score)
+            # print(num)
+            # print(len(score))
+
+
+            y = 0
+            for i in range(num):
+                for s in range(num):
+                    for t in range(num):
+                        # score[y][0] = int(tag1_sort[i]) * int(slider1[0]) + int(tag2_sort[s]) * int(slider2[0]) + int(tag3_sort[t]) * int(slider3[0])
+                        # score[y][1] = id1_sort[i]
+                        # score[y][2] = id1_sort[s]
+                        # score[y][3] = id1_sort[t]
+                        # score[y][4] = int(fee1_sort[i]) + int(fee2_sort[s]) + int(fee3_sort[t])
+                        # y = y + 1
+                        score_point.append(int(tag1_sort[i]) * int(slider1[0]) + int(tag2_sort[s]) * int(slider2[0]) + int(tag3_sort[t]) * int(slider3[0]))
+                        score_id1.append(id1_sort[i])
+                        score_id2.append(id2_sort[s])
+                        score_id3.append(id3_sort[t])
+                        if id1_sort[i] == id2_sort[s] and id1_sort[i] == id3_sort[t]:
+                            score_fee.append(int(fee1_sort[i]))
+                        elif id1_sort[i] == id2_sort[s] and id1_sort[i] != id3_sort[t]:
+                            score_fee.append(int(fee1_sort[i])+int(fee3_sort[t]))
+                        elif id1_sort[i] != id2_sort[s] and id1_sort[i] == id3_sort[t]:
+                            score_fee.append(int(fee1_sort[i])+int(fee2_sort[s]))
+                        elif id1_sort[i] != id2_sort[s] and id2_sort[s] == id3_sort[t]:
+                            score_fee.append(int(fee1_sort[i])+int(fee2_sort[s]))                       
+                        else:
+                            score_fee.append(int(fee1_sort[i]) + int(fee2_sort[s]) + int(fee3_sort[t]))
+
+
+            # print(tag1_sort[0])
+            # print(int(slider1[0]))
+            # print(tag1_sort[0])
+            # print(slider1[0])
+            # tmp = int(tag1_sort[0]) * int(slider1[0])
+            # print(tmp)
+
+            # print(score)
+            
+            # some_var = request.POST.getlist('checks[]')
+            # # print(some_var)
+            # print(some_var[0])
+
+            # len_score = len(score)
+
+            # for n in range(len_score-1):
+            #     for j in range(n,len_score-1):
+            #         if int(score[n][0]) < int(score[j+1][0]):
+            #             tmp_score = score[j+1][1]
+            #             score[j+1][1] = score[n][1]
+            #             score[n][1] = tmp_score
+            
+            # print(len(score_fee))
+            zip_score = zip(score_point,score_id1,score_id2,score_id3,score_fee)
+            sort_zip_reverse = sorted(zip_score,reverse=True)
+            # print(sort_zip_reverse)
+            # print('finish')
+            # print(display[0])
+            
+            score_point,score_id1,score_id2,score_id3,score_fee = zip(*sort_zip_reverse)
+            # print(len(score_fee))
+            count = 0
+            data1 = []
+            data2 = []
+            data3 = []
+            array = []
+            sample = []
+            # for i in range(int(display[0])):
+            for i in range(3):
+                for s in range(count,len(score_point)):
+                    if i == 0:
+                        if int(budget1[0]) <= score_fee[s] and score_fee[s] <= int(budget2[0]):
+                            data1.append(score_id1[s])
+                            if score_id1[s] != score_id2[s]:
+                                data1.append(score_id2[s])
+                            if score_id1[s] != score_id3[s] and score_id2[s] != score_id3[s]:
+                                data1.append(score_id3[s])
+                            array.append(score_fee[s])
+                            sample.append(score_point[s])
+                            count = count + 1
+                            break
+                    elif i == 1:
+                        if int(budget1[0]) <= score_fee[s] and score_fee[s] <= int(budget2[0]):
+                            data2.append(score_id1[s])
+                            if score_id1[s] != score_id2[s]:
+                                data2.append(score_id2[s])
+                            if score_id1[s] != score_id3[s] and score_id2[s] != score_id3[s]:
+                                data2.append(score_id3[s])
+                            array.append(score_fee[s])
+                            sample.append(score_point[s])
+                            count = count + 1
+                            break
+                    elif i == 2:
+                        if int(budget1[0]) <= score_fee[s] and score_fee[s] <= int(budget2[0]):
+                            data3.append(score_id1[s])
+                            if score_id1[s] != score_id2[s]:
+                                data3.append(score_id2[s])
+                            if score_id1[s] != score_id3[s] and score_id2[s] != score_id3[s]:
+                                data3.append(score_id3[s])
+                            array.append(score_fee[s])
+                            sample.append(score_point[s])
+                            count = count + 1
+                            break
+                    count = count + 1
+
+            
+            # print(data1)
+            # print(data2)
+            # print(data3)
+            # print(array)
+            # print(sample)
+
+            
+            # print(str(tag1))
+            # print(str(tag2))
+            # print(str(tag3))
+            # print(str(budget1))
+            # print(str(budget2))
+            # print(str(slider1))
+            # print(str(slider2))
+            # print(str(slider3))
+            # print(data_tag1)
+
+            # data1 = ["C001","C006","C016"]
+            # data2 = ["C002","C007","C011"]
+            # data3 = ["C005","C020","C021","C026"]
+            # array = [1000,2000,3000]
+
+
+
+    # array = []
+    # for i in data3:
+    #     for j in data1:
+    #         if i.service_id == j.service_id:
+    #             array.append(i.service_name)
 
     fee_sum = 0
-    for i in data3:
-        for j in data1:
+    for i in plan3:
+        for j in plan1:
             if i.service_id == j.service_id:
                 fee_sum = fee_sum + i.fee_per_month
 
     rate_array = []
-    for i in data3:
-        for j in data1:
+    for i in plan3:
+        for j in plan1:
             if i.service_id == j.service_id:
                 rate = round(i.fee_per_month/fee_sum, 2)
                 rate_array.append(rate)
 
     color_array = []
-    for i in data3:
-        for j in data1:
+    for i in plan3:
+        for j in plan1:
             if i.service_id == j.service_id:
                 color_array.append(i.color)
 
@@ -210,40 +578,42 @@ def rod(request):
     # 出力は、plan1,plan2,plan3の複数
     # plan1 = i.service_name のような形で複数入ってる
 
-    plan1 = ["C001","C006","C016"]
-    plan2 = ["C002","C007","C011"]
-    plan3 = ["C005","C020","C021","C026"]
+    # plan1_sum = 0
+    # for i in data3:
+    #     for j in plan1:
+    #         if i.service_id == j:
+    #             plan1_sum = plan1_sum + i.fee_per_month
 
-    plan1_sum = 0
-    for i in data3:
-        for j in plan1:
-            if i.service_id == j:
-                plan1_sum = plan1_sum + i.fee_per_month
+    # plan2_sum = 0
+    # for i in data3:
+    #     for j in plan2:
+    #         if i.service_id == j:
+    #             plan2_sum = plan2_sum + i.fee_per_month
 
-    plan2_sum = 0
-    for i in data3:
-        for j in plan2:
-            if i.service_id == j:
-                plan2_sum = plan2_sum + i.fee_per_month
+    # plan3_sum = 0
+    # for i in data3:
+    #     for j in plan3:
+    #         if i.service_id == j:
+    #             plan3_sum = plan3_sum + i.fee_per_month
 
-    plan3_sum = 0
-    for i in data3:
-        for j in plan3:
-            if i.service_id == j:
-                plan3_sum = plan3_sum + i.fee_per_month
+    plan_sum = []
+    plan_sum.append(fee_sum)
+    for i in range(len(array)):
+        plan_sum.append(array[i])
 
-    plan_sum = [fee_sum, plan1_sum, plan2_sum, plan3_sum]
+    
+    # plan_sum = [fee_sum, plan1_sum, plan2_sum, plan3_sum]
 
     my_dict4 = {
-        'val':data1,
-        'val2':data2,
-        'val3':data3,
+        'val':plan1,
+        'val2':plan2,
+        'val3':plan3,
         'array':array,
         'rate_array':rate_array,
         'color_array':color_array,
-        'plan1':plan1,
-        'plan2':plan2,
-        'plan3':plan3,
+        'plan1':data1,
+        'plan2':data2,
+        'plan3':data3,
         'plan_sum':plan_sum
     }             
 
