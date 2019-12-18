@@ -25,12 +25,38 @@
         <div class="menu">help</div>
     </header>
 
-    <div class="Logo">Welcome <br>to <br> ScrimPay</div>
+
+    <div class="Logo">Sign up</div>
     <!-- <div class="Logo">ScrimPay</div> -->
 
-    <div class="under-element">
-        <a class="btn6" href="http://127.0.0.1:8000/scrimpay/signup">- start -</a>
+    <div class="content">
+    <form action="main" method="POST">
+        {% csrf_token %}
+
+            <span>account name</span>   <input type="text" class="pt10" name="Name" required><br>
+            <!-- <input type="text" class="pt10"><br> -->
+            <span>password</span>   <input type="password" class="pt10" minlength="5" required><br>
+
+            <a href="http://127.0.0.1:8000/scrimpay/top" class="btn6" style="text-decoration: none">利用規約</a><br>
+
+            <span>性別</span>
+                <label><input type="radio" name="gender" required >man</label>             
+                <label><input type="radio" name="gender" required>woman</label><br>
+            <span>生年月日</span>
+                <input type="date" required>
+
+                <div class="under-element">
+                        <button class="btn6 back" name="sign_up">- start -</button>
+                </div>
+      
+    </form>
     </div>
+
+    <div class="under-element">
+        <span>アカウントをお持ちの方は<a class="btn6" href="http://127.0.0.1:8000/scrimpay/signin">こちら</a></span>
+    </div>
+
+  </body>
 
 </html>
 
@@ -41,9 +67,9 @@ body {
     flex-direction: column;
     background-size:contain;
     /* background-color: #363636; */
-    /* background-color: #062c01; */
-    /* background-color: #91989f; */
     background-color: #a79a83;
+    /* background-color: #91989f; */
+    /* background-color: #d3a31f; */
     /* background: linear-gradient(-45deg, #f6ff00cc, #ff00a1cc) fixed, url(https://gatta-media.com/wp-content/uploads/2018/06/shutterstock_562747135-3-20180628162518-e1530170737280.jpg) fixed; */
 }
 .mainNavigation{
@@ -51,8 +77,7 @@ body {
     width: 100%;
     text-align: center;
     /* background-color: #888; */
-    /* background-color: #0f2540; */
-    background-color: #f8f6f69d;
+    background-color: #0f2540;
     padding: 8px 5px;
     color: #fff;
 }
@@ -65,22 +90,26 @@ body {
     color: whitesmoke;
 }
 .content{
-    flex: 1;
-    background-color: #eee;
-    text-align: center;
-    margin-top: 10px;
+    /* flex: 1; */
+    background-color: #484848;
+    color: whitesmoke;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    padding: 20px;
+    margin-bottom: 20px;
 }
 .Logo{
     text-align: center;
     color: whitesmoke;
     /* background: linear-gradient(-50deg, #6cc1e5bd, #0f3443ad) fixed, url(https://gatta-media.com/wp-content/uploads/2018/06/shutterstock_562747135-3-20180628162518-e1530170737280.jpg) fixed; */
-    background: linear-gradient(-50deg, #1da102f3, #0e25029f) fixed, url(https://gatta-media.com/wp-content/uploads/2018/06/shutterstock_562747135-3-20180628162518-e1530170737280.jpg) fixed;
+    /* background: linear-gradient(-50deg, #d9e56cbd, #433b0fad) fixed, url(https://gatta-media.com/wp-content/uploads/2018/06/shutterstock_562747135-3-20180628162518-e1530170737280.jpg) fixed; */
     /* background: linear-gradient(-50deg, #d9e56cbd, #433b0fad) fixed, url(https://komono.me/wp-content/uploads/2018/12/YmjMZh4HYqfeJC21543677784_1543677836.jpg) fixed; */
     font-family: 'Kaushan Script', cursive;
     padding: 60px 10px;
     font-size: 90px;
     margin: 5px;
-    height: 340px;
+    height: 10px;
     line-height: 100px;
 }
 div {
@@ -138,8 +167,14 @@ div {
         color: whitesmoke;
         /* border-radius: 0 10px 10px 0; */
     }
+.back{
+    background-color: #363636;
 
-.btn6{
+}
+.pt10{
+    margin: 5pt;
+}
+    .btn6{
   border:1px solid transparent; 
    -webkit-transition: all 0.4s cubic-bezier(.5, .24, 0, 1);
   transition: all 0.4s cubic-bezier(.5, .24, 0, 1);
@@ -154,8 +189,9 @@ div {
   width: 0%;
   height:1px;
   /* background: #6098FF; */
-  background: #0e4e02bd;
+  /* background: #d9e56cbd; */
   /* background: #6cc1e5bd; */
+  background: #0e4e02bd;
   box-shadow: inset 0px 0px 0px #6098FF;
   display: block;
   -webkit-transition: all 0.4s cubic-bezier(.5, .24, 0, 1);
@@ -175,8 +211,9 @@ div {
   width: 0%;
   height:1px;
   /* background: #6098FF; */
-  background: #0e4e02bd;
+  /* background: #d9e56cbd; */
   /* background: #6cc1e5bd; */
+  background: #0e4e02bd;
   -webkit-transition: all 0.4s cubic-bezier(.5, .24, 0, 1);
   transition: all 0.4s cubic-bezier(.5, .24, 0, 1)
 }
@@ -187,21 +224,22 @@ div {
   /* border-left:1px solid #6098FF;
   border-right:1px solid #6098FF; */
   /* color: #d9e56cbd; */
-  /* color: #6cc1e5bd;
-
-  border-left:1px solid #6cc1e5bd;
-  border-right:1px solid #6cc1e5bd; */
-
+  /* color: #6cc1e5bd; */
   color: #0e4e02bd;
-
   border-left:1px solid #0e4e02bd;
   border-right:1px solid #0e4e02bd;
+  background-color: #fff;
+
+  /* border-left:1px solid #6cc1e5bd;
+  border-right:1px solid #6cc1e5bd; */
+  border-top: 1px solid #0e4e02bd;
+  border-bottom: 1px solid #0e4e02bd;
 }
 
 .btn6 {
   padding: 15px 100px;
-  margin:40px 4px;
-  color: #0e4e02bd;
+  margin:20px 4px;
+  color: #fff;
   font-family: sans-serif;
   text-transform: uppercase;
   text-align: center;

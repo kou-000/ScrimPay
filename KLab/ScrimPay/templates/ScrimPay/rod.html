@@ -159,7 +159,8 @@
         .header{
             /* background-color: yellowgreen; */
             color: aliceblue;
-            background: linear-gradient(-50deg, #6cc1e5bd, #0f3443ad);
+            /* background: linear-gradient(-50deg, #6cc1e5bd, #0f3443ad); */
+            background: linear-gradient(-50deg, #1da102f3, #0e25029f);
             /* background: linear-gradient(-50deg, #34e89e, #0f3443) fixed;
             background-size: cover; */
             height: 85px;
@@ -172,12 +173,14 @@
             text-decoration: none;
         }
         .graph{
-            background-color: gray;
-            text-emphasis-color: #fff;
+            /* background-color: gray; */
+            background-color: #f8f6f69d;
+            text-emphasis-color: gray;
         }
         body {
             /* background: linear-gradient(-40deg,#fada84,#6cb9cc) fixed; */
-            background: #363636;
+            /* background: #363636; */
+            background: #a79a83;
             background-size: cover;
         }
 
@@ -219,9 +222,12 @@
             margin: 0px 0px 5px;
             padding: 0.3em 1em;
             text-decoration: none;
-            background-color: #484848;
-            color: whitesmoke;
-            border: solid 2px dimgray;
+            /* background-color: #484848; */
+            background-color: #f8f6f69d;
+            /* color: whitesmoke; */
+            color: #0e4e02bd;
+            /* border: solid 2px dimgray; */
+            border: solid 2px #0e4e02bd;
             border-radius: 3px;
             transition: .4s;
         }
@@ -250,7 +256,8 @@
         h2 {
             position: relative;
             /* background: linear-gradient(-30deg, #636fa4, #000c40) fixed; */
-            background: dimgray;
+            /* background: dimgray; */
+            background: #0e4e02bd;
             padding: 2px 5px 2px 20px;
             margin-bottom: 0px;
             font-size: 20px;
@@ -295,15 +302,20 @@
             margin-top: 20px;
             text-align: center;
             text-decoration: none;
-            background: #363636;
-            color: #6cc0e5;
-            border: 2px solid #6cc0e5;
+            /* background: #363636; */
+            background: #f8f6f69d;
+            /* color: #6cc0e5; */
+            color: #0e4e02bd;
+            /* border: 2px solid #6cc0e5; */
+            border: 2px solid #0e4e02bd;
             border-radius: 3px;
             transition: .4s;
         }
         .cp_btn:hover {
-            background: #6cc0e5;
-            color: #fff;
+            /* background: #6cc0e5; */
+            background: #0e4e02bd;
+            /* color: #fff; */
+            color: #f8f6f69d;
         }
 
         /* Acordion Faq */
@@ -327,7 +339,8 @@ label {
   font-weight: bold;
   line-height: 3;
   cursor: pointer;
-  background-color: #6cc0e5;
+  /* background-color: #6cc0e5; */
+  background-color: #2cd615ad;
 }
 
 .tab-content {
@@ -439,7 +452,7 @@ Vue.component('bar-chart', {
                 {
                     // label: '合計金額',
                     // backgroundColor: ['#FFFF44', '#FF4444', '#44BB44', '#4444FF'],
-                    backgroundColor: ['#037712','#6cc0e5','#6cc0e5','#6cc0e5'],
+                    backgroundColor: ['#037712','#2cd615ad','#2cd615ad','#2cd615ad'],
                     data:plan_sum,
                 }
             ],
@@ -454,10 +467,10 @@ Vue.component('bar-chart', {
                     {
                         display: true,
                         gridLines:{
-                            color: "white"
+                            color: "dimgray"
                         },
                         ticks:{
-                            fontColor: "white"
+                            fontColor: "dimgray"
                         },
                     }
                 ],
@@ -465,14 +478,14 @@ Vue.component('bar-chart', {
                     {
                         display:true,
                         scaleLabel:{
-                            fontColor: "white",
+                            fontColor: "dimgray",
                         },
                         gridLines:{
-                            color: "white",
+                            color: "dimgray",
                         },
                         ticks:{
                             min:0,
-                            fontColor: "white"
+                            fontColor: "dimgray"
                         },
                     }
                 ]

@@ -66,7 +66,6 @@ def index(request):
 
     return render(request,'scrimpay/index.html',my_dict)
 
-
 def main(request):
     data1 = Main.objects.all().filter(user_id='A001')
     data2 = User.objects.all().filter(user_id='A001')
@@ -251,7 +250,6 @@ def rod(request):
 
     return render(request, 'scrimpay/rod.html',my_dict4) 
 
-
 def support(request):
     data1 = Main.objects.all().filter(user_id='A001')
     data2 = User.objects.all().filter(user_id='A001')
@@ -358,6 +356,38 @@ def deletedb(request):
     }    
 
     return render(request,'scrimpay/deletedb.html',my_dict6)
+
+def signup(request):
+    data1 = Main.objects.all()
+    data2 = User.objects.all()
+    data3 = Service.objects.all()
+
+    value = 0
+
+    my_dict7 = {
+        'val':data1,
+        'val2':data2,
+        'val3':data3,
+        'v':value,
+    }    
+
+    return render(request,'scrimpay/signup.html',my_dict7)
+
+def signin(request):
+    data1 = Main.objects.all()
+    data2 = User.objects.all()
+    data3 = Service.objects.all()
+
+    value = 0
+   
+    my_dict8 = {
+        'val':data1,
+        'val2':data2,
+        'val3':data3,
+        'v':value,
+    }    
+
+    return render(request,'scrimpay/signin.html',my_dict8)
 
 def top(request):
     return render(request,'scrimpay/top.html')

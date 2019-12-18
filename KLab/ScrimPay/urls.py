@@ -13,4 +13,6 @@ urlpatterns = [
     path('support', views.support, name='support'),
     path('top', views.top, name='top'),
     path('deletedb', views.deletedb, name='deletedb'),
+    path('signup', views.signup, name='signup'),
+    path('signin', views.signin, name='signin'),
 ]
