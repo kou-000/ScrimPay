@@ -160,7 +160,7 @@ def rod(request):
             print('pressed 戻る')
             return redirect('/scrimpay/main')
 
-        elif 'move' in request.POST:
+        elif 'button' in request.POST:
             # print('pressed 検索')
             # some_var = []
             # some_var[0] = 
@@ -170,9 +170,9 @@ def rod(request):
             tag3 = request.POST.getlist('tag3')
             budget1 = request.POST.getlist('budget1')
             budget2 = request.POST.getlist('budget2')
-            slider1 = request.POST.getlist('slider1')
-            slider2 = request.POST.getlist('slider2')
-            slider3 = request.POST.getlist('slider3')
+            # slider1 = request.POST.getlist('slider1')
+            # slider2 = request.POST.getlist('slider2')
+            # slider3 = request.POST.getlist('slider3')
             display = request.POST.getlist('type')
 
             if int(budget1[0]) > int(budget2[0]):
@@ -284,49 +284,49 @@ def rod(request):
 
             ##学割サブスク＋一般サブスクの格納
             if identifier == "学割": 
-                for n in range(2,num):
+                tag1_sort.append(data_tag1[2])
+                tag2_sort.append(data_tag2[2])
+                tag3_sort.append(data_tag3[2])
+                id1_sort.append(data_id1[2])
+                id2_sort.append(data_id2[2])
+                id3_sort.append(data_id3[2])
+                fee1_sort.append(data_fee1[2])
+                fee2_sort.append(data_fee2[2])
+                fee3_sort.append(data_fee3[2])
+
+                for n in range(4,num):
                     tag1_sort.append(data_tag1[n])
-                for n in range(2,num):
+                for n in range(4,num):
                     tag2_sort.append(data_tag2[n])
-                for n in range(2,num):
+                for n in range(4,num):
                     tag3_sort.append(data_tag3[n])
 
-                for n in range(2,num):
+                for n in range(4,num):
                     id1_sort.append(data_id1[n])
-                for n in range(2,num):
+                for n in range(4,num):
                     id2_sort.append(data_id2[n])
-                for n in range(2,num):
+                for n in range(4,num):
                     id3_sort.append(data_id3[n])
 
-                for n in range(2,num):
+                for n in range(4,num):
                     fee1_sort.append(data_fee1[n])
-                for n in range(2,num):
+                for n in range(4,num):
                     fee2_sort.append(data_fee2[n])
-                for n in range(2,num):
+                for n in range(4,num):
                     fee3_sort.append(data_fee3[n])
             
             ##一般サブスクの格納
             else: 
-                for n in range(2):
-                    tag1_sort.append(data_tag1[n])
-                for n in range(2):
-                    tag2_sort.append(data_tag2[n])
-                for n in range(2):
-                    tag3_sort.append(data_tag3[n])
+                tag1_sort.append(data_tag1[0])
+                tag2_sort.append(data_tag2[0])
+                tag3_sort.append(data_tag3[0])
+                id1_sort.append(data_id1[0])
+                id2_sort.append(data_id2[0])
+                id3_sort.append(data_id3[0])
+                fee1_sort.append(data_fee1[0])
+                fee2_sort.append(data_fee2[0])
+                fee3_sort.append(data_fee3[0])
 
-                for n in range(2):
-                    id1_sort.append(data_id1[n])
-                for n in range(2):
-                    id2_sort.append(data_id2[n])
-                for n in range(2):
-                    id3_sort.append(data_id3[n])
-
-                for n in range(2):
-                    fee1_sort.append(data_fee1[n])
-                for n in range(2):
-                    fee2_sort.append(data_fee2[n])
-                for n in range(2):
-                    fee3_sort.append(data_fee3[n])
 
                 for n in range(4,num):
                     tag1_sort.append(data_tag1[n])
@@ -350,9 +350,17 @@ def rod(request):
                     fee3_sort.append(data_fee3[n]) 
 
 
-            # print(id1_sort[0])
-            # print(id1_sort[1])
-            # print(id1_sort[2])
+            # print(id1_sort)
+            # print(id2_sort)
+            # print(id3_sort)
+            # print(tag1_sort)
+            # print(tag2_sort)
+            # print(tag3_sort)
+            # print(fee1_sort)
+            # print(fee2_sort)
+            # print(fee3_sort)
+            print(len(tag1_sort))
+
             
             num = len(tag1_sort)
             # print(num)
@@ -432,7 +440,7 @@ def rod(request):
                         # score[y][3] = id1_sort[t]
                         # score[y][4] = int(fee1_sort[i]) + int(fee2_sort[s]) + int(fee3_sort[t])
                         # y = y + 1
-                        score_point.append(int(tag1_sort[i]) * int(slider1[0]) + int(tag2_sort[s]) * int(slider2[0]) + int(tag3_sort[t]) * int(slider3[0]))
+                        score_point.append(int(tag1_sort[i]) * 10 + int(tag2_sort[s]) * 7 + int(tag3_sort[t]) * 3)
                         score_id1.append(id1_sort[i])
                         score_id2.append(id2_sort[s])
                         score_id3.append(id3_sort[t])
@@ -485,9 +493,11 @@ def rod(request):
             data3 = []
             array = []
             sample = []
+            tmp_data = []
             # for i in range(int(display[0])):
             for i in range(3):
                 for s in range(count,len(score_point)):
+                    tmp_data.clear()
                     if i == 0:
                         if int(budget1[0]) <= score_fee[s] and score_fee[s] <= int(budget2[0]):
                             data1.append(score_id1[s])
@@ -500,28 +510,46 @@ def rod(request):
                             count = count + 1
                             break
                     elif i == 1:
-                        if int(budget1[0]) <= score_fee[s] and score_fee[s] <= int(budget2[0]):
-                            data2.append(score_id1[s])
-                            if score_id1[s] != score_id2[s]:
-                                data2.append(score_id2[s])
-                            if score_id1[s] != score_id3[s] and score_id2[s] != score_id3[s]:
-                                data2.append(score_id3[s])
-                            array.append(score_fee[s])
-                            sample.append(score_point[s])
-                            count = count + 1
-                            break
+                        tmp_data.append(score_id1[s])
+                        if score_id1[s] != score_id2[s]:
+                            tmp_data.append(score_id2[s])
+                        if score_id1[s] != score_id3[s] and score_id2[s] != score_id3[s]:
+                            tmp_data.append(score_id3[s])
+                        if sorted(tmp_data) != sorted(data1):
+                            tmp_data.clear()
+                            if int(budget1[0]) <= score_fee[s] and score_fee[s] <= int(budget2[0]):
+                                data2.append(score_id1[s])
+                                if score_id1[s] != score_id2[s]:
+                                    data2.append(score_id2[s])
+                                if score_id1[s] != score_id3[s] and score_id2[s] != score_id3[s]:
+                                    data2.append(score_id3[s])
+                                array.append(score_fee[s])
+                                sample.append(score_point[s])
+                                count = count + 1
+                                break
+                        
                     elif i == 2:
-                        if int(budget1[0]) <= score_fee[s] and score_fee[s] <= int(budget2[0]):
-                            data3.append(score_id1[s])
-                            if score_id1[s] != score_id2[s]:
-                                data3.append(score_id2[s])
-                            if score_id1[s] != score_id3[s] and score_id2[s] != score_id3[s]:
-                                data3.append(score_id3[s])
-                            array.append(score_fee[s])
-                            sample.append(score_point[s])
-                            count = count + 1
-                            break
+                        tmp_data.append(score_id1[s])
+                        if score_id1[s] != score_id2[s]:
+                            tmp_data.append(score_id2[s])
+                        if score_id1[s] != score_id3[s] and score_id2[s] != score_id3[s]:
+                            tmp_data.append(score_id3[s])
+                        if sorted(tmp_data) != sorted(data1) and sorted(tmp_data) != sorted(data2):
+                            tmp_data.clear()
+                            if int(budget1[0]) <= score_fee[s] and score_fee[s] <= int(budget2[0]):
+                                data3.append(score_id1[s])
+                                if score_id1[s] != score_id2[s]:
+                                    data3.append(score_id2[s])
+                                if score_id1[s] != score_id3[s] and score_id2[s] != score_id3[s]:
+                                    data3.append(score_id3[s])
+                                array.append(score_fee[s])
+                                sample.append(score_point[s])
+                                count = count + 1
+                                break
                     count = count + 1
+
+
+
 
             
             # print(data1)
@@ -598,6 +626,8 @@ def rod(request):
 
     plan_sum = []
     plan_sum.append(fee_sum)
+    # array = []
+    print(array)
     for i in range(len(array)):
         plan_sum.append(array[i])
 
@@ -624,16 +654,29 @@ def support(request):
     data1 = Main.objects.all().filter(user_id='A001')
     data2 = User.objects.all().filter(user_id='A001')
     data3 = Service.objects.order_by('-fee_per_month')
+    service_id_for_replace = Service.objects.values_list('service_id',flat=True)
 
     if request.method =='POST':
         if 'change1' in request.POST:
             plan = request.POST.getlist('pl1[]')
+            # print("plan:",plan)
 
         elif 'change2' in request.POST:
             plan = request.POST.getlist('pl2[]')
+            
 
         elif 'change3' in request.POST:
             plan = request.POST.getlist('pl3[]')
+            # print("plan:",plan)
+
+    for n in range(len(plan)):
+        for i in service_id_for_replace:
+            tmp = "&#x27;"+i+"&#x27;"
+            # print(tmp)
+            if plan[n] == tmp:
+                plan[n] = i
+
+    print(plan)
 
     array = []
     for i in data3:
@@ -662,25 +705,53 @@ def support(request):
 
     # calculate
     # 現在利用しているサービスのID取得
+    flag = 0
+
     sevid = []
     for i in data3:
         for j in data1:
             if i.service_id == j.service_id:
                 sevid.append(i.service_id)
+                flag = 1
 
     # 新しく加入するサービスを格納
     addlist = []
     flag = 0
-    for i in plan:
-        for j in sevid:
-            if i == j:
+    # print(len(sevid))
+    # print("plan:",plan)
+    print("array:",array)
+    # print("plan:",plan)
+    
+    if len(sevid) != 0:
+        for i in plan:
+            for j in sevid:
+                if i == j:
+                    flag = 0
+                    break
+                else:
+                    flag = 1
+            if flag == 1:
+                addlist.append(i)
                 flag = 0
-                break
-            else:
-                flag = 1           
-        if flag == 1:
+    else:
+        for i in plan:
             addlist.append(i)
-            flag = 0
+
+    # if flag == 0:
+    #     for i in plan:
+    #         addlist.append(i)
+    # else:
+    #     flag = 0
+    #     for i in plan:
+    #         for j in sevid:
+    #             if i == j:
+    #                 flag = 0
+    #                 break
+    #             else:
+    #                 flag = 1           
+    #         if flag == 1:
+    #             addlist.append(i)
+    #             flag = 0
 
     # 解約するサービスを格納
     dellist = []

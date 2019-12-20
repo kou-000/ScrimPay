@@ -4,210 +4,55 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Top page</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <!-- <link rel="stylesheet" href="{% static '../../../foundation/css/foundation.css' %}"> -->
+    <title>ScrimPay Top page</title>
+    <link rel="stylesheet" href="{% static 'css/top.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Calistoga|Noto+Sans+JP&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
   </head>
-  
-  <!-- <script type="text/javascript" src="{% static 'javascript/app.js' %}"></script> -->
-  <script src="https://unpkg.com/vue@2.5.17"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
-  <script src="https://unpkg.com/vue-chartjs/dist/vue-chartjs.min.js"></script>
 
-  <body>
-    <!-- <div class="header">
-        <div class="header-logo">ScrimPay</div>
-    </div> -->
 
-    <header class="mainNavigation">
-        <div class="menu"<font size="10">ScrimPay</font></div>
-        <div class="menu">about</div>
-        <div class="menu">help</div>
+  <body class="center">
+
+    <header class="strheader">
+      <div class="headerinner">
+          <div class="header01">
+              <div class="header_name">Scrim<span class="header_subname">Pay</span></div>
+          </div>
+          <div>
+              <nav class="navi01">
+                  <ul class="foo">
+                      <li class="inline-item"><a class="menu" href="{% url 'scrimpay:main' %}">HOME</a></li>
+                      <li class="inline-item"><a class="menu" href="{% url 'scrimpay:search' %}">SEARCH</a></li>
+                      <li class="inline-item"><a class="menu" href="">HELP</a></li>
+                  </ul>
+              </nav>
+          </div>
+      </div>
     </header>
 
-    <div class="Logo">Welcome <br>to <br> ScrimPay</div>
-    <!-- <div class="Logo">ScrimPay</div> -->
+    <div class="main">
 
-    <div class="under-element">
-        <a class="btn6" href="http://127.0.0.1:8000/scrimpay/signup">- start -</a>
+      <div class="load">
+        <div class="pict">
+          <img src="{% static "images/logo.png" %}" alt="表示できません">
+        </div>
+      </div>
+
+      <div class="under-element">
+        <a class="btn6" href="{% url 'scrimpay:index' %}">start</a>
+      </div>
+
     </div>
+  
+    <footer class="footer01">
+      <div class="footer02">
+        <div class="footer03">
+
+        </div>
+      </div>
+    </footer>
+
+  </body>
 
 </html>
 
-<style>
-body {
-    /* height: 100vh; */
-    display: flex;
-    flex-direction: column;
-    background-size:contain;
-    /* background-color: #363636; */
-    /* background-color: #062c01; */
-    /* background-color: #91989f; */
-    background-color: #a79a83;
-    /* background: linear-gradient(-45deg, #f6ff00cc, #ff00a1cc) fixed, url(https://gatta-media.com/wp-content/uploads/2018/06/shutterstock_562747135-3-20180628162518-e1530170737280.jpg) fixed; */
-}
-.mainNavigation{
-    height: 40px;
-    width: 100%;
-    text-align: center;
-    /* background-color: #888; */
-    /* background-color: #0f2540; */
-    background-color: #f8f6f69d;
-    padding: 8px 5px;
-    color: #fff;
-}
-.menu{
-    display: inline-block;
-    text-align: right;
-    /* float: left; */
-    margin: 5px;
-    padding-top: -5px;
-    color: whitesmoke;
-}
-.content{
-    flex: 1;
-    background-color: #eee;
-    text-align: center;
-    margin-top: 10px;
-}
-.Logo{
-    text-align: center;
-    color: whitesmoke;
-    /* background: linear-gradient(-50deg, #6cc1e5bd, #0f3443ad) fixed, url(https://gatta-media.com/wp-content/uploads/2018/06/shutterstock_562747135-3-20180628162518-e1530170737280.jpg) fixed; */
-    background: linear-gradient(-50deg, #1da102f3, #0e25029f) fixed, url(https://gatta-media.com/wp-content/uploads/2018/06/shutterstock_562747135-3-20180628162518-e1530170737280.jpg) fixed;
-    /* background: linear-gradient(-50deg, #d9e56cbd, #433b0fad) fixed, url(https://komono.me/wp-content/uploads/2018/12/YmjMZh4HYqfeJC21543677784_1543677836.jpg) fixed; */
-    font-family: 'Kaushan Script', cursive;
-    padding: 60px 10px;
-    font-size: 90px;
-    margin: 5px;
-    height: 340px;
-    line-height: 100px;
-}
-div {
-  margin: 120px 0;
-  text-align: center;
-}
-    .header{
-        /* background-color: yellowgreen; */
-        color:#6cc0e5;
-        /* background: linear-gradient(-50deg, #34e89e, #0f3443) fixed;
-        background-size: cover; */
-        height: 10px;
-    }
-    .header-logo{
-        float: left;
-        font-size: 60px;
-        font-family: 'Kaushan Script', cursive;
-        padding: 0px 10px;
-    }
-    .graph{
-        background-color: #484848;
-        text-emphasis-color: #fff;
-        margin-bottom: 10px;
-    }
-    p {
-        font-family: Meiryo, "Hiragino Kaku Gothic Pro W3", Courier New, sans-serif;
-        line-height: 1.5;
-        margin-bottom: 25px;
-        color: #fff;
-    }
-    .box{
-        display: inline-block;
-        /* vertical-align: middle; */
-        float: left;
-        width: 200px;
-        height: 150px;
-        margin: 10px;
-        padding: 2px 5px 2px 20px;
-        font-size: 14px;
-        background-color: #484848;
-        color: whitesmoke;
-    }
-    .under-element{
-        clear: both;
-        /* background: #fa7101; */
-        margin: 0;
-    }
-    h2 {
-        position: relative;
-        /* background: linear-gradient(-30deg, #636fa4, #000c40) fixed; */
-        background: dimgray;
-        padding: 2px 5px 2px 20px;
-        margin-bottom: 0px;
-        font-size: 20px;
-        color: whitesmoke;
-        /* border-radius: 0 10px 10px 0; */
-    }
-
-.btn6{
-  border:1px solid transparent; 
-   -webkit-transition: all 0.4s cubic-bezier(.5, .24, 0, 1);
-  transition: all 0.4s cubic-bezier(.5, .24, 0, 1);
-}
-
-.btn6::before {
-  content: '';
-  position: absolute;
-  left: 0px;
-  bottom:0px;
-  z-index:-1;
-  width: 0%;
-  height:1px;
-  /* background: #6098FF; */
-  background: #0e4e02bd;
-  /* background: #6cc1e5bd; */
-  box-shadow: inset 0px 0px 0px #6098FF;
-  display: block;
-  -webkit-transition: all 0.4s cubic-bezier(.5, .24, 0, 1);
-  transition: all 0.4s cubic-bezier(.5, .24, 0, 1)
-}
-
-.btn6:hover::before {
-  width:100%;
-}
-
-.btn6::after {
-  content: '';
-  position: absolute;
-  right: 0px;
-  top:0px;
-  z-index:-1;
-  width: 0%;
-  height:1px;
-  /* background: #6098FF; */
-  background: #0e4e02bd;
-  /* background: #6cc1e5bd; */
-  -webkit-transition: all 0.4s cubic-bezier(.5, .24, 0, 1);
-  transition: all 0.4s cubic-bezier(.5, .24, 0, 1)
-}
-.btn6:hover::after {
-  width:100%;
-}
-.btn6:hover{
-  /* border-left:1px solid #6098FF;
-  border-right:1px solid #6098FF; */
-  /* color: #d9e56cbd; */
-  /* color: #6cc1e5bd;
-
-  border-left:1px solid #6cc1e5bd;
-  border-right:1px solid #6cc1e5bd; */
-
-  color: #0e4e02bd;
-
-  border-left:1px solid #0e4e02bd;
-  border-right:1px solid #0e4e02bd;
-}
-
-.btn6 {
-  padding: 15px 100px;
-  margin:40px 4px;
-  color: #0e4e02bd;
-  font-family: sans-serif;
-  text-transform: uppercase;
-  text-align: center;
-  position: relative;
-  text-decoration: none;
-  display:inline-block;
-  
-}
-</style>

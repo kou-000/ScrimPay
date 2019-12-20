@@ -1,1 +1,0 @@
-service_data = ['AmazonPrime','Hulu','Netflix']
