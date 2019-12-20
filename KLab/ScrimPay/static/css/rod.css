@@ -221,4 +221,22 @@
         transition: color .3s; */
     }
 
+    .btn-flat-border {
+        display: inline-block;
+        padding: 10px 50px;
+        margin: 0 0 10px;
+        text-decoration: none;
+        color: #4b931b;
+        border: solid 2px #4b931b;
+        border-radius: 3px;
+        transition: .4s;
+        font-size: 25px;
+        font-weight: bold;
+        
+      }
+      
+      .btn-flat-border:hover {
+        background: #4b931b;
+        color: white;
+      }
 }
