@@ -32,137 +32,105 @@
         </div>
     </header>
 
-      <h2> サービスの組み合わせパターン一覧</h2>
+    <div class="main">
+    <div class="explain">
+        Recommendations!
+    </div>
+    
 
     <div id="app" class="graph">
         <bar-chart></bar-chart>
     </div>
 
-    <div class="container">
-        <h2 class="under-element"> 現在利用しているサブスクリプションサービス</h2>
-        <div>
-            {% for i in val3 %}
-                {% for j in val%}
-
-                    {% if i.service_id == j.service_id %}
-                    <!-- <ul>
-                        <div class="box"><font size="6">{{i.service_name}}</font> <br><font size="3">{{i.fee_per_month}}円</font></div>
-                    </ul> -->
-
-                    <div class="tab">
-                            <input id="tab-cinco" type="checkbox" name="tabs">
-                            <label for="tab-cinco">{{i.service_name}}</label>
-                            <!-- <div class="tab-content">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur, architecto, explicabo perferendis nostrum, maxime impedit atque odit sunt pariatur illo obcaecati soluta molestias iure facere dolorum adipisci eum? Saepe, itaque.</p>
-                            </div>
-                            <div class="tab-content">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur, architecto, explicabo perferendis nostrum, maxime impedit atque odit sunt pariatur illo obcaecati soluta molestias iure facere dolorum adipisci eum? Saepe, itaque.</p>
-                            </div> -->
+    <div class="explain">
+        Your Signed Service
+    </div>
+    <div>
+        {% for i in val3 %}
+            {% for j in val%}
+                {% if i.service_id == j.service_id %}
+                <div class="tab">
+                    <input id={{i.service_name}} type="checkbox" name="tabs">
+                    <label for={{i.service_name}}>{{i.service_name}}</label>
+                    <div class="tab-content">
+                        <p>{{i.plan_name}}</p>
+                        <p>{{i.fee_per_month}}円</p>
                     </div>
-                        
-                    {% endif %}
-                {% endfor %}
+                </div>        
+                {% endif %}
             {% endfor %}
-        </div>
+        {% endfor %}
+    </div>
 
-        <form action="/scrimpay/support" method="POST">
-            {% csrf_token %}
-        <h2 class="under-element"> 選択した条件で作成したプラン</h2>
-        <!-- <div><input class="btn-flat-border" type="submit" name="change1" value="プラン１" onclick="valueChange1()">
-            <input type="hidden" name="pl1[]" value="" id="num10">
-            <input type="hidden" name="pl1[]" value="" id="num11">
-            <input type="hidden" name="pl1[]" value="" id="num12">
-            <input type="hidden" name="pl1[]" value="" id="num13">
-            <input type="hidden" name="pl1[]" value="" id="num14">
-            {% for i in val3 %}
-                {% for list in plan1%}
-                    {% if i.service_id == list %}
-                    <ul>
-                        <li>{{i.service_name}} <br>{{i.fee_per_month}}円</li>
-                    </ul>
-                    
-                    {% endif %}
-                {% endfor %}
-            {% endfor %}
-        </div> -->
-
-        <div>
-            <button class="btn-flat-border" name="change1" onclick="valueChange1()">
-            <!-- <button class="btn-open" name="change1" onclick="valueChange1()"> -->
+    <div class="explain2">
+        Push Your Best Plan!
+    </div>
+    <form action="/scrimpay/support" method="POST">
+        {% csrf_token %}
+        <div class="box">
+            <div class="box-title">Plan1</div>
+                <button class="btn-flat-border" name="change1" onclick="valueChange1()">
                     <input type="hidden" name="pl1[]" value="" id="num10">
                     <input type="hidden" name="pl1[]" value="" id="num11">
                     <input type="hidden" name="pl1[]" value="" id="num12">
                     <input type="hidden" name="pl1[]" value="" id="num13">
                     <input type="hidden" name="pl1[]" value="" id="num14">
-                    <font size="6">plan1</font>
-                    <font size="3">
                     {% for i in val3 %}
                         {% for list in plan1%}
                             {% if i.service_id == list %}
-                            <ul>
-                                <!-- <div class="box">{{i.service_name}} <br>{{i.fee_per_month}}円</div> -->
-                                <li>{{i.service_name}} {{i.fee_per_month}}円</li>
-                            </ul>
-                            
+                                <div class="detail">
+                                    {{i.service_name}} {{i.fee_per_month}}円
+                                </div>
                             {% endif %}
                         {% endfor %}
                     {% endfor %}
-                    </font>
             </button>
         </div>
 
-        <div>
-            <button class="btn-flat-border" name="change2" onclick="valueChange2()">
+        <div class="box">
+            <div class="box-title">Plan2</div>
+                <button class="btn-flat-border" name="change2" onclick="valueChange2()">
                     <input type="hidden" name="pl2[]" value="" id="num20">
                     <input type="hidden" name="pl2[]" value="" id="num21">
                     <input type="hidden" name="pl2[]" value="" id="num22">
                     <input type="hidden" name="pl2[]" value="" id="num23">
                     <input type="hidden" name="pl2[]" value="" id="num24">
-                    <font size="6">plan2</font>
-                    <font size="3">
                     {% for i in val3 %}
                         {% for list in plan2%}
                             {% if i.service_id == list %}
-                            <ul>
-                                <li>{{i.service_name}} {{i.fee_per_month}}円</li>
-                            </ul>
+                            <div class="detail">
+                                {{i.service_name}} {{i.fee_per_month}}円
+                            </div>
                             {% endif %}
                         {% endfor %}
                     {% endfor %}
-                    </font>
             </button>
         </div>
 
-        <div>
+        <div class="box">
+            <div class="box-title">Plan3</div>
             <button class="btn-flat-border" name="change3" onclick="valueChange3()">
                     <input type="hidden" name="pl3[]" value="" id="num30">
                     <input type="hidden" name="pl3[]" value="" id="num31">
                     <input type="hidden" name="pl3[]" value="" id="num32">
                     <input type="hidden" name="pl3[]" value="" id="num33">
                     <input type="hidden" name="pl3[]" value="" id="num34">
-                    <font size="6">plan3</font>
-                    <font size="3">
                     {% for i in val3 %}
                         {% for list in plan3%}
                             {% if i.service_id == list %}
-                            <ul>
-                                <li>{{i.service_name}} {{i.fee_per_month}}円</li>
-                            </ul>
+                            <div class="detail">
+                                {{i.service_name}} {{i.fee_per_month}}円
+                            </div>
                             {% endif %}
                         {% endfor %}
                     {% endfor %}
-                    </font>
             </button>
         </div>
-
-        <div class="box_range">
-        <!-- <div style = "text-align:center"> -->
-            <a class="cp_btn btn_left" href="http://127.0.0.1:8000/scrimpay/search">プラン選択に戻る</a>
-            <a class="cp_btn btn_right" href = "http://127.0.0.1:8000/scrimpay/main">メイン画面へ</a>
-        </div>
-        
-
     </div>
+    </div>
+
+
+
     <footer class="footer01">
         <div class="footer02">
           <div class="footer03">

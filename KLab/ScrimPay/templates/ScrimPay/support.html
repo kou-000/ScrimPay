@@ -3,700 +3,107 @@
 <html lang="ja">
   <head>
     <meta charset="utf-8">
-    <title>Support page</title>
-    <!-- <link rel="stylesheet" href="../../static/css/style.css" type="text/css"> -->
-    <link rel="stylesheet" href="../../static/css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ScrimPay search page</title>
+    <link rel="stylesheet" href="{% static 'css/support.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Calistoga|Noto+Sans+JP&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
   </head>
 
-  <body>
-    <div class="header">
-            <a class="header-logo" href="http://127.0.0.1:8000/scrimpay/top">ScrimPay</a>
-    </div>
+    <body class="center">
+        <header class="strheader">
+            <div class="headerinner">
+                <div class="header01">
+                    <div class="header_name">Scrim<span class="header_subname">Pay</span></div>
+                </div>
+                <div>
+                    <nav class="navi01">
+                        <ul class="foo">
+                            <li class="inline-item"><a class="menu" href="{% url 'scrimpay:main' %}">HOME</a></li>
+                            <li class="inline-item"><a class="menu" href="{% url 'scrimpay:search' %}">SEARCH</a></li>
+                            <li class="inline-item"><a class="menu" href="">HELP</a></li>
+                        </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
 
+
+    <div class="main">
     <form method="POST">
-      {% csrf_token %}
-          <h2>新規で加入するサービス</h2>
-          <div class="click-drawing-container">
-            {% for i in val3 %}
-                {% for list in addlist%}
-                    {% if i.service_id == list %}
-                        {% if "C002" == list %}
-                            <div class="tab">
-                                    <input id="tab-c002" type="checkbox" name="tabs">
-                                    <label for="tab-c002">{{i.service_name}}</label>
-                                    <div class="tab-content">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur, architecto, explicabo perferendis nostrum, maxime impedit atque odit sunt pariatur illo obcaecati soluta molestias iure facere dolorum adipisci eum? Saepe, itaque.</p>
-                                    </div>
+        {% csrf_token %}
+            <div class="box">
+                <div class="box-title">New Add Service!</div>
+        
+                {% for i in val3 %}
+                    {% for list in addlist %}
+                        {% if i.service_id == list %}
+                        <div class="tab">
+                            <input id={{i.service_name}} type="checkbox" name="tabs">
+                            <label for={{i.service_name}}>{{i.service_name}}</label>
+                            <div class="tab-content">
+                                <p>{{i.plan_name}}</p>
+                                <p>{{i.fee_per_month}}円</p>
                             </div>
-                        {% endif %}
-                        {% if "C005" == list %}
-                            <div class="tab">
-                                    <input id="tab-c005" type="checkbox" name="tabs">
-                                    <label for="tab-c005">{{i.service_name}}</label>
-                                    <div class="tab-content">
-                                        <p>5</p>    
-                                    </div>
-                            </div>
-                        {% endif %}
-                        {% if "C007" == list %}
-                            <div class="tab">
-                                    <input id="tab-c007" type="checkbox" name="tabs">
-                                    <label for="tab-c007">{{i.service_name}}</label>
-                                    <div class="tab-content">
-                                       <p>netflix</p>
-                                    </div>
-                            </div>
-                        {% endif %}
-                        {% if "C011" == list %}
-                            <div class="tab">
-                                    <input id="tab-c011" type="checkbox" name="tabs">
-                                    <label for="tab-c011">{{i.service_name}}</label>
-                                    <div class="tab-content">
-                                        <p>- 料金 : {{i.fee_per_month}}円</p>
-                                        <p>- 引き落とし日 : (外部サイト) dアニメストアの請求日はいつ？</p>
-                                        <p>- 登録日 : [不要]</p>
-                                        <p>- 解約URL : https://anime.dmkt-sp.jp/animestore/can_pc</p>
-                                    </div>
-                            </div>
-                        {% endif %}
-                        {% if "C020" == list %}
-                            <div class="tab">
-                                    <input id="tab-c020" type="checkbox" name="tabs">
-                                    <label for="tab-c020">{{i.service_name}}</label>
-                                    <div class="tab-content">
-                                        <p>20</p>    
-                                    </div>
-                            </div>
-                        {% endif %}
-                        {% if "C021" == list %}
-                            <div class="tab">
-                                    <input id="tab-c021" type="checkbox" name="tabs">
-                                    <label for="tab-c021">{{i.service_name}}</label>
-                                    <div class="tab-content">
-                                        <p>21</p>    
-                                    </div>
-                            </div>
-                        {% endif %}
-                        {% if "C026" == list %}
-                            <div class="tab">
-                                    <input id="tab-c026" type="checkbox" name="tabs">
-                                    <label for="tab-c026">{{i.service_name}}</label>
-                                    <div class="tab-content">
-                                        <p>26</p>
-                                    </div>
-                            </div>
-                        {% endif %}
-
-                        {% if "C003" == list %}
-                            <div class="tab">
-                                    <input id="tab-c003" type="checkbox" name="tabs">
-                                    <label for="tab-c003">{{i.service_name}}</label>
-                                    <div class="tab-content">
-                                        <p>26</p>
-                                    </div>
-                            </div>
-                        {% endif %}
-                        {% if "C004" == list %}
-                            <div class="tab">
-                                    <input id="tab-c004" type="checkbox" name="tabs">
-                                    <label for="tab-c004">{{i.service_name}}</label>
-                                    <div class="tab-content">
-                                        <p>26</p>
-                                    </div>
-                            </div>
-                        {% endif %}
-                        {% if "C008" == list %}
-                            <div class="tab">
-                                    <input id="tab-c008" type="checkbox" name="tabs">
-                                    <label for="tab-c008">{{i.service_name}}</label>
-                                    <div class="tab-content">
-                                        <p>26</p>
-                                    </div>
-                            </div>
-                        {% endif %}
-                        {% if "C009" == list %}
-                            <div class="tab">
-                                    <input id="tab-c009" type="checkbox" name="tabs">
-                                    <label for="tab-c009">{{i.service_name}}</label>
-                                    <div class="tab-content">
-                                        <p>26</p>
-                                    </div>
-                            </div>
-                        {% endif %}
-                        {% if "C010" == list %}
-                            <div class="tab">
-                                    <input id="tab-c010" type="checkbox" name="tabs">
-                                    <label for="tab-c010">{{i.service_name}}</label>
-                                    <div class="tab-content">
-                                        <p>26</p>
-                                    </div>
-                            </div>
-                        {% endif %}
-                        {% if "C017" == list %}
-                            <div class="tab">
-                                    <input id="tab-c017" type="checkbox" name="tabs">
-                                    <label for="tab-c017">{{i.service_name}}</label>
-                                    <div class="tab-content">
-                                        <p>26</p>
-                                    </div>
-                            </div>
-                        {% endif %}
-                        {% if "C018" == list %}
-                            <div class="tab">
-                                    <input id="tab-c018" type="checkbox" name="tabs">
-                                    <label for="tab-c018">{{i.service_name}}</label>
-                                    <div class="tab-content">
-                                        <p>26</p>
-                                    </div>
-                            </div>
-                        {% endif %}
-                        {% if "C019" == list %}
-                            <div class="tab">
-                                    <input id="tab-c019" type="checkbox" name="tabs">
-                                    <label for="tab-c019">{{i.service_name}}</label>
-                                    <div class="tab-content">
-                                        <p>26</p>
-                                    </div>
-                            </div>
-                        {% endif %}
-                        {% if "C022" == list %}
-                            <div class="tab">
-                                    <input id="tab-c022" type="checkbox" name="tabs">
-                                    <label for="tab-c022">{{i.service_name}}</label>
-                                    <div class="tab-content">
-                                        <p>26</p>
-                                    </div>
-                            </div>
-                        {% endif %}
-                        {% if "C023" == list %}
-                            <div class="tab">
-                                    <input id="tab-c023" type="checkbox" name="tabs">
-                                    <label for="tab-c023">{{i.service_name}}</label>
-                                    <div class="tab-content">
-                                        <p>26</p>
-                                    </div>
-                            </div>
-                        {% endif %}
-                        {% if "C024" == list %}
-                            <div class="tab">
-                                    <input id="tab-c024" type="checkbox" name="tabs">
-                                    <label for="tab-c024">{{i.service_name}}</label>
-                                    <div class="tab-content">
-                                        <p>26</p>
-                                    </div>
-                            </div>
-                        {% endif %}
-                        {% if "C025" == list %}
-                            <div class="tab">
-                                    <input id="tab-c025" type="checkbox" name="tabs">
-                                    <label for="tab-c025">{{i.service_name}}</label>
-                                    <div class="tab-content">
-                                        <p>26</p>
-                                    </div>
-                            </div>
-                        {% endif %}
-                        {% if "C029" == list %}
-                            <div class="tab">
-                                    <input id="tab-c029" type="checkbox" name="tabs">
-                                    <label for="tab-c029">{{i.service_name}}</label>
-                                    <div class="tab-content">
-                                        <p>26</p>
-                                    </div>
-                            </div>
-                        {% endif %}
-                        {% if "C001" == list %}
-                            <div class="tab">
-                                    <input id="tab-c001" type="checkbox" name="tabs">
-                                    <label for="tab-c001">{{i.service_name}}</label>
-                                    <div class="tab-content">
-                                        <p>26</p>
-                                    </div>
-                            </div>
-                        {% endif %}
-                        {% if "C006" == list %}
-                            <div class="tab">
-                                    <input id="tab-c006" type="checkbox" name="tabs">
-                                    <label for="tab-c006">{{i.service_name}}</label>
-                                    <div class="tab-content">
-                                        <p>26</p>
-                                    </div>
-                            </div>
-                        {% endif %}
-                        {% if "C010" == list %}
-                            <div class="tab">
-                                    <input id="tab-c010" type="checkbox" name="tabs">
-                                    <label for="tab-c010">{{i.service_name}}</label>
-                                    <div class="tab-content">
-                                        <p>26</p>
-                                    </div>
-                            </div>
-                        {% endif %}
-
-
-                    {% endif %}
+                        </div>       
+                        {% endif %}        
+                    {% endfor %}
                 {% endfor %}
-            {% endfor %}
-          </div>
-
-        <h2 class="under-element">解約するサービス</h2>
-            {% for i in val3 %}
-                {% for list in dellist%}
-                    {% if i.service_id == list %}
-                        {% if "C001" == list %}
-                            <div class="tab">
-                                    <input id="tab-c001" type="checkbox" name="tabs">
-                                    <label for="tab-c001">{{i.service_name}}</label>
-                                    <div class="tab-content">
-                                        <p>1</p>
-                                    </div>
+            
+            </div>
+            
+            <div class="box">
+                <div class="box-title">Goodbye Service!</div>
+                {% for i in val3 %}
+                    {% for list in dellist %}
+                        {% if i.service_id == list %}
+                        <div class="tab">
+                            <input id={{i.service_name}} type="checkbox" name="tabs">
+                            <label for={{i.service_name}}>{{i.service_name}}</label>
+                            <div class="tab-content">
+                                <p>{{i.plan_name}}</p>
+                                <p>{{i.fee_per_month}}円</p>
                             </div>
-                        {% endif %}
-                        {% if "C002" == list %}
-                            <div class="tab">
-                                    <input id="tab-c002" type="checkbox" name="tabs">
-                                    <label for="tab-c002">{{i.service_name}}</label>
-                                    <div class="tab-content">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur, architecto, explicabo perferendis nostrum, maxime impedit atque odit sunt pariatur illo obcaecati soluta molestias iure facere dolorum adipisci eum? Saepe, itaque.</p>
-                                    </div>
-                            </div>
-                        {% endif %}
-                        {% if "C005" == list %}
-                            <div class="tab">
-                                    <input id="tab-c005" type="checkbox" name="tabs">
-                                    <label for="tab-c005">{{i.service_name}}</label>
-                                    <div class="tab-content">
-                                        <p>5</p>    
-                                    </div>
-                            </div>
-                        {% endif %}
-                        {% if "C006" == list %}
-                            <div class="tab">
-                                    <input id="tab-c006" type="checkbox" name="tabs">
-                                    <label for="tab-c006">{{i.service_name}}</label>
-                                    <div class="tab-content">
-                                        <p>6</p>    
-                                    </div>
-                            </div>
-                        {% endif %}
-                        {% if "C007" == list %}
-                            <div class="tab">
-                                    <input id="tab-c007" type="checkbox" name="tabs">
-                                    <label for="tab-c007">{{i.service_name}}</label>
-                                    <div class="tab-content">
-                                       <p>netflix</p>
-                                    </div>
-                            </div>
-                        {% endif %}
-                        {% if "C011" == list %}
-                            <div class="tab">
-                                    <input id="tab-c011" type="checkbox" name="tabs">
-                                    <label for="tab-c011">{{i.service_name}}</label>
-                                    <div class="tab-content">
-                                        <p>- 料金 : {{i.fee_per_month}}円</p>
-                                        <p>- 引き落とし日 : (外部サイト) dアニメストアの請求日はいつ？</p>
-                                        <p>- 登録日 : [不要]</p>
-                                        <p>- 解約URL : https://anime.dmkt-sp.jp/animestore/can_pc</p>
-                                    </div>
-                            </div>
-                        {% endif %}
-                        {% if "C016" == list %}
-                            <div class="tab">
-                                    <input id="tab-c016" type="checkbox" name="tabs">
-                                    <label for="tab-c016">{{i.service_name}}</label>
-                                    <div class="tab-content">
-                                        <p>16</p>    
-                                    </div>
-                            </div>
-                        {% endif %}
-                        {% if "C020" == list %}
-                            <div class="tab">
-                                    <input id="tab-c020" type="checkbox" name="tabs">
-                                    <label for="tab-c020">{{i.service_name}}</label>
-                                    <div class="tab-content">
-                                        <p>20</p>    
-                                    </div>
-                            </div>
-                        {% endif %}
-                        {% if "C021" == list %}
-                            <div class="tab">
-                                    <input id="tab-c021" type="checkbox" name="tabs">
-                                    <label for="tab-c021">{{i.service_name}}</label>
-                                    <div class="tab-content">
-                                        <p>21</p>    
-                                    </div>
-                            </div>
-                        {% endif %}
-                        {% if "C026" == list %}
-                            <div class="tab">
-                                    <input id="tab-c026" type="checkbox" name="tabs">
-                                    <label for="tab-c026">{{i.service_name}}</label>
-                                    <div class="tab-content">
-                                        <p>26</p>
-                                    </div>
-                            </div>
-                        {% endif %}
-
-                        {% if "C003" == list %}
-                            <div class="tab">
-                                    <input id="tab-c003" type="checkbox" name="tabs">
-                                    <label for="tab-c003">{{i.service_name}}</label>
-                                    <div class="tab-content">
-                                        <p>26</p>
-                                    </div>
-                            </div>
-                        {% endif %}
-                        {% if "C004" == list %}
-                            <div class="tab">
-                                    <input id="tab-c004" type="checkbox" name="tabs">
-                                    <label for="tab-c004">{{i.service_name}}</label>
-                                    <div class="tab-content">
-                                        <p>26</p>
-                                    </div>
-                            </div>
-                        {% endif %}
-                        {% if "C008" == list %}
-                            <div class="tab">
-                                    <input id="tab-c008" type="checkbox" name="tabs">
-                                    <label for="tab-c008">{{i.service_name}}</label>
-                                    <div class="tab-content">
-                                        <p>26</p>
-                                    </div>
-                            </div>
-                        {% endif %}
-                        {% if "C009" == list %}
-                            <div class="tab">
-                                    <input id="tab-c009" type="checkbox" name="tabs">
-                                    <label for="tab-c009">{{i.service_name}}</label>
-                                    <div class="tab-content">
-                                        <p>26</p>
-                                    </div>
-                            </div>
-                        {% endif %}
-                        {% if "C010" == list %}
-                            <div class="tab">
-                                    <input id="tab-c010" type="checkbox" name="tabs">
-                                    <label for="tab-c010">{{i.service_name}}</label>
-                                    <div class="tab-content">
-                                        <p>26</p>
-                                    </div>
-                            </div>
-                        {% endif %}
-                        {% if "C017" == list %}
-                            <div class="tab">
-                                    <input id="tab-c017" type="checkbox" name="tabs">
-                                    <label for="tab-c017">{{i.service_name}}</label>
-                                    <div class="tab-content">
-                                        <p>26</p>
-                                    </div>
-                            </div>
-                        {% endif %}
-                        {% if "C018" == list %}
-                            <div class="tab">
-                                    <input id="tab-c018" type="checkbox" name="tabs">
-                                    <label for="tab-c018">{{i.service_name}}</label>
-                                    <div class="tab-content">
-                                        <p>26</p>
-                                    </div>
-                            </div>
-                        {% endif %}
-                        {% if "C019" == list %}
-                            <div class="tab">
-                                    <input id="tab-c019" type="checkbox" name="tabs">
-                                    <label for="tab-c019">{{i.service_name}}</label>
-                                    <div class="tab-content">
-                                        <p>26</p>
-                                    </div>
-                            </div>
-                        {% endif %}
-                        {% if "C022" == list %}
-                            <div class="tab">
-                                    <input id="tab-c022" type="checkbox" name="tabs">
-                                    <label for="tab-c022">{{i.service_name}}</label>
-                                    <div class="tab-content">
-                                        <p>26</p>
-                                    </div>
-                            </div>
-                        {% endif %}
-                        {% if "C023" == list %}
-                            <div class="tab">
-                                    <input id="tab-c023" type="checkbox" name="tabs">
-                                    <label for="tab-c023">{{i.service_name}}</label>
-                                    <div class="tab-content">
-                                        <p>26</p>
-                                    </div>
-                            </div>
-                        {% endif %}
-                        {% if "C024" == list %}
-                            <div class="tab">
-                                    <input id="tab-c024" type="checkbox" name="tabs">
-                                    <label for="tab-c024">{{i.service_name}}</label>
-                                    <div class="tab-content">
-                                        <p>26</p>
-                                    </div>
-                            </div>
-                        {% endif %}
-                        {% if "C025" == list %}
-                            <div class="tab">
-                                    <input id="tab-c025" type="checkbox" name="tabs">
-                                    <label for="tab-c025">{{i.service_name}}</label>
-                                    <div class="tab-content">
-                                        <p>26</p>
-                                    </div>
-                            </div>
-                        {% endif %}
-                        {% if "C029" == list %}
-                            <div class="tab">
-                                    <input id="tab-c029" type="checkbox" name="tabs">
-                                    <label for="tab-c029">{{i.service_name}}</label>
-                                    <div class="tab-content">
-                                        <p>26</p>
-                                    </div>
-                            </div>
-                        {% endif %}
-
-                        
-                    {% endif %}
+                        </div>       
+                        {% endif %}        
+                    {% endfor %}
                 {% endfor %}
-            {% endfor %}
+            </div>
     </form>
+
+    </div>
 
     <form action="main" method="POST">
         {% csrf_token %}
-
-        <!-- 新規契約サービス -->
-        {% for i in val3 %}
-            {% for list in addlist%}
-                {% if i.service_id == list %}
-                    <input type="hidden" name="plan_add[]" value="{{i.service_id}}">
-                {% endif %}
+            <!-- 新規契約サービス -->
+            {% for i in val3 %}
+                {% for list in addlist%}
+                    {% if i.service_id == list %}
+                        <input type="hidden" name="plan_add[]" value="{{i.service_id}}">
+                    {% endif %}
+                {% endfor %}
             {% endfor %}
-        {% endfor %}
 
-        <!-- 新規解約サービス -->
-        {% for i in val3 %}
-            {% for list in dellist%}
-                {% if i.service_id == list %}
-                    <input type="hidden" name="plan_del[]" value="{{i.service_id}}">
-                {% endif %}
+            <!-- 新規解約サービス -->
+            {% for i in val3 %}
+                {% for list in dellist%}
+                    {% if i.service_id == list %}
+                        <input type="hidden" name="plan_del[]" value="{{i.service_id}}">
+                    {% endif %}
+                {% endfor %}
             {% endfor %}
-        {% endfor %}
 
-        <div>
-                <button class="cp_btn" name="plan_cd" id="plan_cd">このプランを反映する</button>
-        </div>
+        <footer class="footer01">
+            <div class="footer02">
+                <div class="footer03">
+                    <div class="btn-border">
+                        <button class="cp_btn" name="plan_cd" id="plan_cd">Save Plans!</button>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
     </form>
-
   </body>
 </html>
 
-<style>
-        .header{
-            color: aliceblue;
-            /* background: linear-gradient(-50deg, #6cc1e5bd, #0f3443ad); */
-            background: linear-gradient(-50deg, #1da102f3, #0e25029f);
-            height: 85px;
-        }
-        .header-logo{
-            float: left;
-            font-size: 40px;
-            padding: 5px 30px;
-            color: whitesmoke;
-            text-decoration: none;
-        }
-        .graph{
-            background-color: gray;
-            text-emphasis-color: #fff;
-        }
-        body {
-            /* background: linear-gradient(-40deg,#fada84,#6cb9cc) fixed; */
-            /* background: #363636; */
-            background: #a79a83;
-            background-size: cover;
-        }
-
-        /* div {
-            margin: 10px 0;
-            /* text-align: center; 
-        }*/
-        p {
-            font-family: Meiryo, "Hiragino Kaku Gothic Pro W3", Courier New, sans-serif;
-            line-height: 1.5;
-            margin-bottom: 25px;
-            color: #fff;
-        }
-        .box{
-            display: inline-block;
-            /* vertical-align: middle; */
-            float: left;
-            width: 200px;
-            height: 150px;
-            margin: 10px;
-            padding: 2px 5px 2px 20px;
-            font-size: 14px;
-            background-color: #484848;
-            color: whitesmoke;
-        }
-        .under-element{
-            clear: both;
-        }
-        .btn-flat-border{
-            display: inline-block;
-            position: relative;
-            float: left;
-            width: 200px;
-            height: 350px;
-            margin: 0px 0px 5px;
-            padding: 0.3em 1em;
-            text-decoration: none;
-            background-color: #484848;
-            color: whitesmoke;
-            border: solid 2px dimgray;
-            border-radius: 3px;
-            transition: .4s;
-        }
-        .btn-flat-border:hover {
-            background: linear-gradient(-130deg, #f202fa, #fa7101) fixed;
-            /* background: #67c5ff; */
-            color: white;
-        }
-        .btn-border{
-            display: inline-block;
-            width: 100px;
-            height: 40px;
-            padding: 0.3em 1em;
-            text-decoration: none;
-            background-color: gray;
-            color: whitesmoke;
-            border: solid 2px whitesmoke;
-            border-radius: 3px;
-            transition: .4s;
-        }
-        .btn-border:hover {
-            background: linear-gradient(-130deg, #f202fa, #fa7101) fixed;
-            /* background: #67c5ff; */
-            color: whitesmoke
-        }
-        h2 {
-            position: relative;
-            /* background: linear-gradient(-30deg, #636fa4, #000c40) fixed; */
-            /* background: dimgray; */
-            background: #0e4e02bd;
-            padding: 2px 5px 2px 20px;
-            margin-bottom: 0px;
-            font-size: 20px;
-            color: whitesmoke;
-            /* border-radius: 0 10px 10px 0; */
-        }
-        /* ul, ol {
-            padding: 0;
-            position: relative;
-        }
-        ul li, ol li {
-            color: #2d8fdd;
-            border-left: solid 6px #2d8fdd;
-            background: #f1f8ff;
-            margin-bottom: 3px;
-            line-height: 1.5;
-            padding: 0.5em;
-            list-style-type: none!important;
-        } */
-.cp_btn {
-    display: block;
-    width: 160px;
-    padding: 0.8em;
-    text-align: center;
-    text-decoration: none;
-    /* background: #363636; */
-    background: #f8f6f69d;
-    /* color: #6cc0e5; */
-    color: #0e4e02bd;
-    /* border: 2px solid #6cc0e5; */
-    border: 2px solid #0e4e02bd;
-    border-radius: 3px;
-    transition: .4s;
-}
-.cp_btn:hover {
-    /* background: #6cc0e5; */
-    background: #0e4e02bd;
-    /* color: #363636; */
-    color: #f8f6f69d;
-}
-
-         /* Acordion Faq */
-.tab {
-  position: relative;
-  margin-bottom: 1px;
-  width: 100%;
-  color: #fff;
-  background: #f8f6f69d;
-  /* background: #74750b9f; */
-  overflow: hidden;
-}
-input {
-  position: absolute;
-  opacity: 0;
-  z-index: -1;
-}
-label {
-  position: relative;
-  display: block;
-  padding: 0 0 0 1em;
-  /* background: linear-gradient(-50deg, #6cc1e5bd, #0f3443ad); */
-  background-color: #28a113bd;
-  /* background-color: #6cc1e5bd; */
-  font-weight: bold;
-  line-height: 3;
-  cursor: pointer;
-}
-
-.tab-content {
-  max-height: 0;
-  overflow: hidden;
-  -webkit-transition: max-height .35s;
-  -o-transition: max-height .35s;
-  transition: max-height .35s;
-  color: #000;
-}
-
-.tab-content p {
-  margin: 1em;
-  color: #0e4e02bd;
-}
-/* :checked */
-input:checked ~ .tab-content {
-  max-height: 100%;
-}
-/* Icon */
-label::after {
-  position: absolute;
-  right: 0;
-  top: 0;
-  display: block;
-  width: 3em;
-  height: 3em;
-  line-height: 3;
-  text-align: center;
-  -webkit-transition: all .35s;
-  -o-transition: all .35s;
-  transition: all .35s;
-}
-input[type=checkbox] + label::after {
-  content: "+";
-}
-input[type=radio] + label::after {
-  content: "\25BC";
-}
-input[type=checkbox]:checked + label::after {
-  transform: rotate(315deg);
-}
-input[type=radio]:checked + label::after {
-  transform: rotateX(180deg);
-}
-</style>
-
-<script>
-
-function navigateTargetUrl(){
-    window.open("https://www.google.com", "window1", "noopener");
-}
-</script>

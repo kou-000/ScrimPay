@@ -86,11 +86,16 @@
 
     /*main*/
     .main {
-        margin: 0px 10px 100px;
+        margin: 0px 0px 100px;
     }
 
     .explain {
-        padding: 25px 5px 0px;
+        padding: 30px 5px 10px;
+        font-size: 30px;
+    }
+
+    .explain2 {
+        padding: 60px 5px 0px;
         font-size: 30px;
     }
 
@@ -122,6 +127,102 @@
     .cp_btn:hover {
         background: #4b931b;
         color: #f2f2f2;
+    }
+
+
+    /*detail*/
+    .tab {
+        position: relative;
+        margin-bottom: 1px;
+        width: 100%;
+        color: #fff;
+        background: #f2f2f2;
+        overflow: hidden;
+    }
+    input {
+        position: absolute;
+        opacity: 0;
+        z-index: -1;
+    }
+    label {
+        position: relative;
+        display: block;
+        padding: 0 0 0 1em;
+        /* background: linear-gradient(-50deg, #6cc1e5bd, #0f3443ad); */
+        background-color: #4b931b;
+        /* background-color: #6cc1e5bd; */
+        font-weight: bold;
+        line-height: 3;
+        cursor: pointer;
+    }
+    
+    .tab-content {
+        max-height: 0;
+        overflow: hidden;
+        -webkit-transition: max-height .35s;
+        -o-transition: max-height .35s;
+        transition: max-height .35s;
+        color: #000;
+    }
+        
+    .tab-content p {
+        margin: 1em;
+    }
+        
+    input:checked ~ .tab-content {
+        max-height: 100%;
+    }
+        
+    label::after {
+        position: absolute;
+        right: 0;
+        top: 0;
+        display: block;
+        width: 3em;
+        height: 3em;
+        line-height: 3;
+        text-align: center;
+        -webkit-transition: all .35s;
+        -o-transition: all .35s;
+        transition: all .35s;
+    }
+    input[type=checkbox] + label::after {
+        content: "+";
+    }
+    input[type=radio] + label::after {
+        content: "\25BC";
+    }
+    input[type=checkbox]:checked + label::after {
+        transform: rotate(315deg);
+    }
+    input[type=radio]:checked + label::after {
+        transform: rotateX(180deg);
+    }
+
+    ul {
+        list-style: none;
+    }
+
+    .box {
+        margin: 2em 0;
+        padding: 0px 0px 5px;
+        background: #f2f2f2;
+    }
+    .box .box-title {
+        font-size: 25px;
+        background: #4b931b;
+        padding: 10px;
+        text-align: center;
+        color: #FFF;
+        font-weight: bold;
+        letter-spacing: 0.3em;
+    }
+
+    .detail {
+        padding: 5px 0px 0px;
+        font-size: 20px;
+        border-bottom: double 5px #f0b431;
+        transition: color .3s;
     }
 
 }
