@@ -65,7 +65,7 @@ def index(request):
         'v':value,
     }    
 
-    return render(request,'scrimpay/index.html',my_dict)
+    return render(request,'ScrimPay/index.html',my_dict)
 
 def main(request):
     data1 = Main.objects.all().filter(user_id='A001')
@@ -132,7 +132,7 @@ def main(request):
     }             
 
 
-    return render(request, 'scrimpay/main.html',my_dict2)    
+    return render(request, 'ScrimPay/main.html',my_dict2)    
 
 def detail(request):
     data1 = Main.objects.all().filter(user_id='A001')
@@ -144,7 +144,7 @@ def detail(request):
         'val2':data2,
         'val3':data3,
     }
-    return render(request, 'scrimpay/detail.html',my_dict3)
+    return render(request, 'ScrimPay/detail.html',my_dict3)
    
 def SearchCriteria(request):
     return render(request,'ScrimPay/search.html')
@@ -181,6 +181,9 @@ def rod(request):
                 budget2[0] = tmp
 
             elif int(budget1[0]) == int(budget2[0]):
+                return redirect('/scrimpay/search')
+
+            if tag1[0] == "No. 1" or tag2[0] == "No. 2" or tag3[0] == "No. 3":
                 return redirect('/scrimpay/search')
 
             # slider1 = int(slider1)
@@ -648,7 +651,7 @@ def rod(request):
     }             
 
 
-    return render(request, 'scrimpay/rod.html',my_dict4) 
+    return render(request, 'ScrimPay/rod.html',my_dict4) 
 
 def support(request):
     data1 = Main.objects.all().filter(user_id='A001')
@@ -780,7 +783,7 @@ def support(request):
     }             
 
 
-    return render(request, 'scrimpay/support.html',my_dict5) 
+    return render(request, 'ScrimPay/support.html',my_dict5) 
 
 def deletedb(request):
     data1 = Main.objects.all()
@@ -796,7 +799,7 @@ def deletedb(request):
         'v':value,
     }    
 
-    return render(request,'scrimpay/deletedb.html',my_dict6)
+    return render(request,'ScrimPay/deletedb.html',my_dict6)
 
 def signup(request):
     data1 = Main.objects.all()
@@ -812,7 +815,7 @@ def signup(request):
         'v':value,
     }    
 
-    return render(request,'scrimpay/signup.html',my_dict7)
+    return render(request,'ScrimPay/signup.html',my_dict7)
 
 def signin(request):
     data1 = Main.objects.all()
@@ -828,7 +831,7 @@ def signin(request):
         'v':value,
     }    
 
-    return render(request,'scrimpay/signin.html',my_dict8)
+    return render(request,'ScrimPay/signin.html',my_dict8)
 
 def top(request):
-    return render(request,'scrimpay/top.html')
+    return render(request,'ScrimPay/top.html')

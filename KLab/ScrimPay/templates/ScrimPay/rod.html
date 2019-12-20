@@ -4,19 +4,33 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>サービス比較ページ</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>ScrimPay rod page</title>
+    <link rel="stylesheet" href="{% static 'css/rod.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Calistoga|Noto+Sans+JP&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">  
   </head>
   
-  <!-- <script type="text/javascript" src="{% static 'javascript/app.js' %}"></script> -->
   <script src="https://unpkg.com/vue@2.5.17"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
   <script src="https://unpkg.com/vue-chartjs/dist/vue-chartjs.min.js"></script>
 
-  <body>
-        <div class="header">
-                <a class="header-logo" href="http://127.0.0.1:8000/scrimpay/top">ScrimPay</a>
+  <body class="center">
+    <header class="strheader">
+        <div class="headerinner">
+            <div class="header01">
+                <div class="header_name">Scrim<span class="header_subname">Pay</span></div>
+            </div>
+            <div>
+                <nav class="navi01">
+                    <ul class="foo">
+                        <li class="inline-item"><a class="menu" href="">HOME</a></li>
+                        <li class="inline-item"><a class="menu" href="{% url 'scrimpay:search' %}">SEARCH</a></li>
+                        <li class="inline-item"><a class="menu" href="">HELP</a></li>
+                    </ul>
+                </nav>
+            </div>
         </div>
+    </header>
 
       <h2> サービスの組み合わせパターン一覧</h2>
 
@@ -149,244 +163,18 @@
         
 
     </div>
+    <footer class="footer01">
+        <div class="footer02">
+          <div class="footer03">
+  
+          </div>
+        </div>
+      </footer>
+
   </body>
 </html>
 
-<style>
-        /* body{
-            font-family: Arial, Helvetica, sans-serif;
-        } */
-        .header{
-            /* background-color: yellowgreen; */
-            color: aliceblue;
-            /* background: linear-gradient(-50deg, #6cc1e5bd, #0f3443ad); */
-            background: linear-gradient(-50deg, #1da102f3, #0e25029f);
-            /* background: linear-gradient(-50deg, #34e89e, #0f3443) fixed;
-            background-size: cover; */
-            height: 85px;
-        }
-        .header-logo{
-            float: left;
-            font-size: 40px;
-            padding: 5px 30px;
-            color: whitesmoke;
-            text-decoration: none;
-        }
-        .graph{
-            /* background-color: gray; */
-            background-color: #f8f6f69d;
-            text-emphasis-color: gray;
-        }
-        body {
-            /* background: linear-gradient(-40deg,#fada84,#6cb9cc) fixed; */
-            /* background: #363636; */
-            background: #a79a83;
-            background-size: cover;
-        }
 
-        /* div {
-            margin: 10px 0;
-            /* text-align: center; 
-        }*/
-        p {
-            font-family: Meiryo, "Hiragino Kaku Gothic Pro W3", Courier New, sans-serif;
-            line-height: 1.5;
-            margin-bottom: 25px;
-            color: #fff;
-        }
-        .box{
-            display: inline-block;
-            /* vertical-align: middle; */
-            float: left;
-            width: 150px;
-            height: 150px;
-            margin: -17px 0px 50px 0px;
-            position: relative;
-            padding: 0.3em 1em;
-            text-decoration: none;
-            font-size: 14px;
-            background-color: #484848;
-            color: whitesmoke;
-            border: solid 2px dimgray;
-            border-radius: 3px;
-        }
-        .under-element{
-            clear: both;
-        }
-        .btn-flat-border{
-            display: inline-block;
-            position: relative;
-            float: left;
-            width: 33.3%;
-            height: 350px;
-            margin: 0px 0px 5px;
-            padding: 0.3em 1em;
-            text-decoration: none;
-            /* background-color: #484848; */
-            background-color: #f8f6f69d;
-            /* color: whitesmoke; */
-            color: #0e4e02bd;
-            /* border: solid 2px dimgray; */
-            border: solid 2px #0e4e02bd;
-            border-radius: 3px;
-            transition: .4s;
-        }
-        .btn-flat-border:hover {
-            background: linear-gradient(-130deg, #f202fa, #fa7101) fixed;
-            /* background: #67c5ff; */
-            color: white;
-        }
-        .btn-border{
-            display: inline-block;
-            width: 100px;
-            height: 40px;
-            padding: 0.3em 1em;
-            text-decoration: none;
-            background-color: gray;
-            color: whitesmoke;
-            border: solid 2px whitesmoke;
-            border-radius: 3px;
-            transition: .4s;
-        }
-        .btn-border:hover {
-            background: linear-gradient(-130deg, #f202fa, #fa7101) fixed;
-            /* background: #67c5ff; */
-            color: whitesmoke
-        }
-        h2 {
-            position: relative;
-            /* background: linear-gradient(-30deg, #636fa4, #000c40) fixed; */
-            /* background: dimgray; */
-            background: #0e4e02bd;
-            padding: 2px 5px 2px 20px;
-            margin-bottom: 0px;
-            font-size: 20px;
-            color: whitesmoke;
-            /* border-radius: 0 10px 10px 0; */
-        }
-        /* ul, ol {
-            padding: 0;
-            position: relative;
-        }
-        ul li, ol li {
-            color: #2d8fdd;
-            border-left: solid 6px #2d8fdd;
-            background: #f1f8ff;
-            margin-bottom: 3px;
-            line-height: 1.5;
-            padding: 0.5em;
-            list-style-type: none!important;
-        } */
-        .box_range{
-            /* background-color: #f202fa; */
-            /* margin-top: 20px; */
-            margin-left: auto;
-            margin-right: auto;
-            padding: auto;
-            width: 28%;
-            height: 70px;
-        }
-        .btn_left{
-            /* margin-left: auto; */
-            /* margin-right: auto; */
-        }
-        .btn_right{
-            margin-left: 10px;
-            /* margin-right: auto; */
-        }
-        .cp_btn {
-            display: block;
-            float: left;
-            width: 160px;
-            padding: 0.8em;
-            margin-top: 20px;
-            text-align: center;
-            text-decoration: none;
-            /* background: #363636; */
-            background: #f8f6f69d;
-            /* color: #6cc0e5; */
-            color: #0e4e02bd;
-            /* border: 2px solid #6cc0e5; */
-            border: 2px solid #0e4e02bd;
-            border-radius: 3px;
-            transition: .4s;
-        }
-        .cp_btn:hover {
-            /* background: #6cc0e5; */
-            background: #0e4e02bd;
-            /* color: #fff; */
-            color: #f8f6f69d;
-        }
-
-        /* Acordion Faq */
-.tab {
-  position: relative;
-  margin-bottom: 1px;
-  width: 100%;
-  color: #fff;
-  overflow: hidden;
-}
-input {
-  position: absolute;
-  opacity: 0;
-  z-index: -1;
-}
-label {
-  position: relative;
-  display: block;
-  padding: 0 0 0 1em;
-  background: #000;
-  font-weight: bold;
-  line-height: 3;
-  cursor: pointer;
-  /* background-color: #6cc0e5; */
-  background-color: #2cd615ad;
-}
-
-.tab-content {
-  max-height: 0;
-  overflow: hidden;
-  -webkit-transition: max-height .35s;
-  -o-transition: max-height .35s;
-  transition: max-height .35s;
-  color: #000;
-}
-
-.tab-content p {
-  margin: 1em;
-}
-/* :checked */
-input:checked ~ .tab-content {
-  max-height: 100%;
-}
-/* Icon */
-label::after {
-  position: absolute;
-  right: 0;
-  top: 0;
-  display: block;
-  width: 3em;
-  height: 3em;
-  line-height: 3;
-  text-align: center;
-  -webkit-transition: all .35s;
-  -o-transition: all .35s;
-  transition: all .35s;
-}
-input[type=checkbox] + label::after {
-  content: "+";
-}
-input[type=radio] + label::after {
-  content: "\25BC";
-}
-input[type=checkbox]:checked + label::after {
-  transform: rotate(315deg);
-}
-input[type=radio]:checked + label::after {
-  transform: rotateX(180deg);
-}
-
-</style>
 
 <script>
 
