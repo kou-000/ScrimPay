@@ -68,13 +68,14 @@
     <form action="/scrimpay/support" method="POST">
         {% csrf_token %}
         <div class="box">
-            <div class="box-title">Plan1</div>
                 <button class="btn-flat-border" name="change1" onclick="valueChange1()">
                     <input type="hidden" name="pl1[]" value="" id="num10">
                     <input type="hidden" name="pl1[]" value="" id="num11">
                     <input type="hidden" name="pl1[]" value="" id="num12">
                     <input type="hidden" name="pl1[]" value="" id="num13">
                     <input type="hidden" name="pl1[]" value="" id="num14">
+                    <div class="box-title">Plan1</div>
+                </button>
                     {% for i in val3 %}
                         {% for list in plan1%}
                             {% if i.service_id == list %}
@@ -84,17 +85,17 @@
                             {% endif %}
                         {% endfor %}
                     {% endfor %}
-            </button>
         </div>
 
         <div class="box">
-            <div class="box-title">Plan2</div>
                 <button class="btn-flat-border" name="change2" onclick="valueChange2()">
                     <input type="hidden" name="pl2[]" value="" id="num20">
                     <input type="hidden" name="pl2[]" value="" id="num21">
                     <input type="hidden" name="pl2[]" value="" id="num22">
                     <input type="hidden" name="pl2[]" value="" id="num23">
                     <input type="hidden" name="pl2[]" value="" id="num24">
+                    <div class="box-title">Plan2</div>
+                </button>
                     {% for i in val3 %}
                         {% for list in plan2%}
                             {% if i.service_id == list %}
@@ -104,17 +105,18 @@
                             {% endif %}
                         {% endfor %}
                     {% endfor %}
-            </button>
+            
         </div>
 
         <div class="box">
-            <div class="box-title">Plan3</div>
             <button class="btn-flat-border" name="change3" onclick="valueChange3()">
                     <input type="hidden" name="pl3[]" value="" id="num30">
                     <input type="hidden" name="pl3[]" value="" id="num31">
                     <input type="hidden" name="pl3[]" value="" id="num32">
                     <input type="hidden" name="pl3[]" value="" id="num33">
                     <input type="hidden" name="pl3[]" value="" id="num34">
+                    <div class="box-title">Plan3</div>
+            </button>
                     {% for i in val3 %}
                         {% for list in plan3%}
                             {% if i.service_id == list %}
@@ -124,7 +126,7 @@
                             {% endif %}
                         {% endfor %}
                     {% endfor %}
-            </button>
+            
         </div>
     </div>
     </div>

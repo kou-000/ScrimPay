@@ -199,10 +199,6 @@
         transform: rotateX(180deg);
     }
 
-    ul {
-        list-style: none;
-    }
-
     .box {
         margin: 2em 0;
         padding: 0px 0px 5px;
@@ -221,8 +217,8 @@
     .detail {
         padding: 5px 0px 0px;
         font-size: 20px;
-        border-bottom: double 5px #f0b431;
-        transition: color .3s;
+        /* border-bottom: double 5px #f0b431;
+        transition: color .3s; */
     }
 
 }
